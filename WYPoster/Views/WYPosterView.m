@@ -8,6 +8,7 @@
 
 #import "WYPosterView.h"
 #import "WYPosterConfigModel.h"
+#import "Masonry.h"
 
 @implementation WYPosterView
 
@@ -16,6 +17,13 @@
         
     }
     return self;
+}
+
+- (CGSize)preferSize {
+    if(_preferSize.height == 0 || _preferSize.width == 0) {
+        _preferSize = CGSizeMake(100, 100);
+    }
+    return _preferSize;
 }
 
 @end

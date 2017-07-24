@@ -12,17 +12,19 @@
 
 @property (nonatomic, assign, readwrite) WYPosterConfigUnitType unitType;
 @property (nonatomic, assign, readwrite) NSUInteger             length;
-@property (nonatomic, strong, readwrite) NSString         *word;
+@property (nonatomic, strong, readwrite) NSString               *word;
+@property (nonatomic, strong, readwrite) UIFont                 *font;
 
 @end
 
 @implementation WYPosterConfigUnit
 
-- (instancetype)initWithWord:(NSString *)word {
+- (instancetype)initWithWord:(NSString *)word font:(UIFont *)font {
     if(self = [super init]) {
         _unitType = WYPosterConfigUnitTypeNormal;
         _length = word.length;
         _word = word;
+        _font = font;
     }
     return self;
 }

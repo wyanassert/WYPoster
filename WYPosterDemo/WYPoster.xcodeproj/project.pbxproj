@@ -20,6 +20,8 @@
 		937CF23A1F25974400E9BF9A /* WYPosterConfigModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 937CF2391F25974400E9BF9A /* WYPosterConfigModel.m */; };
 		937CF23D1F25A61C00E9BF9A /* WYPoster.m in Sources */ = {isa = PBXBuildFile; fileRef = 937CF23C1F25A61C00E9BF9A /* WYPoster.m */; };
 		937CF2401F25C8CE00E9BF9A /* WYPosterParticiple.m in Sources */ = {isa = PBXBuildFile; fileRef = 937CF23F1F25C8CE00E9BF9A /* WYPosterParticiple.m */; };
+		937CF2431F25FB3100E9BF9A /* WYPosterLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 937CF2421F25FB3100E9BF9A /* WYPosterLineView.m */; };
+		937CF2461F25FB4400E9BF9A /* WYPosterUnitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 937CF2451F25FB4400E9BF9A /* WYPosterUnitView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,10 @@
 		937CF23C1F25A61C00E9BF9A /* WYPoster.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WYPoster.m; sourceTree = "<group>"; };
 		937CF23E1F25C8CE00E9BF9A /* WYPosterParticiple.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WYPosterParticiple.h; sourceTree = "<group>"; };
 		937CF23F1F25C8CE00E9BF9A /* WYPosterParticiple.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WYPosterParticiple.m; sourceTree = "<group>"; };
+		937CF2411F25FB3100E9BF9A /* WYPosterLineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WYPosterLineView.h; sourceTree = "<group>"; };
+		937CF2421F25FB3100E9BF9A /* WYPosterLineView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WYPosterLineView.m; sourceTree = "<group>"; };
+		937CF2441F25FB4400E9BF9A /* WYPosterUnitView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WYPosterUnitView.h; sourceTree = "<group>"; };
+		937CF2451F25FB4400E9BF9A /* WYPosterUnitView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WYPosterUnitView.m; sourceTree = "<group>"; };
 		9A4B1EF742B2DB84E36F2E2A /* Pods-WYPoster.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WYPoster.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WYPoster/Pods-WYPoster.debug.xcconfig"; sourceTree = "<group>"; };
 		A84FD4F745CD1F8F4948D660 /* libPods-WYPoster.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WYPoster.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -141,6 +147,10 @@
 			children = (
 				937ADC321F220B3E00B22295 /* WYPosterView.h */,
 				937ADC331F220B3E00B22295 /* WYPosterView.m */,
+				937CF2411F25FB3100E9BF9A /* WYPosterLineView.h */,
+				937CF2421F25FB3100E9BF9A /* WYPosterLineView.m */,
+				937CF2441F25FB4400E9BF9A /* WYPosterUnitView.h */,
+				937CF2451F25FB4400E9BF9A /* WYPosterUnitView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -286,10 +296,12 @@
 				937CF2371F25970000E9BF9A /* WYPosterConfigLine.m in Sources */,
 				937CF2341F25954C00E9BF9A /* WYPosterConfigUnit.m in Sources */,
 				937CF23D1F25A61C00E9BF9A /* WYPoster.m in Sources */,
+				937CF2461F25FB4400E9BF9A /* WYPosterUnitView.m in Sources */,
 				937ADC1E1F22026200B22295 /* ViewController.m in Sources */,
 				937ADC341F220B3E00B22295 /* WYPosterView.m in Sources */,
 				937ADC291F22026200B22295 /* main.m in Sources */,
 				937ADC1B1F22026200B22295 /* AppDelegate.m in Sources */,
+				937CF2431F25FB3100E9BF9A /* WYPosterLineView.m in Sources */,
 				937CF2401F25C8CE00E9BF9A /* WYPosterParticiple.m in Sources */,
 				937CF23A1F25974400E9BF9A /* WYPosterConfigModel.m in Sources */,
 			);

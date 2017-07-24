@@ -10,6 +10,11 @@
 #import "WYPoster.h"
 #import "WYPosterConfigModel.h"
 
+NSString *test0 = @"deerjakbcx";
+NSString *test1 = @"Looks to me like you can determine nWords however you like... it's just a variable used for the purposes of illustration here.";
+NSString *test3 = @"la la Land";
+NSString *test4 = @"iOS: set font size of UILabel Programmatically - Stack Overflow";
+
 @interface ViewController ()
 
 @end
@@ -21,7 +26,8 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     WYPosterConfigModel *config = [[WYPosterConfigModel alloc] init];
-    UIView *view = [WYPoster createViewUsingText:@"Looks    to me like you can determine nWords however you like... it's just a variable used for the purposes of illustration here." withConfigModel:config];
+    config.ratio = 4;
+    UIView *view = [WYPoster createViewUsingText:test4 withConfigModel:config];
 }
 
 

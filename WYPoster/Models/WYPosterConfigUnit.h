@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSUInteger, WYPosterConfigUnitType) {
     WYPosterConfigUnitTypeNormal = 0,
@@ -21,7 +22,9 @@ typedef NS_ENUM(NSUInteger, WYPosterConfigUnitType) {
 
 @property (nonatomic, assign, readonly) WYPosterConfigUnitType unitType;
 @property (nonatomic, assign, readonly) NSUInteger             length;
-@property (nonatomic, strong, readonly) NSString         *word;
-- (instancetype)initWithWord:(NSString *)word;
+@property (nonatomic, strong, readonly) NSString               *word;
+@property (nonatomic, strong, readonly) UIFont                 *font;
+
+- (instancetype)initWithWord:(NSString *)word font:(UIFont *)font;
 
 @end

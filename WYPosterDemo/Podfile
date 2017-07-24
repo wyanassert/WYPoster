@@ -6,5 +6,6 @@ target 'WYPoster' do
   # use_frameworks!
 
   # Pods for WYPoster
+  pod 'Masonry'
 
 end

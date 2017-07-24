@@ -31,11 +31,13 @@
     WYPosterConfigLine *tmpLine = [WYPosterConfigLine new];
     for(NSString *tmpStr in wordArray) {
         if(tmpLine.length + tmpStr.length < avg) {
-            [tmpLine addConfigUnit:[[WYPosterConfigUnit alloc] initWithWord:tmpStr]];
+            [tmpLine addConfigUnit:[[WYPosterConfigUnit alloc] initWithWord:tmpStr font:configModel.fontArray.firstObject]];
         } else {
-            [array addObject:tmpLine];
-            tmpLine = [WYPosterConfigLine new];
-            [tmpLine addConfigUnit:[[WYPosterConfigUnit alloc] initWithWord:tmpStr]];
+            if(tmpLine.length > 0) {
+                [array addObject:tmpLine];
+                tmpLine = [WYPosterConfigLine new];
+            }
+            [tmpLine addConfigUnit:[[WYPosterConfigUnit alloc] initWithWord:tmpStr font:configModel.fontArray.firstObject]];
         }
     }
     if(tmpLine.length > 0) {
