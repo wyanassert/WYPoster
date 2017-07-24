@@ -8,22 +8,65 @@
 
 #import "WYPosterView.h"
 #import "WYPosterConfigModel.h"
+#import "WYPosterConfigLine.h"
+#import "WYPosterLineView.h"
 #import "Masonry.h"
+
+@interface WYPosterView()
+
+@property (nonatomic, strong) WYPosterConfigModel         *configModel;
+@property (nonatomic, strong) NSMutableArray<WYPosterLineView *>         *lineViewArray;
+
+@end
 
 @implementation WYPosterView
 
 - (instancetype)initWithConfig:(WYPosterConfigModel *)configModel {
     if(self = [super init]) {
-        
+        _configModel = configModel;
+        [self configView];
     }
     return self;
 }
 
+- (void)configView {
+    [self.lineViewArray removeAllObjects];
+    __weak typeof(self)weakSelf = self;
+    [self.configModel.lineArray enumerateObjectsUsingBlock:^(WYPosterConfigLine * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        __strong typeof(weakSelf)self = weakSelf;
+        WYPosterLineView *lineView = [[WYPosterLineView alloc] initWithPosetrLine:obj];
+        [self.lineViewArray addObject:lineView];
+        [self addSubview:lineView];
+        [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+            if(idx == 0) {
+                make.top.equalTo(self);
+            } else {
+                make.top.equalTo(self.lineViewArray[idx - 1].mas_bottom);
+            }
+            make.height.mas_equalTo(obj.height);
+            make.width.mas_equalTo(obj.width);
+            make.centerX.equalTo(self);
+            if(idx == self.configModel.lineArray.count - 1) {
+                make.bottom.equalTo(self.mas_bottom);
+            }
+        }];
+    }];
+}
+
+
+#pragma mark - Getter
 - (CGSize)preferSize {
     if(_preferSize.height == 0 || _preferSize.width == 0) {
         _preferSize = CGSizeMake(100, 100);
     }
     return _preferSize;
+}
+
+- (NSMutableArray<WYPosterLineView *> *)lineViewArray {
+    if(!_lineViewArray) {
+        _lineViewArray = [NSMutableArray array];
+    }
+    return _lineViewArray;
 }
 
 @end

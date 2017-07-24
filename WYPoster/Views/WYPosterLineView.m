@@ -9,6 +9,8 @@
 #import "WYPosterLineView.h"
 #import "WYPosterConfigLine.h"
 #import "WYPosterConfigUnit.h"
+#import "WYPosterUnitView.h"
+#import "Masonry.h"
 
 @interface WYPosterLineView()
 
@@ -21,6 +23,7 @@
 
 - (instancetype)initWithPosetrLine:(WYPosterConfigLine *)line {
     if(self = [super init]) {
+        _line = line;
         [self configView];
     }
     return self;
@@ -40,8 +43,10 @@
             } else {
                 make.left.equalTo(self.unitViewArrray[idx - 1].mas_right);
             }
-            make.bottom.top.equalTo(self);
-            if(idx == self.unitViewArrray.count - 1) {
+            make.top.equalTo(self);
+            make.height.mas_equalTo(obj.height);
+            make.width.mas_equalTo(obj.width);
+            if(idx == self.line.unitArray.count - 1) {
                 make.right.equalTo(self);
             }
         }];

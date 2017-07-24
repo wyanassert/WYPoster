@@ -12,11 +12,15 @@
 @interface WYPosterConfigLine()
 
 @property (nonatomic, strong, readwrite) NSMutableArray<WYPosterConfigUnit *> *unitArray;
-@property (nonatomic, assign, readwrite) NSUInteger                  length;
+@property (nonatomic, assign, readwrite) NSUInteger length;
+@property (nonatomic, assign, readwrite) CGFloat    width;
+@property (nonatomic, assign, readwrite) CGFloat    height;
 
 @end
 
 @implementation WYPosterConfigLine
+
+@synthesize scale = _scale;
 
 - (void)addConfigUnit:(WYPosterConfigUnit *)unit {
     [self.unitArray addObject:unit];
@@ -24,6 +28,8 @@
         _length ++;
     }
     _length += unit.length;
+    _width += unit.width;
+    _height = MAX(_height, unit.height);
 }
 
 #pragma mark - Getter
@@ -32,6 +38,23 @@
         _unitArray = [NSMutableArray array];
     }
     return _unitArray;
+}
+
+- (CGFloat)scale {
+    if(0 == _scale) {
+        _scale = 1;
+    }
+    return _scale;
+}
+
+#pragma mark - Setter
+- (void)setScale:(CGFloat)scale {
+    _scale = scale;
+    _width *= scale;
+    _height *= scale;
+    for(WYPosterConfigUnit *unit in self.unitArray) {
+        unit.scale = scale;
+    }
 }
 
 @end

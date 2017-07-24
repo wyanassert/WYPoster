@@ -7,13 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @class WYPosterConfigUnit;
 
 @interface WYPosterConfigLine : NSObject
 
 @property (nonatomic, strong, readonly) NSMutableArray<WYPosterConfigUnit *> *unitArray;
-@property (nonatomic, assign, readonly) NSUInteger                  length;
+@property (nonatomic, assign, readonly) NSUInteger         length;
+@property (nonatomic, assign, readonly) CGFloat            width;
+@property (nonatomic, assign, readonly) CGFloat            height;
+@property (nonatomic, assign,         ) CGFloat            scale;
 
 - (void)addConfigUnit:(WYPosterConfigUnit *)unit;
 

@@ -37,6 +37,7 @@ typedef NS_ENUM(NSUInteger, WYEmbedImageType) {
 @property (nonatomic, assign) CGFloat                ratio;
 @property (nonatomic, assign) CGFloat                maxSizeDiff;
 @property (nonatomic, strong) NSArray<UIFont *>      *fontArray;
+@property (nonatomic, assign) NSUInteger             avgLength;
 
 - (WYPosterConfigModel *)configureWithLineArray:(NSArray<WYPosterConfigLine *> *)lineArray;
 

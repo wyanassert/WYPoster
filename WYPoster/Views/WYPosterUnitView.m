@@ -30,8 +30,7 @@
 - (void)configView {
     [self addSubview:self.label];
     [self.label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.equalTo(self);
-        make.centerX.equalTo(self);
+        make.edges.equalTo(self);
     }];
 }
 
@@ -44,7 +43,7 @@
         lb.textColor = [UIColor redColor];
         lb.font = self.unit.font;
         lb.backgroundColor = [UIColor clearColor];
-        [lb sizeToFit];
+        lb.textAlignment = NSTextAlignmentCenter;
         _label = lb;
     }
     return _label;

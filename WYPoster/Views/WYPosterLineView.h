@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "WYPosterUnitView.h"
 
 @class WYPosterConfigLine;
 

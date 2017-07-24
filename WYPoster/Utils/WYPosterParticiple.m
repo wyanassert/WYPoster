@@ -28,13 +28,17 @@
 + (WYPosterConfigModel *)spliteWordArray:(NSArray<NSString *> *)wordArray lengthPerLine:(NSUInteger)avg withConfig:(WYPosterConfigModel *)configModel {
     NSMutableArray *array = [NSMutableArray array];
     
+    configModel.avgLength = avg;
+    
     WYPosterConfigLine *tmpLine = [WYPosterConfigLine new];
     for(NSString *tmpStr in wordArray) {
         if(tmpLine.length + tmpStr.length < avg) {
             [tmpLine addConfigUnit:[[WYPosterConfigUnit alloc] initWithWord:tmpStr font:configModel.fontArray.firstObject]];
+            
         } else {
             if(tmpLine.length > 0) {
                 [array addObject:tmpLine];
+                tmpLine.scale = ((CGFloat)configModel.avgLength) / tmpLine.length;
                 tmpLine = [WYPosterConfigLine new];
             }
             [tmpLine addConfigUnit:[[WYPosterConfigUnit alloc] initWithWord:tmpStr font:configModel.fontArray.firstObject]];
@@ -42,6 +46,7 @@
     }
     if(tmpLine.length > 0) {
         [array addObject:tmpLine];
+        tmpLine.scale = ((CGFloat)configModel.avgLength) / tmpLine.length;
     }
     
     [configModel configureWithLineArray:[array copy]];

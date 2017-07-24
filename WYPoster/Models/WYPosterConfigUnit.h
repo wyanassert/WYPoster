@@ -22,6 +22,10 @@ typedef NS_ENUM(NSUInteger, WYPosterConfigUnitType) {
 
 @property (nonatomic, assign, readonly) WYPosterConfigUnitType unitType;
 @property (nonatomic, assign, readonly) NSUInteger             length;
+@property (nonatomic, assign, readonly) CGFloat                width;
+@property (nonatomic, assign, readonly) CGFloat                height;
+@property (nonatomic, assign,         ) CGFloat                scale;
+
 @property (nonatomic, strong, readonly) NSString               *word;
 @property (nonatomic, strong, readonly) UIFont                 *font;
 
