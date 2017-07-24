@@ -14,6 +14,12 @@
 		937ADC231F22026200B22295 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 937ADC221F22026200B22295 /* Assets.xcassets */; };
 		937ADC261F22026200B22295 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 937ADC241F22026200B22295 /* LaunchScreen.storyboard */; };
 		937ADC291F22026200B22295 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 937ADC281F22026200B22295 /* main.m */; };
+		937ADC341F220B3E00B22295 /* WYPosterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 937ADC331F220B3E00B22295 /* WYPosterView.m */; };
+		937CF2341F25954C00E9BF9A /* WYPosterConfigUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 937CF2331F25954C00E9BF9A /* WYPosterConfigUnit.m */; };
+		937CF2371F25970000E9BF9A /* WYPosterConfigLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 937CF2361F25970000E9BF9A /* WYPosterConfigLine.m */; };
+		937CF23A1F25974400E9BF9A /* WYPosterConfigModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 937CF2391F25974400E9BF9A /* WYPosterConfigModel.m */; };
+		937CF23D1F25A61C00E9BF9A /* WYPoster.m in Sources */ = {isa = PBXBuildFile; fileRef = 937CF23C1F25A61C00E9BF9A /* WYPoster.m */; };
+		937CF2401F25C8CE00E9BF9A /* WYPosterParticiple.m in Sources */ = {isa = PBXBuildFile; fileRef = 937CF23F1F25C8CE00E9BF9A /* WYPosterParticiple.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +34,18 @@
 		937ADC251F22026200B22295 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		937ADC271F22026200B22295 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		937ADC281F22026200B22295 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		937ADC321F220B3E00B22295 /* WYPosterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WYPosterView.h; sourceTree = "<group>"; };
+		937ADC331F220B3E00B22295 /* WYPosterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WYPosterView.m; sourceTree = "<group>"; };
+		937CF2321F25954C00E9BF9A /* WYPosterConfigUnit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WYPosterConfigUnit.h; sourceTree = "<group>"; };
+		937CF2331F25954C00E9BF9A /* WYPosterConfigUnit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WYPosterConfigUnit.m; sourceTree = "<group>"; };
+		937CF2351F25970000E9BF9A /* WYPosterConfigLine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WYPosterConfigLine.h; sourceTree = "<group>"; };
+		937CF2361F25970000E9BF9A /* WYPosterConfigLine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WYPosterConfigLine.m; sourceTree = "<group>"; };
+		937CF2381F25974400E9BF9A /* WYPosterConfigModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WYPosterConfigModel.h; sourceTree = "<group>"; };
+		937CF2391F25974400E9BF9A /* WYPosterConfigModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WYPosterConfigModel.m; sourceTree = "<group>"; };
+		937CF23B1F25A61C00E9BF9A /* WYPoster.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WYPoster.h; sourceTree = "<group>"; };
+		937CF23C1F25A61C00E9BF9A /* WYPoster.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WYPoster.m; sourceTree = "<group>"; };
+		937CF23E1F25C8CE00E9BF9A /* WYPosterParticiple.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WYPosterParticiple.h; sourceTree = "<group>"; };
+		937CF23F1F25C8CE00E9BF9A /* WYPosterParticiple.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WYPosterParticiple.m; sourceTree = "<group>"; };
 		9A4B1EF742B2DB84E36F2E2A /* Pods-WYPoster.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WYPoster.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WYPoster/Pods-WYPoster.debug.xcconfig"; sourceTree = "<group>"; };
 		A84FD4F745CD1F8F4948D660 /* libPods-WYPoster.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WYPoster.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -64,6 +82,7 @@
 		937ADC0D1F22026200B22295 = {
 			isa = PBXGroup;
 			children = (
+				937ADC2F1F22058700B22295 /* WYPoster */,
 				937ADC181F22026200B22295 /* WYPosterDemo */,
 				937ADC171F22026200B22295 /* Products */,
 				384653057CC0E7A0F82F5D4D /* Pods */,
@@ -93,6 +112,50 @@
 				937ADC281F22026200B22295 /* main.m */,
 			);
 			path = WYPosterDemo;
+			sourceTree = "<group>";
+		};
+		937ADC2F1F22058700B22295 /* WYPoster */ = {
+			isa = PBXGroup;
+			children = (
+				937CF2311F25953400E9BF9A /* Models */,
+				937ADC311F220B2600B22295 /* Views */,
+				937ADC301F22059900B22295 /* Utils */,
+				937CF23B1F25A61C00E9BF9A /* WYPoster.h */,
+				937CF23C1F25A61C00E9BF9A /* WYPoster.m */,
+			);
+			name = WYPoster;
+			path = ../WYPoster;
+			sourceTree = "<group>";
+		};
+		937ADC301F22059900B22295 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				937CF23E1F25C8CE00E9BF9A /* WYPosterParticiple.h */,
+				937CF23F1F25C8CE00E9BF9A /* WYPosterParticiple.m */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		937ADC311F220B2600B22295 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				937ADC321F220B3E00B22295 /* WYPosterView.h */,
+				937ADC331F220B3E00B22295 /* WYPosterView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		937CF2311F25953400E9BF9A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				937CF2321F25954C00E9BF9A /* WYPosterConfigUnit.h */,
+				937CF2331F25954C00E9BF9A /* WYPosterConfigUnit.m */,
+				937CF2351F25970000E9BF9A /* WYPosterConfigLine.h */,
+				937CF2361F25970000E9BF9A /* WYPosterConfigLine.m */,
+				937CF2381F25974400E9BF9A /* WYPosterConfigModel.h */,
+				937CF2391F25974400E9BF9A /* WYPosterConfigModel.m */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,9 +283,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				937CF2371F25970000E9BF9A /* WYPosterConfigLine.m in Sources */,
+				937CF2341F25954C00E9BF9A /* WYPosterConfigUnit.m in Sources */,
+				937CF23D1F25A61C00E9BF9A /* WYPoster.m in Sources */,
 				937ADC1E1F22026200B22295 /* ViewController.m in Sources */,
+				937ADC341F220B3E00B22295 /* WYPosterView.m in Sources */,
 				937ADC291F22026200B22295 /* main.m in Sources */,
 				937ADC1B1F22026200B22295 /* AppDelegate.m in Sources */,
+				937CF2401F25C8CE00E9BF9A /* WYPosterParticiple.m in Sources */,
+				937CF23A1F25974400E9BF9A /* WYPosterConfigModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,7 +428,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 9R36C42WH7;
-				INFOPLIST_FILE = WYPoster/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/WYPosterDemo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = makeupopular.com.GxShareManagerDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -376,7 +445,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 9R36C42WH7;
-				INFOPLIST_FILE = WYPoster/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/WYPosterDemo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = makeupopular.com.GxShareManagerDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";

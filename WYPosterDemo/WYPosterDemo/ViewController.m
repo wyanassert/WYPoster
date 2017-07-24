@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+#import "WYPoster.h"
+#import "WYPosterConfigModel.h"
 
 @interface ViewController ()
 
@@ -17,6 +19,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    WYPosterConfigModel *config = [[WYPosterConfigModel alloc] init];
+    UIView *view = [WYPoster createViewUsingText:@"Looks    to me like you can determine nWords however you like... it's just a variable used for the purposes of illustration here." withConfigModel:config];
 }
 
 
