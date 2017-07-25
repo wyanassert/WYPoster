@@ -19,6 +19,7 @@ NSString *test3 = @"la la Land";
 NSString *test4 = @"iOS: set font size of UILabel Programmatically - Stack Overflow";
 NSString *test5 = @"DOUBLE TAP TO EDIT TEXT!!!";
 NSString *test6 = @"Objective-C is a general-purpose, object-oriented programming language that adds Smalltalk-style messaging to the C programming language. It was the main programming language used by Apple for the OS X and iOS operating systems, and their respective application programming interfaces (APIs) Cocoa and Cocoa Touch prior to the introduction of Swift.";
+NSString *test7 = @"AAAAAAjjj ggfj CCCCCCCCCCCC";
 
 @interface ViewController ()
 
@@ -33,16 +34,11 @@ NSString *test6 = @"Objective-C is a general-purpose, object-oriented programmin
     WYPosterConfigModel *config = [[WYPosterConfigModel alloc] init];
     config.ratio = 1;
     config.preferWidth = 100;
-    WYPosterView *view = [WYPoster createViewUsingText:test3 withConfigModel:config];
+    config.localMultiLine = WYPreferLocalMultiLineAny;
+    WYPosterView *view = [WYPoster createViewUsingText:test1 withConfigModel:config];
     
     [self.view addSubview:view];
     view.center = self.view.center;
-    
-    [INTUAnimationEngine animateWithDuration:1 delay:0 animations:^(CGFloat percentage) {
-        [view scaleTo:1 + percentage * 5];
-    } completion:^(BOOL finished) {
-        [view scaleTo:6];
-    }];
 }
 
 

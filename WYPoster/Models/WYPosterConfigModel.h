@@ -13,7 +13,12 @@
 
 typedef NS_ENUM(NSUInteger, WYPreferLocalMultiLine) {
     WYPreferLocalMultiLineNone = 0,
-    WYPreferLocalMultiLineAny
+    WYPreferLocalMultiLineRare,
+    WYPreferLocalMultiLineOccasional,
+    WYPreferLocalMultiLineSometime,
+    WYPreferLocalMultiLineAlways,
+    WYPreferLocalMultiLineAny,
+    WYPreferLocalMultiLineCount
 };
 
 typedef NS_ENUM(NSUInteger, WYAlignmentType) {

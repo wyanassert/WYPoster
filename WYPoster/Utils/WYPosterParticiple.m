@@ -38,8 +38,19 @@
 
 + (WYPosterConfigModel *)spliteWordArray:(NSArray<NSString *> *)wordArray withConfig:(WYPosterConfigModel *)configModel {
     WYPosterConfigLine *tmpLine = [WYPosterConfigLine new];
-    for(NSString *tmpStr in wordArray) {
-        if(tmpLine.length + tmpStr.length < configModel.avgLength) {
+    for (NSUInteger i = 0; i < wordArray.count; i++) {
+        NSString *tmpStr = [wordArray objectAtIndex:i];
+        if([self shouldApplyMultiLine:wordArray fromIndex:i multiLine:3 currentLine:tmpLine withConfigModel:configModel] &&
+           (arc4random() % WYPreferLocalMultiLineCount) <= configModel.localMultiLine) {
+            NSArray<NSArray<NSString *> *> *multiWord = @[@[wordArray[i]], @[wordArray[i + 1]], @[wordArray[i + 2]]];
+            NSArray<NSArray<UIFont *> *> *multiFont = @[@[configModel.fontArray[0]], @[configModel.fontArray[0]], @[configModel.fontArray[0]]];
+            [tmpLine addConfigUnit:[[WYPosterConfigUnit alloc] initWithWords:multiWord fonts:multiFont]];
+        } else if([self shouldApplyMultiLine:wordArray fromIndex:i multiLine:2 currentLine:tmpLine withConfigModel:configModel] &&
+                  (arc4random() % WYPreferLocalMultiLineCount) <= configModel.localMultiLine) {
+            NSArray<NSArray<NSString *> *> *multiWord = @[@[wordArray[i]], @[wordArray[i + 1]]];
+            NSArray<NSArray<UIFont *> *> *multiFont = @[@[configModel.fontArray[0]], @[configModel.fontArray[0]]];
+            [tmpLine addConfigUnit:[[WYPosterConfigUnit alloc] initWithWords:multiWord fonts:multiFont]];
+        } else if(tmpLine.length + tmpStr.length < configModel.avgLength) {
             [tmpLine addConfigUnit:[[WYPosterConfigUnit alloc] initWithWord:tmpStr font:configModel.fontArray.firstObject]];
             
         } else {
@@ -67,6 +78,31 @@
     }
     
     return configModel;
+}
+
+
+#pragma mark - Private
++ (BOOL)shouldApplyMultiLine:(NSArray<NSString *> *)wordArray fromIndex:(NSUInteger)index multiLine:(NSUInteger)row currentLine:(WYPosterConfigLine *)currentLine withConfigModel:(WYPosterConfigModel *)configModel {
+    if(index + row >= wordArray.count) {
+        return NO;
+    }
+    NSMutableArray<NSString *> *multiLineWords = [NSMutableArray array];
+    NSUInteger i = row;
+    NSUInteger maxLen = 0;
+    NSUInteger minLen = NSUIntegerMax;
+    while (i--) {
+        [multiLineWords addObject:wordArray[index + row - i - 1]];
+        maxLen = MAX(maxLen, wordArray[index + row - i - 1].length);
+        minLen = MIN(minLen, wordArray[index + row - i - 1].length);
+    }
+    if(maxLen - minLen > ceil(maxLen * 0.3)) {
+        return NO;
+    } else if (currentLine.length > 0 && currentLine.length + ceil((CGFloat) maxLen) / multiLineWords.count > configModel.avgLength) {
+        return NO;
+    } else if (currentLine.length + ceil((CGFloat) maxLen) / multiLineWords.count + wordArray[index + row].length > configModel.avgLength) {
+        return NO;
+    }
+    return YES;
 }
 
 @end
