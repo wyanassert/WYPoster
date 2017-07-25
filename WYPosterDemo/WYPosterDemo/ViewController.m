@@ -17,6 +17,7 @@ NSString *test2 = @"Looks to me like you can determine nWords however you like..
 NSString *test3 = @"la la Land";
 NSString *test4 = @"iOS: set font size of UILabel Programmatically - Stack Overflow";
 NSString *test5 = @"DOUBLE TAP TO EDIT TEXT!!!";
+NSString *test6 = @"Objective-C is a general-purpose, object-oriented programming language that adds Smalltalk-style messaging to the C programming language. It was the main programming language used by Apple for the OS X and iOS operating systems, and their respective application programming interfaces (APIs) Cocoa and Cocoa Touch prior to the introduction of Swift.";
 
 @interface ViewController ()
 
@@ -31,7 +32,7 @@ NSString *test5 = @"DOUBLE TAP TO EDIT TEXT!!!";
     WYPosterConfigModel *config = [[WYPosterConfigModel alloc] init];
     config.ratio = 1;
     config.preferWidth = 300;
-    UIView *view = [WYPoster createViewUsingText:test5 withConfigModel:config];
+    UIView *view = [WYPoster createViewUsingText:test6 withConfigModel:config];
     
     [self.view addSubview:view];
     view.center = self.view.center;

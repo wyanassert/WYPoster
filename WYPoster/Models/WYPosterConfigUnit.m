@@ -8,7 +8,7 @@
 
 #import "WYPosterConfigUnit.h"
 
-CGFloat kHeightScale = 0.7;
+CGFloat kHeightScale = 0.9;
 CGFloat kWidthScale = 0.95;
 
 @interface WYPosterConfigUnit()
