@@ -12,8 +12,6 @@
 
 @interface WYPosterView : UIView
 
-@property (nonatomic, assign) CGSize         preferSize;
-
 - (instancetype)initWithConfig:(WYPosterConfigModel *)configModel;
 
 @end

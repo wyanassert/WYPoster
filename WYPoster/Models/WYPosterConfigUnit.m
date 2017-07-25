@@ -8,6 +8,9 @@
 
 #import "WYPosterConfigUnit.h"
 
+CGFloat kHeightScale = 0.7;
+CGFloat kWidthScale = 0.95;
+
 @interface WYPosterConfigUnit()
 
 @property (nonatomic, assign, readwrite) WYPosterConfigUnitType unitType;
@@ -33,8 +36,8 @@
                                          options:NSStringDrawingUsesLineFragmentOrigin
                                       attributes:@{NSFontAttributeName:font}
                                          context:nil];
-        _width = rect.size.width / (word.length) * (word.length + 1) * self.scale;
-        _height = rect.size.height * self.scale;
+        _width = rect.size.width / (word.length) * (word.length + 1) * self.scale * kWidthScale;
+        _height = rect.size.height * self.scale * kHeightScale;
     }
     return self;
 }
@@ -49,15 +52,16 @@
 
 #pragma mark - Setter
 - (void)setScale:(CGFloat)scale {
-    _scale = scale;
-    UIFont *font = [UIFont fontWithName:self.font.fontName size:self.font.pointSize * scale];
+    UIFont *font = [UIFont fontWithName:self.font.fontName size:self.font.pointSize * scale / self.scale];
     _font = font;
     CGRect rect = [self.word boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)
                                      options:NSStringDrawingUsesLineFragmentOrigin
                                   attributes:@{NSFontAttributeName:font}
                                      context:nil];
-    _width = rect.size.width / (self.word.length) * (self.word.length + 1);
-    _height = rect.size.height;
+    _width = rect.size.width / (self.word.length) * (self.word.length + 1) * kWidthScale;
+    _height = rect.size.height * kHeightScale;
+    
+    _scale = scale;
 }
 
 @end

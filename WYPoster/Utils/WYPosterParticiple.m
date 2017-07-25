@@ -25,31 +25,38 @@
     return [result copy];
 }
 
-+ (WYPosterConfigModel *)spliteWordArray:(NSArray<NSString *> *)wordArray lengthPerLine:(NSUInteger)avg withConfig:(WYPosterConfigModel *)configModel {
-    NSMutableArray *array = [NSMutableArray array];
-    
++ (WYPosterConfigModel *)calAvgLengthForConfigModel:(WYPosterConfigModel *)configModel withText:(NSString *)text {
+    UIFont *font= configModel.fontArray[0];
+    NSDictionary* dic = @{
+                          NSFontAttributeName:font,
+                          };
+    CGSize characterSize = [@"A" boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:dic context:nil].size;
+    NSUInteger avg = ceil(sqrt(configModel.ratio * characterSize.height / characterSize.width * text.length) * 1.2);
     configModel.avgLength = avg;
-    
+    return configModel;
+}
+
++ (WYPosterConfigModel *)spliteWordArray:(NSArray<NSString *> *)wordArray withConfig:(WYPosterConfigModel *)configModel {
     WYPosterConfigLine *tmpLine = [WYPosterConfigLine new];
     for(NSString *tmpStr in wordArray) {
-        if(tmpLine.length + tmpStr.length < avg) {
+        if(tmpLine.length + tmpStr.length < configModel.avgLength) {
             [tmpLine addConfigUnit:[[WYPosterConfigUnit alloc] initWithWord:tmpStr font:configModel.fontArray.firstObject]];
             
         } else {
             if(tmpLine.length > 0) {
-                [array addObject:tmpLine];
                 tmpLine.scale = ((CGFloat)configModel.avgLength) / tmpLine.length;
+                [configModel addConfigLine:tmpLine];
                 tmpLine = [WYPosterConfigLine new];
             }
             [tmpLine addConfigUnit:[[WYPosterConfigUnit alloc] initWithWord:tmpStr font:configModel.fontArray.firstObject]];
         }
     }
     if(tmpLine.length > 0) {
-        [array addObject:tmpLine];
         tmpLine.scale = ((CGFloat)configModel.avgLength) / tmpLine.length;
+        [configModel addConfigLine:tmpLine];
     }
     
-    [configModel configureWithLineArray:[array copy]];
+    [configModel resizeToPrefer];
     
     for(WYPosterConfigLine *line in configModel.lineArray) {
         NSString *str = [NSString string];

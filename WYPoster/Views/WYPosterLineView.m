@@ -46,9 +46,6 @@
             make.top.equalTo(self);
             make.height.mas_equalTo(obj.height);
             make.width.mas_equalTo(obj.width);
-            if(idx == self.line.unitArray.count - 1) {
-                make.right.equalTo(self);
-            }
         }];
     }];
 }

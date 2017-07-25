@@ -14,6 +14,8 @@
 
 + (NSArray<NSString *> *)getWordFromString:(NSString *)text withConfig:(WYPosterConfigModel *)configModel;
 
-+ (WYPosterConfigModel *)spliteWordArray:(NSArray<NSString *> *)wordArray lengthPerLine:(NSUInteger)avg withConfig:(WYPosterConfigModel *)configModel;
++ (WYPosterConfigModel *)calAvgLengthForConfigModel:(WYPosterConfigModel *)configModel withText:(NSString *)text;
+
++ (WYPosterConfigModel *)spliteWordArray:(NSArray<NSString *> *)wordArray withConfig:(WYPosterConfigModel *)configModel;
 
 @end

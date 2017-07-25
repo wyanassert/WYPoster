@@ -16,14 +16,8 @@
 
 + (WYPosterConfigModel *)fillLayoutData:(NSString *)text withConfig:(WYPosterConfigModel *)configModel {
     NSArray<NSString *> *wordArray = [WYPosterParticiple getWordFromString:text withConfig:configModel];
-    UIFont *font= configModel.fontArray[0];
-    NSDictionary* dic = @{
-                          NSFontAttributeName:font,
-                          };
-    CGSize characterSize = [@"A" boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:dic context:nil].size;
-    NSUInteger avg = ceil(sqrt(configModel.ratio * characterSize.height / characterSize.width * text.length) * 1.2);
-    
-    [WYPosterParticiple spliteWordArray:wordArray lengthPerLine:avg withConfig:configModel];
+    [WYPosterParticiple calAvgLengthForConfigModel:configModel withText:text];
+    [WYPosterParticiple spliteWordArray:wordArray withConfig:configModel];
     
     return configModel;
 }
@@ -33,7 +27,9 @@
         configModel = [WYPoster fillLayoutData:text withConfig:configModel];
     }
     
-    return [[WYPosterView alloc] initWithConfig:configModel];
+    WYPosterView *view = [[WYPosterView alloc] initWithConfig:configModel];
+    [view setFrame:CGRectMake(0, 0, configModel.width, configModel.height)];
+    return view;
 }
 
 @end

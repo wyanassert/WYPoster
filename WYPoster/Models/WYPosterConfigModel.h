@@ -30,7 +30,10 @@ typedef NS_ENUM(NSUInteger, WYEmbedImageType) {
 
 @interface WYPosterConfigModel : NSObject
 
-@property (nonatomic, strong, readonly) NSArray<WYPosterConfigLine     *> *lineArray;
+@property (nonatomic, strong, readonly) NSMutableArray<WYPosterConfigLine*> *lineArray;
+
+@property (nonatomic, assign, readonly) CGFloat            width;
+@property (nonatomic, assign, readonly) CGFloat            height;
 
 @property (nonatomic, assign) WYPreferLocalMultiLine localMultiLine;
 @property (nonatomic, assign) WYAlignmentType        alignment;
@@ -38,7 +41,9 @@ typedef NS_ENUM(NSUInteger, WYEmbedImageType) {
 @property (nonatomic, assign) CGFloat                maxSizeDiff;
 @property (nonatomic, strong) NSArray<UIFont *>      *fontArray;
 @property (nonatomic, assign) NSUInteger             avgLength;
+@property (nonatomic, assign) CGFloat                preferWidth;
 
-- (WYPosterConfigModel *)configureWithLineArray:(NSArray<WYPosterConfigLine *> *)lineArray;
+- (void)addConfigLine:(WYPosterConfigLine *)line;
+- (void)resizeToPrefer;
 
 @end

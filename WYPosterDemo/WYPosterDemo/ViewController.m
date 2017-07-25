@@ -12,9 +12,11 @@
 #import "Masonry.h"
 
 NSString *test0 = @"deerjakbcx";
-NSString *test1 = @"Looks to me like you can determine nWords however you like... it's just a variable used for the purposes of illustration here.";
+NSString *test1 = @"a bb ccc ddd eeee";
+NSString *test2 = @"Looks to me like you can determine nWords however you like... it's just a variable used for the purposes of illustration here.";
 NSString *test3 = @"la la Land";
 NSString *test4 = @"iOS: set font size of UILabel Programmatically - Stack Overflow";
+NSString *test5 = @"DOUBLE TAP TO EDIT TEXT!!!";
 
 @interface ViewController ()
 
@@ -28,14 +30,11 @@ NSString *test4 = @"iOS: set font size of UILabel Programmatically - Stack Overf
     
     WYPosterConfigModel *config = [[WYPosterConfigModel alloc] init];
     config.ratio = 1;
-    UIView *view = [WYPoster createViewUsingText:test4 withConfigModel:config];
+    config.preferWidth = 300;
+    UIView *view = [WYPoster createViewUsingText:test5 withConfigModel:config];
     
     [self.view addSubview:view];
-    [view mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(20);
-        make.left.mas_equalTo(20);
-        make.width.height.mas_equalTo(100);
-    }];
+    view.center = self.view.center;
 }
 
 

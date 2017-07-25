@@ -49,9 +49,9 @@
 
 #pragma mark - Setter
 - (void)setScale:(CGFloat)scale {
+    _width *= scale / self.scale;
+    _height *= scale / self.scale;
     _scale = scale;
-    _width *= scale;
-    _height *= scale;
     for(WYPosterConfigUnit *unit in self.unitArray) {
         unit.scale = scale;
     }

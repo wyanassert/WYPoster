@@ -46,22 +46,12 @@
             make.height.mas_equalTo(obj.height);
             make.width.mas_equalTo(obj.width);
             make.centerX.equalTo(self);
-            if(idx == self.configModel.lineArray.count - 1) {
-                make.bottom.equalTo(self.mas_bottom);
-            }
         }];
     }];
 }
 
 
 #pragma mark - Getter
-- (CGSize)preferSize {
-    if(_preferSize.height == 0 || _preferSize.width == 0) {
-        _preferSize = CGSizeMake(100, 100);
-    }
-    return _preferSize;
-}
-
 - (NSMutableArray<WYPosterLineView *> *)lineViewArray {
     if(!_lineViewArray) {
         _lineViewArray = [NSMutableArray array];
