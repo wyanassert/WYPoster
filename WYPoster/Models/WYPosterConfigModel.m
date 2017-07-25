@@ -19,6 +19,8 @@
 
 @implementation WYPosterConfigModel
 
+@synthesize scale = _scale;
+
 - (void)addConfigLine:(WYPosterConfigLine *)line {
     [self.lineArray addObject:line];
     _height += line.height;
@@ -37,6 +39,12 @@
         _width = MAX(_width, line.width);
     }
     
+}
+
+#pragma mark - Setter
+- (void)setScale:(CGFloat)scale {
+    _scale = scale;
+    [self resizeToPrefer];
 }
 
 #pragma mark - Getter
@@ -70,9 +78,16 @@
 
 - (CGFloat)preferWidth {
     if(0 == _preferWidth) {
-        _preferWidth = 200;
+        _preferWidth = 200 * self.scale;
     }
-    return _preferWidth;
+    return _preferWidth * self.scale;
+}
+
+- (CGFloat)scale {
+    if(_scale == 0) {
+        _scale = 1;
+    }
+    return _scale;
 }
 
 @end

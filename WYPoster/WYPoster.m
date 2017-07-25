@@ -22,7 +22,7 @@
     return configModel;
 }
 
-+ (UIView *)createViewUsingText:(NSString *)text withConfigModel:(WYPosterConfigModel *)configModel {
++ (WYPosterView *)createViewUsingText:(NSString *)text withConfigModel:(WYPosterConfigModel *)configModel {
     if(!configModel.lineArray.count) {
         configModel = [WYPoster fillLayoutData:text withConfig:configModel];
     }

@@ -10,6 +10,7 @@
 #import "WYPoster.h"
 #import "WYPosterConfigModel.h"
 #import "Masonry.h"
+#import "INTUAnimationEngine.h"
 
 NSString *test0 = @"deerjakbcx";
 NSString *test1 = @"a bb ccc ddd eeee";
@@ -31,11 +32,17 @@ NSString *test6 = @"Objective-C is a general-purpose, object-oriented programmin
     
     WYPosterConfigModel *config = [[WYPosterConfigModel alloc] init];
     config.ratio = 1;
-    config.preferWidth = 300;
-    UIView *view = [WYPoster createViewUsingText:test6 withConfigModel:config];
+    config.preferWidth = 100;
+    WYPosterView *view = [WYPoster createViewUsingText:test3 withConfigModel:config];
     
     [self.view addSubview:view];
     view.center = self.view.center;
+    
+    [INTUAnimationEngine animateWithDuration:1 delay:0 animations:^(CGFloat percentage) {
+        [view scaleTo:1 + percentage * 5];
+    } completion:^(BOOL finished) {
+        [view scaleTo:6];
+    }];
 }
 
 

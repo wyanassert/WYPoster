@@ -14,4 +14,6 @@
 
 - (instancetype)initWithPosetrLine:(WYPosterConfigLine *)line;
 
+- (void)reloadLineConfig;
+
 @end

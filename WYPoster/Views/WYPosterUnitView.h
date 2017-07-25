@@ -15,4 +15,6 @@
 
 - (instancetype)initWithPosterUnit:(WYPosterConfigUnit *)unit;
 
+- (void)reloadUnitConfig;
+
 @end

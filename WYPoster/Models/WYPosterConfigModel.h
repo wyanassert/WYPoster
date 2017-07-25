@@ -42,6 +42,7 @@ typedef NS_ENUM(NSUInteger, WYEmbedImageType) {
 @property (nonatomic, strong) NSArray<UIFont *>      *fontArray;
 @property (nonatomic, assign) NSUInteger             avgLength;
 @property (nonatomic, assign) CGFloat                preferWidth;
+@property (nonatomic, assign) CGFloat                scale;
 
 - (void)addConfigLine:(WYPosterConfigLine *)line;
 - (void)resizeToPrefer;

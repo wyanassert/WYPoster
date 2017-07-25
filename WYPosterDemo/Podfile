@@ -7,5 +7,6 @@ target 'WYPoster' do
 
   # Pods for WYPoster
   pod 'Masonry'
+  pod 'INTUAnimationEngine'
 
 end

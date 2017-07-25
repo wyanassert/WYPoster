@@ -50,6 +50,20 @@
     }];
 }
 
+- (void)reloadConfig {
+    [self setFrame:CGRectMake(self.center.x - self.configModel.width / 2,
+                              self.center.y - self.configModel.height / 2,
+                              self.configModel.width,
+                              self.configModel.height)];
+    for(WYPosterLineView *lineView in self.lineViewArray) {
+        [lineView reloadLineConfig];
+    }
+}
+
+- (void)scaleTo:(CGFloat)scale {
+    self.configModel.scale = scale;
+    [self reloadConfig];
+}
 
 #pragma mark - Getter
 - (NSMutableArray<WYPosterLineView *> *)lineViewArray {

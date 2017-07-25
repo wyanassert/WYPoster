@@ -14,4 +14,8 @@
 
 - (instancetype)initWithConfig:(WYPosterConfigModel *)configModel;
 
+- (void)reloadConfig;
+
+- (void)scaleTo:(CGFloat)scale;
+
 @end

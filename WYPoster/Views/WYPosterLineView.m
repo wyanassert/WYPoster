@@ -50,6 +50,17 @@
     }];
 }
 
+- (void)reloadLineConfig {
+    [self mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(self.line.height);
+        make.width.mas_equalTo(self.line.width);
+    }];
+
+    for (WYPosterUnitView *unitView in self.unitViewArrray) {
+        [unitView reloadUnitConfig];
+    }
+}
+
 #pragma mark - Getter
 - (NSMutableArray<WYPosterUnitView *> *)unitViewArrray {
     if(!_unitViewArrray) {

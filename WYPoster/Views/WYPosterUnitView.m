@@ -27,6 +27,15 @@
     return self;
 }
 
+- (void)reloadUnitConfig {
+    [self mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(self.unit.height);
+        make.width.mas_equalTo(self.unit.width);
+    }];
+    
+    self.label.font = self.unit.font;
+}
+
 - (void)configView {
     [self addSubview:self.label];
     [self.label mas_makeConstraints:^(MASConstraintMaker *make) {

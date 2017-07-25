@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "WYPosterView.h"
 
 @class WYPosterConfigModel;
 
@@ -15,6 +16,6 @@
 
 + (WYPosterConfigModel *)fillLayoutData:(NSString *)text withConfig:(WYPosterConfigModel *)configModel;
 
-+ (UIView *)createViewUsingText:(NSString *)text withConfigModel:(WYPosterConfigModel *)configModel;
++ (WYPosterView *)createViewUsingText:(NSString *)text withConfigModel:(WYPosterConfigModel *)configModel;
 
 @end
