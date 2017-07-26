@@ -72,14 +72,6 @@
     
     [configModel resizeToPrefer];
     
-    for(WYPosterConfigLine *line in configModel.configPart.lineArray) {
-        NSString *str = [NSString string];
-        for(WYPosterConfigUnit * unit in line.unitArray) {
-            str = [str stringByAppendingString:[NSString stringWithFormat:@" %@", unit.word]];
-        }
-        NSLog(@"%@", str);
-    }
-    
     return configModel;
 }
 
@@ -98,7 +90,7 @@
         maxLen = MAX(maxLen, wordArray[index + row - i - 1].length);
         minLen = MIN(minLen, wordArray[index + row - i - 1].length);
     }
-    if(maxLen - minLen > ceil(maxLen * 0.3)) {
+    if(maxLen - minLen > ceil(maxLen * 0.2)) {
         return NO;
     } else if (currentLine.length > 0 && currentLine.length + ceil((CGFloat) maxLen) / multiLineWords.count > configModel.avgLength) {
         return NO;

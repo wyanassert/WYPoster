@@ -106,9 +106,10 @@ CGFloat kWidthScale = 0.95;
         
         _scale = scale;
     } else if(self.unitType == WYPosterConfigUnitTypeMultiLine) {
-        self.configPart.scale = scale / self.configPart.scale;
+        self.configPart.scale = scale / self.scale;
         _width = self.configPart.width;
         _height = self.configPart.height;
+        _scale = scale;
     }
 }
 

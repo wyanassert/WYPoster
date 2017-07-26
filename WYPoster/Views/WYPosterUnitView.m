@@ -8,12 +8,14 @@
 
 #import "WYPosterUnitView.h"
 #import "WYPosterConfigUnit.h"
+#import "WYPosterPartView.h"
 
 @interface WYPosterUnitView()
 
 @property (nonatomic, strong) WYPosterConfigUnit         *unit;
 
 @property (nonatomic, strong) UILabel         *label;
+@property (nonatomic, strong) WYPosterPartView         *partView;
 
 @end
 
@@ -32,15 +34,26 @@
         make.height.mas_equalTo(self.unit.height);
         make.width.mas_equalTo(self.unit.width);
     }];
+    if(self.unit.unitType == WYPosterConfigUnitTypeNormal) {
+        self.label.font = self.unit.font;
+    } else if (self.unit.unitType == WYPosterConfigUnitTypeMultiLine) {
+        [self.partView reloadPartConfig];
+    }
     
-    self.label.font = self.unit.font;
 }
 
 - (void)configView {
-    [self addSubview:self.label];
-    [self.label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self);
-    }];
+    if(self.unit.unitType == WYPosterConfigUnitTypeNormal) {
+        [self addSubview:self.label];
+        [self.label mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self);
+        }];
+    } else if (self.unit.unitType == WYPosterConfigUnitTypeMultiLine) {
+        [self addSubview:self.partView];
+        [self.partView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self);
+        }];
+    }
 }
 
 
@@ -56,6 +69,13 @@
         _label = lb;
     }
     return _label;
+}
+
+- (WYPosterPartView *)partView {
+    if(!_partView) {
+        _partView = [[WYPosterPartView alloc] initWithPosterPart:self.unit.configPart];
+    }
+    return _partView;
 }
 
 @end

@@ -12,19 +12,11 @@
 #import "Masonry.h"
 #import "INTUAnimationEngine.h"
 
-NSString *test0 = @"deerjakbcx";
-NSString *test1 = @"a bb ccc ddd eeee";
-NSString *test2 = @"Looks to me like you can determine nWords however you like... it's just a variable used for the purposes of illustration here.";
-NSString *test3 = @"la la Land";
-NSString *test4 = @"iOS: set font size of UILabel Programmatically - Stack Overflow";
-NSString *test5 = @"DOUBLE TAP TO EDIT TEXT!!!";
-NSString *test6 = @"Objective-C is a general-purpose, object-oriented programming language that adds Smalltalk-style messaging to the C programming language. It was the main programming language used by Apple for the OS X and iOS operating systems, and their respective application programming interfaces (APIs) Cocoa and Cocoa Touch prior to the introduction of Swift.";
-NSString *test7 = @"AAAAAAjjj ggfj CCCCCCCCCCCC";
-
 @interface ViewController ()
 
 @property (nonatomic, strong) WYPosterView *posterView;
 @property (nonatomic, assign) NSInteger         index;
+@property (nonatomic, assign) WYPreferLocalMultiLine         perferMultiLine;
 
 @end
 
@@ -37,6 +29,7 @@ NSString *test7 = @"AAAAAAjjj ggfj CCCCCCCCCCCC";
     
     
     self.index = 1;
+    self.perferMultiLine = WYPreferLocalMultiLineNone;
     [self actTo:self.index];
     
     {
@@ -49,10 +42,34 @@ NSString *test7 = @"AAAAAAjjj ggfj CCCCCCCCCCCC";
     }
     {
         UIButton *btn = [UIButton new];
-        [btn setFrame:CGRectMake(120, 20, 50, 50)];
+        [btn setFrame:CGRectMake(70, 20, 50, 50)];
         [btn setBackgroundColor:[UIColor blackColor]];
         [btn setTitle:@"Next" forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(nextShow) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:btn];
+    }
+    {
+        UIButton *btn = [UIButton new];
+        [btn setFrame:CGRectMake(120, 20, 50, 50)];
+        [btn setBackgroundColor:[UIColor blackColor]];
+        [btn setTitle:@"in" forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(scaleShow) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:btn];
+    }
+    {
+        UIButton *btn = [UIButton new];
+        [btn setFrame:CGRectMake(170, 20, 50, 50)];
+        [btn setBackgroundColor:[UIColor blackColor]];
+        [btn setTitle:@"out" forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(scaleShow2) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:btn];
+    }
+    {
+        UIButton *btn = [UIButton new];
+        [btn setFrame:CGRectMake(220, 20, 50, 50)];
+        [btn setBackgroundColor:[UIColor blackColor]];
+        [btn setTitle:@"multi" forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(changeMultiLine) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:btn];
     }
     
@@ -80,11 +97,35 @@ NSString *test7 = @"AAAAAAjjj ggfj CCCCCCCCCCCC";
     [self actTo:self.index];
 }
 
+- (void)scaleShow {
+    [INTUAnimationEngine animateWithDuration:3 delay:0 animations:^(CGFloat percentage) {
+        [self.posterView scaleTo:(1 - 0.7 * percentage)];
+    } completion:^(BOOL finished) {
+        [self.posterView scaleTo:1];
+    }];
+}
+
+- (void)scaleShow2 {
+    [INTUAnimationEngine animateWithDuration:3 delay:0 animations:^(CGFloat percentage) {
+        [self.posterView scaleTo:(1 + percentage * 3)];
+    } completion:^(BOOL finished) {
+        [self.posterView scaleTo:1];
+    }];
+}
+
+- (void)changeMultiLine {
+    self.perferMultiLine ++;
+    if(self.perferMultiLine == WYPreferLocalMultiLineCount) {
+        self.perferMultiLine = WYPreferLocalMultiLineNone;
+    }
+    [self actTo:self.index];
+}
+
 - (void)actTo:(NSUInteger)index {
     WYPosterConfigModel *config = [[WYPosterConfigModel alloc] init];
     config.ratio = 1;
     config.preferWidth = 300;
-//        config.localMultiLine = WYPreferLocalMultiLineAny;
+        config.localMultiLine = self.perferMultiLine;
     if (self.posterView.superview) {
         [self.posterView removeFromSuperview];
     }

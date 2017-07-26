@@ -12,11 +12,12 @@
 #import "WYPosterLineView.h"
 #import "Masonry.h"
 #import "WYPosterConfigPart.h"
+#import "WYPosterPartView.h"
 
 @interface WYPosterView()
 
 @property (nonatomic, strong) WYPosterConfigModel         *configModel;
-@property (nonatomic, strong) NSMutableArray<WYPosterLineView *>         *lineViewArray;
+@property (nonatomic, strong) WYPosterPartView            *partView;
 
 @end
 
@@ -31,23 +32,12 @@
 }
 
 - (void)configView {
-    [self.lineViewArray removeAllObjects];
-    __weak typeof(self)weakSelf = self;
-    [self.configModel.configPart.lineArray enumerateObjectsUsingBlock:^(WYPosterConfigLine * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        __strong typeof(weakSelf)self = weakSelf;
-        WYPosterLineView *lineView = [[WYPosterLineView alloc] initWithPosetrLine:obj];
-        [self.lineViewArray addObject:lineView];
-        [self addSubview:lineView];
-        [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-            if(idx == 0) {
-                make.top.equalTo(self);
-            } else {
-                make.top.equalTo(self.lineViewArray[idx - 1].mas_bottom);
-            }
-            make.height.mas_equalTo(obj.height);
-            make.width.mas_equalTo(obj.width);
-            make.centerX.equalTo(self);
-        }];
+    [self addSubview:self.partView];
+    [self.partView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self);
+        make.centerX.equalTo(self);
+        make.height.mas_equalTo(self.configModel.configPart.height);
+        make.width.mas_equalTo(self.configModel.configPart.width);
     }];
 }
 
@@ -56,9 +46,7 @@
                               self.center.y - self.configModel.height / 2,
                               self.configModel.width,
                               self.configModel.height)];
-    for(WYPosterLineView *lineView in self.lineViewArray) {
-        [lineView reloadLineConfig];
-    }
+    [self.partView reloadPartConfig];
 }
 
 - (void)scaleTo:(CGFloat)scale {
@@ -67,11 +55,12 @@
 }
 
 #pragma mark - Getter
-- (NSMutableArray<WYPosterLineView *> *)lineViewArray {
-    if(!_lineViewArray) {
-        _lineViewArray = [NSMutableArray array];
+- (WYPosterPartView *)partView {
+    if(!_partView) {
+        _partView = [[WYPosterPartView alloc] initWithPosterPart:self.configModel.configPart];
     }
-    return _lineViewArray;
+    return _partView;
 }
+
 
 @end
