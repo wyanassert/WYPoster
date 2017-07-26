@@ -12,14 +12,14 @@
 @class WYPosterConfigPart;
 
 typedef NS_OPTIONS(NSUInteger, WYPreferLocalMultiLine) {
-    WYPreferLocalMultiLineNone = 0,
-    WYPreferLocalMultiLineNormal = 0x1 << 0,
+    WYPreferLocalMultiLineNone         = 0,
+    WYPreferLocalMultiLineNormal       = 0x1 << 0,
     WYPreferLocalMultiLineNotFirstLine = 0x1 << 1,
-    WYPreferLocalMultiLineNotLastLine = 0x1 << 2,
-    WYPreferLocalMultiLineNotLineHead = 0x1 << 3,
-    WYPreferLocalMultiLineNotLineTail = 0x1 << 4,
-    WYPreferLocalMultiLineNotAdjacent = 0x1 << 5,
-    WYPreferLocalMultiLineNotTwoLine = 0x1 << 6,
+    WYPreferLocalMultiLineNotLastLine  = 0x1 << 2,
+    WYPreferLocalMultiLineNotLineHead  = 0x1 << 3,
+    WYPreferLocalMultiLineNotLineTail  = 0x1 << 4,
+    WYPreferLocalMultiLineNotAdjacent  = 0x1 << 5,
+    WYPreferLocalMultiLineNotTwoLine   = 0x1 << 6,
     WYPreferLocalMultiLineNotThreeLine = 0x1 << 7,
 };
 
@@ -29,10 +29,10 @@ typedef NS_ENUM(NSUInteger, WYAlignmentType) {
     WYAlignmentRight
 };
 
-typedef NS_ENUM(NSUInteger, WYEmbedImageType) {
+typedef NS_OPTIONS(NSUInteger, WYEmbedImageType) {
     WYEmbedImageTypeNone = 0,
-    WYEmbedImageTypeTopBottom,
-    WYEmbedImageTypeLeftRight
+    WYEmbedImageTypeTopBottom = 0x1 << 0,
+    WYEmbedImageTypeLeftRight = 0x1 << 1,
 };
 
 @interface WYPosterConfigModel : NSObject
@@ -41,16 +41,17 @@ typedef NS_ENUM(NSUInteger, WYEmbedImageType) {
 @property (nonatomic, assign, readonly) CGFloat            height;
 
 @property (nonatomic, strong, readonly) WYPosterConfigPart *configPart;
+@property (nonatomic, assign) NSUInteger             avgLength;
+@property (nonatomic, assign) CGFloat                scale;
 
 @property (nonatomic, assign) WYPreferLocalMultiLine localMultiLine;
-@property (nonatomic, assign) WYAlignmentType        alignment;
 @property (nonatomic, assign) CGFloat                ratio;
-@property (nonatomic, assign) CGFloat                maxSizeDiff;
-@property (nonatomic, strong) NSArray<UIFont *>      *fontArray;
-@property (nonatomic, assign) NSUInteger             avgLength;
 @property (nonatomic, assign) CGFloat                preferWidth;
-@property (nonatomic, assign) CGFloat                scale;
 @property (nonatomic, assign) BOOL                   sameWidth;
+@property (nonatomic, assign) CGFloat                maxSizeDiff;
+@property (nonatomic, assign) WYAlignmentType        alignment;
+@property (nonatomic, strong) NSArray<UIFont *>      *fontArray;
+@property (nonatomic, assign) WYEmbedImageType       embedImageType;
 
 - (void)resizeToPrefer;
 
