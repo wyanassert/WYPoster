@@ -41,13 +41,15 @@
     WYPosterConfigLine *tmpLine = [WYPosterConfigLine new];
     for (NSUInteger i = 0; i < wordArray.count; i++) {
         NSString *tmpStr = [wordArray objectAtIndex:i];
-        if([self shouldApplyMultiLine:wordArray fromIndex:i multiLine:3 currentLine:tmpLine withConfigModel:configModel] &&
+        if(configModel.localMultiLine != WYPreferLocalMultiLineNone &&
+           [self shouldApplyMultiLine:wordArray fromIndex:i multiLine:3 currentLine:tmpLine withConfigModel:configModel] &&
            (arc4random() % WYPreferLocalMultiLineCount) <= configModel.localMultiLine) {
             NSArray<NSArray<NSString *> *> *multiWord = @[@[wordArray[i]], @[wordArray[i + 1]], @[wordArray[i + 2]]];
             NSArray<NSArray<UIFont *> *> *multiFont = @[@[configModel.fontArray[0]], @[configModel.fontArray[0]], @[configModel.fontArray[0]]];
             [tmpLine addConfigUnit:[[WYPosterConfigUnit alloc] initWithWords:multiWord fonts:multiFont]];
             i += 2;
-        } else if([self shouldApplyMultiLine:wordArray fromIndex:i multiLine:2 currentLine:tmpLine withConfigModel:configModel] &&
+        } else if(configModel.localMultiLine != WYPreferLocalMultiLineNone &&
+                  [self shouldApplyMultiLine:wordArray fromIndex:i multiLine:2 currentLine:tmpLine withConfigModel:configModel] &&
                   (arc4random() % WYPreferLocalMultiLineCount) <= configModel.localMultiLine) {
             NSArray<NSArray<NSString *> *> *multiWord = @[@[wordArray[i]], @[wordArray[i + 1]]];
             NSArray<NSArray<UIFont *> *> *multiFont = @[@[configModel.fontArray[0]], @[configModel.fontArray[0]]];

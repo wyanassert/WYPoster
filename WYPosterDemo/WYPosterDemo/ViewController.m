@@ -83,7 +83,7 @@ NSString *test7 = @"AAAAAAjjj ggfj CCCCCCCCCCCC";
 - (void)actTo:(NSUInteger)index {
     WYPosterConfigModel *config = [[WYPosterConfigModel alloc] init];
     config.ratio = 1;
-    config.preferWidth = 100;
+    config.preferWidth = 300;
     //    config.localMultiLine = WYPreferLocalMultiLineAny;
     if (self.posterView.superview) {
         [self.posterView removeFromSuperview];
