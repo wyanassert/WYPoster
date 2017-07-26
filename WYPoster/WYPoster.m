@@ -9,6 +9,7 @@
 #import "WYPoster.h"
 #import "WYPosterConfigModel.h"
 #import "WYPosterView.h"
+#import "WYPosterConfigPart.h"
 #import "WYPosterConfigLine.h"
 #import "WYPosterParticiple.h"
 
@@ -23,7 +24,7 @@
 }
 
 + (WYPosterView *)createViewUsingText:(NSString *)text withConfigModel:(WYPosterConfigModel *)configModel {
-    if(!configModel.lineArray.count) {
+    if(!configModel.configPart.lineArray.count) {
         configModel = [WYPoster fillLayoutData:text withConfig:configModel];
     }
     

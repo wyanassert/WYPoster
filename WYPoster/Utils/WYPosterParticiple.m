@@ -10,6 +10,7 @@
 #import "WYPosterConfigLine.h"
 #import "WYPosterConfigUnit.h"
 #import "WYPosterConfigModel.h"
+#import "WYPosterConfigPart.h"
 
 @implementation WYPosterParticiple
 
@@ -58,7 +59,7 @@
         } else {
             if(tmpLine.length > 0) {
                 tmpLine.scale = ((CGFloat)configModel.avgLength) / tmpLine.length;
-                [configModel addConfigLine:tmpLine];
+                [configModel.configPart addConfigLine:tmpLine];
                 tmpLine = [WYPosterConfigLine new];
             }
             [tmpLine addConfigUnit:[[WYPosterConfigUnit alloc] initWithWord:tmpStr font:configModel.fontArray.firstObject]];
@@ -66,12 +67,12 @@
     }
     if(tmpLine.length > 0) {
         tmpLine.scale = ((CGFloat)configModel.avgLength) / tmpLine.length;
-        [configModel addConfigLine:tmpLine];
+        [configModel.configPart addConfigLine:tmpLine];
     }
     
     [configModel resizeToPrefer];
     
-    for(WYPosterConfigLine *line in configModel.lineArray) {
+    for(WYPosterConfigLine *line in configModel.configPart.lineArray) {
         NSString *str = [NSString string];
         for(WYPosterConfigUnit * unit in line.unitArray) {
             str = [str stringByAppendingString:[NSString stringWithFormat:@" %@", unit.word]];

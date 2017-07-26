@@ -11,6 +11,7 @@
 #import "WYPosterConfigLine.h"
 #import "WYPosterLineView.h"
 #import "Masonry.h"
+#import "WYPosterConfigPart.h"
 
 @interface WYPosterView()
 
@@ -32,7 +33,7 @@
 - (void)configView {
     [self.lineViewArray removeAllObjects];
     __weak typeof(self)weakSelf = self;
-    [self.configModel.lineArray enumerateObjectsUsingBlock:^(WYPosterConfigLine * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.configModel.configPart.lineArray enumerateObjectsUsingBlock:^(WYPosterConfigLine * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         __strong typeof(weakSelf)self = weakSelf;
         WYPosterLineView *lineView = [[WYPosterLineView alloc] initWithPosetrLine:obj];
         [self.lineViewArray addObject:lineView];

@@ -7,13 +7,14 @@
 //
 
 #import "WYPosterConfigModel.h"
-#import "WYPosterConfigLine.h"
+#import "WYPosterConfigPart.h"
 
 @interface WYPosterConfigModel()
 
-@property (nonatomic, strong, readwrite) NSMutableArray<WYPosterConfigLine*> *lineArray;
+//@property (nonatomic, strong, readwrite) NSMutableArray<WYPosterConfigLine*> *lineArray;
 @property (nonatomic, assign, readwrite) CGFloat            width;
 @property (nonatomic, assign, readwrite) CGFloat            height;
+@property (nonatomic, strong, readwrite) WYPosterConfigPart *configPart;
 
 @end
 
@@ -21,24 +22,11 @@
 
 @synthesize scale = _scale;
 
-- (void)addConfigLine:(WYPosterConfigLine *)line {
-    [self.lineArray addObject:line];
-    _height += line.height;
-    _width = MAX(_width, line.width);
-}
-
 - (void)resizeToPrefer {
-    CGFloat scale = MIN(self.preferWidth / self.width, self.preferWidth * self.ratio / self.height);
-    for (WYPosterConfigLine *line in self.lineArray) {
-        line.scale = line.scale * scale;
-    }
-    _height = 0;
-    _width = 0;
-    for (WYPosterConfigLine *line in self.lineArray) {
-        _height += line.height;
-        _width = MAX(_width, line.width);
-    }
-    
+    CGFloat scale = MIN(self.preferWidth / self.configPart.width, self.preferWidth * self.ratio / self.configPart.height);
+    self.configPart.scale = scale;
+    _width = self.configPart.width;
+    _height = self.configPart.height;
 }
 
 #pragma mark - Setter
@@ -48,11 +36,11 @@
 }
 
 #pragma mark - Getter
-- (NSMutableArray<WYPosterConfigLine *> *)lineArray {
-    if(!_lineArray) {
-        _lineArray = [NSMutableArray array];
+- (WYPosterConfigPart *)configPart {
+    if(!_configPart) {
+        _configPart = [[WYPosterConfigPart alloc] init];
     }
-    return _lineArray;
+    return _configPart;
 }
 
 - (CGFloat)ratio {

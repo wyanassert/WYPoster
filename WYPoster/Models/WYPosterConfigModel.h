@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@class WYPosterConfigLine;
+@class WYPosterConfigPart;
 
 typedef NS_ENUM(NSUInteger, WYPreferLocalMultiLine) {
     WYPreferLocalMultiLineNone = 0,
@@ -35,10 +35,10 @@ typedef NS_ENUM(NSUInteger, WYEmbedImageType) {
 
 @interface WYPosterConfigModel : NSObject
 
-@property (nonatomic, strong, readonly) NSMutableArray<WYPosterConfigLine*> *lineArray;
-
 @property (nonatomic, assign, readonly) CGFloat            width;
 @property (nonatomic, assign, readonly) CGFloat            height;
+
+@property (nonatomic, strong, readonly) WYPosterConfigPart *configPart;
 
 @property (nonatomic, assign) WYPreferLocalMultiLine localMultiLine;
 @property (nonatomic, assign) WYAlignmentType        alignment;
@@ -49,7 +49,6 @@ typedef NS_ENUM(NSUInteger, WYEmbedImageType) {
 @property (nonatomic, assign) CGFloat                preferWidth;
 @property (nonatomic, assign) CGFloat                scale;
 
-- (void)addConfigLine:(WYPosterConfigLine *)line;
 - (void)resizeToPrefer;
 
 @end

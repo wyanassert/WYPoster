@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		622E2A89F10B69D8E9D02C3A /* libPods-WYPoster.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A84FD4F745CD1F8F4948D660 /* libPods-WYPoster.a */; };
+		932103391F283E9A005B1A57 /* WYPosterConfigPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 932103381F283E9A005B1A57 /* WYPosterConfigPart.m */; };
 		937ADC1B1F22026200B22295 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 937ADC1A1F22026200B22295 /* AppDelegate.m */; };
 		937ADC1E1F22026200B22295 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 937ADC1D1F22026200B22295 /* ViewController.m */; };
 		937ADC211F22026200B22295 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 937ADC1F1F22026200B22295 /* Main.storyboard */; };
@@ -26,6 +27,8 @@
 
 /* Begin PBXFileReference section */
 		0BEA395CAF6F58DB3518A2CE /* Pods-WYPoster.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WYPoster.release.xcconfig"; path = "Pods/Target Support Files/Pods-WYPoster/Pods-WYPoster.release.xcconfig"; sourceTree = "<group>"; };
+		932103371F283E9A005B1A57 /* WYPosterConfigPart.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WYPosterConfigPart.h; sourceTree = "<group>"; };
+		932103381F283E9A005B1A57 /* WYPosterConfigPart.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WYPosterConfigPart.m; sourceTree = "<group>"; };
 		937ADC161F22026200B22295 /* WYPoster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WYPoster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		937ADC191F22026200B22295 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		937ADC1A1F22026200B22295 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -162,6 +165,8 @@
 				937CF2331F25954C00E9BF9A /* WYPosterConfigUnit.m */,
 				937CF2351F25970000E9BF9A /* WYPosterConfigLine.h */,
 				937CF2361F25970000E9BF9A /* WYPosterConfigLine.m */,
+				932103371F283E9A005B1A57 /* WYPosterConfigPart.h */,
+				932103381F283E9A005B1A57 /* WYPosterConfigPart.m */,
 				937CF2381F25974400E9BF9A /* WYPosterConfigModel.h */,
 				937CF2391F25974400E9BF9A /* WYPosterConfigModel.m */,
 			);
@@ -294,6 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				937CF2371F25970000E9BF9A /* WYPosterConfigLine.m in Sources */,
+				932103391F283E9A005B1A57 /* WYPosterConfigPart.m in Sources */,
 				937CF2341F25954C00E9BF9A /* WYPosterConfigUnit.m in Sources */,
 				937CF23D1F25A61C00E9BF9A /* WYPoster.m in Sources */,
 				937CF2461F25FB4400E9BF9A /* WYPosterUnitView.m in Sources */,
