@@ -36,7 +36,7 @@ NSString *test7 = @"AAAAAAjjj ggfj CCCCCCCCCCCC";
     
     
     
-    self.index = 0;
+    self.index = 1;
     [self actTo:self.index];
     
     {
@@ -84,7 +84,7 @@ NSString *test7 = @"AAAAAAjjj ggfj CCCCCCCCCCCC";
     WYPosterConfigModel *config = [[WYPosterConfigModel alloc] init];
     config.ratio = 1;
     config.preferWidth = 300;
-    //    config.localMultiLine = WYPreferLocalMultiLineAny;
+//        config.localMultiLine = WYPreferLocalMultiLineAny;
     if (self.posterView.superview) {
         [self.posterView removeFromSuperview];
     }

@@ -8,6 +8,7 @@
 
 #import "WYPosterConfigUnit.h"
 #import "WYPosterConfigLine.h"
+#import "WYPosterConfigPart.h"
 
 CGFloat kHeightScale = 0.9;
 CGFloat kWidthScale = 0.95;
@@ -23,8 +24,8 @@ CGFloat kWidthScale = 0.95;
 @property (nonatomic, strong, readwrite) UIFont                 *font;
 
 @property (nonatomic, strong, readwrite) NSArray<NSArray<NSString *> *> *multiWords;
-@property (nonatomic, strong, readwrite) NSArray<NSArray<UIFont   *> *> *multiFont;
-@property (nonatomic, strong, readwrite) NSMutableArray<WYPosterConfigLine *>  *lineArray;
+@property (nonatomic, strong, readwrite) NSArray<UIFont *>              *multiFont;
+@property (nonatomic, strong, readwrite) WYPosterConfigPart             *configPart;
 
 @end
 
@@ -48,29 +49,27 @@ CGFloat kWidthScale = 0.95;
     return self;
 }
 
-- (instancetype)initWithWords:(NSArray<NSArray<NSString *> *> *)multiWords fonts:(NSArray<NSArray<UIFont *> *> *)multiFont {
+- (instancetype)initWithWords:(NSArray<NSArray<NSString *> *> *)multiWords fonts:(NSArray<UIFont *> *)multiFont {
     if(self = [super init]) {
         _unitType = WYPosterConfigUnitTypeMultiLine;
         _multiWords = multiWords;
         _multiFont = multiFont;
         NSUInteger totalLength = 0;
-        for (NSUInteger i = 0; i < multiWords.count && i < multiFont.count; i++) {
+        for (NSUInteger i = 0; i < multiWords.count; i++) {
             NSArray<NSString *> *wordArray = multiWords[i];
-            NSArray<UIFont *> *fontArray =multiFont[i];
             WYPosterConfigLine *line = [[WYPosterConfigLine alloc] init];
-            for(NSUInteger j = 0; j < wordArray.count && j < fontArray.count; j++) {
+            for(NSUInteger j = 0; j < wordArray.count; j++) {
                 NSString *str = [wordArray objectAtIndex:j];
-                UIFont *font = [fontArray objectAtIndex:j];
-                [line addConfigUnit:[[WYPosterConfigUnit alloc] initWithWord:str font:font]];
+                [line addConfigUnit:[[WYPosterConfigUnit alloc] initWithWord:str font:[multiFont firstObject]]];
             }
             totalLength += line.length;
             if(line.length) {
-                [self.lineArray addObject:line];
+                [self.configPart addConfigLine:line];
             }
         }
         
-        for(WYPosterConfigLine *line in self.lineArray) {
-            line.scale = 1 - line.scale * ((CGFloat)line.length) / totalLength - (self.lineArray.count - 2) / ((CGFloat)self.lineArray.count);
+        for(WYPosterConfigLine *line in self.configPart.lineArray) {
+            line.scale = 1 - line.scale * ((CGFloat)line.length) / totalLength - (self.configPart.lineArray.count - 2) / ((CGFloat)self.configPart.lineArray.count);
             _width = MAX(_width, line.width);
             _height += line.height;
         }
@@ -86,11 +85,11 @@ CGFloat kWidthScale = 0.95;
     return _scale;
 }
 
-- (NSMutableArray<WYPosterConfigLine *> *)lineArray {
-    if(!_lineArray) {
-        _lineArray = [NSMutableArray array];
+- (WYPosterConfigPart *)configPart {
+    if(!_configPart) {
+        _configPart = [[WYPosterConfigPart alloc] init];
     }
-    return _lineArray;
+    return _configPart;
 }
 
 #pragma mark - Setter
@@ -106,6 +105,10 @@ CGFloat kWidthScale = 0.95;
         _height = rect.size.height * kHeightScale;
         
         _scale = scale;
+    } else if(self.unitType == WYPosterConfigUnitTypeMultiLine) {
+        self.configPart.scale = scale / self.configPart.scale;
+        _width = self.configPart.width;
+        _height = self.configPart.height;
     }
 }
 

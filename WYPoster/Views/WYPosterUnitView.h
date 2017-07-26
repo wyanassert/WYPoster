@@ -10,6 +10,7 @@
 #import "Masonry.h"
 
 @class WYPosterConfigUnit;
+@class WYPosterView;
 
 @interface WYPosterUnitView : UIView
 

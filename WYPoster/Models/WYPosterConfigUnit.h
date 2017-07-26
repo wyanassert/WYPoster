@@ -17,6 +17,7 @@ typedef NS_ENUM(NSUInteger, WYPosterConfigUnitType) {
 
 
 @class WYPosterConfigLine;
+@class WYPosterConfigPart;
 
 @interface WYPosterConfigUnit : NSObject
 
@@ -30,10 +31,10 @@ typedef NS_ENUM(NSUInteger, WYPosterConfigUnitType) {
 @property (nonatomic, strong, readonly) UIFont                 *font;
 
 @property (nonatomic, strong, readonly) NSArray<NSArray<NSString *> *> *multiWords;
-@property (nonatomic, strong, readonly) NSArray<NSArray<UIFont   *> *> *multiFont;
-@property (nonatomic, strong, readonly) NSMutableArray<WYPosterConfigLine *>  *lineArray;
+@property (nonatomic, strong, readonly) NSArray<UIFont *>              *multiFont;
+@property (nonatomic, strong, readonly) WYPosterConfigPart             *configPart;
 
 - (instancetype)initWithWord:(NSString *)word font:(UIFont *)font;
-- (instancetype)initWithWords:(NSArray<NSArray<NSString *> *> *)multiWords fonts:(NSArray<NSArray<UIFont *> *> *)multiFont;
+- (instancetype)initWithWords:(NSArray<NSArray<NSString *> *> *)multiWords fonts:(NSArray<UIFont *> *)multiFont;
 
 @end
