@@ -45,11 +45,13 @@
             NSArray<NSArray<NSString *> *> *multiWord = @[@[wordArray[i]], @[wordArray[i + 1]], @[wordArray[i + 2]]];
             NSArray<NSArray<UIFont *> *> *multiFont = @[@[configModel.fontArray[0]], @[configModel.fontArray[0]], @[configModel.fontArray[0]]];
             [tmpLine addConfigUnit:[[WYPosterConfigUnit alloc] initWithWords:multiWord fonts:multiFont]];
+            i += 2;
         } else if([self shouldApplyMultiLine:wordArray fromIndex:i multiLine:2 currentLine:tmpLine withConfigModel:configModel] &&
                   (arc4random() % WYPreferLocalMultiLineCount) <= configModel.localMultiLine) {
             NSArray<NSArray<NSString *> *> *multiWord = @[@[wordArray[i]], @[wordArray[i + 1]]];
             NSArray<NSArray<UIFont *> *> *multiFont = @[@[configModel.fontArray[0]], @[configModel.fontArray[0]]];
             [tmpLine addConfigUnit:[[WYPosterConfigUnit alloc] initWithWords:multiWord fonts:multiFont]];
+            i ++;
         } else if(tmpLine.length + tmpStr.length < configModel.avgLength) {
             [tmpLine addConfigUnit:[[WYPosterConfigUnit alloc] initWithWord:tmpStr font:configModel.fontArray.firstObject]];
             

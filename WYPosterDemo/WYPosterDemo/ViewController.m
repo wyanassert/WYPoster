@@ -34,7 +34,7 @@ NSString *test7 = @"AAAAAAjjj ggfj CCCCCCCCCCCC";
     WYPosterConfigModel *config = [[WYPosterConfigModel alloc] init];
     config.ratio = 1;
     config.preferWidth = 100;
-    config.localMultiLine = WYPreferLocalMultiLineAny;
+//    config.localMultiLine = WYPreferLocalMultiLineAny;
     WYPosterView *view = [WYPoster createViewUsingText:test1 withConfigModel:config];
     
     [self.view addSubview:view];
