@@ -22,4 +22,6 @@
 
 - (void)addConfigLine:(WYPosterConfigLine *)line;
 
+- (void)keepSameWidth;
+
 @end

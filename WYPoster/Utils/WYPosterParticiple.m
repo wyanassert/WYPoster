@@ -70,6 +70,10 @@
         [configModel.configPart addConfigLine:tmpLine];
     }
     
+    if(configModel.sameWidth) {
+        [configModel.configPart keepSameWidth];
+    }
+    
     [configModel resizeToPrefer];
     
     return configModel;

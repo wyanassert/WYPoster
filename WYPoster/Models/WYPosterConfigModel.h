@@ -48,6 +48,7 @@ typedef NS_ENUM(NSUInteger, WYEmbedImageType) {
 @property (nonatomic, assign) NSUInteger             avgLength;
 @property (nonatomic, assign) CGFloat                preferWidth;
 @property (nonatomic, assign) CGFloat                scale;
+@property (nonatomic, assign) BOOL                   sameWidth;
 
 - (void)resizeToPrefer;
 

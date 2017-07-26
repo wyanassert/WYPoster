@@ -28,7 +28,7 @@
     
     
     
-    self.index = 1;
+    self.index = 3;
     self.perferMultiLine = WYPreferLocalMultiLineNone;
     [self actTo:self.index];
     
@@ -125,7 +125,8 @@
     WYPosterConfigModel *config = [[WYPosterConfigModel alloc] init];
     config.ratio = 1;
     config.preferWidth = 300;
-        config.localMultiLine = self.perferMultiLine;
+    config.localMultiLine = self.perferMultiLine;
+    config.sameWidth = YES;
     if (self.posterView.superview) {
         [self.posterView removeFromSuperview];
     }

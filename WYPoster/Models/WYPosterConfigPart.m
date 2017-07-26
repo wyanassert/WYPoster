@@ -27,6 +27,16 @@
     _width = MAX(_width, line.width);
 }
 
+- (void)keepSameWidth {
+    _height = 0;
+    _width = 0;
+    for(WYPosterConfigLine *line in self.lineArray) {
+        line.scale = line.scale * self.lineArray[0].width / line.width;
+        _height += line.height;
+        _width = MAX(_width, line.width);
+    }
+}
+
 #pragma mark - Setter
 - (void)setScale:(CGFloat)scale {
     _scale = scale;
