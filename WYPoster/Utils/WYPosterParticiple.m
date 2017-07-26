@@ -41,28 +41,43 @@
     WYPosterConfigLine *tmpLine = [WYPosterConfigLine new];
     for (NSUInteger i = 0; i < wordArray.count; i++) {
         NSString *tmpStr = [wordArray objectAtIndex:i];
-        if(configModel.localMultiLine != WYPreferLocalMultiLineNone &&
-           [self shouldApplyMultiLine:wordArray fromIndex:i multiLine:3 currentLine:tmpLine withConfigModel:configModel] &&
-           (arc4random() % WYPreferLocalMultiLineCount) <= configModel.localMultiLine) {
-            NSArray<NSArray<NSString *> *> *multiWord = @[@[wordArray[i]], @[wordArray[i + 1]], @[wordArray[i + 2]]];
-            [tmpLine addConfigUnit:[[WYPosterConfigUnit alloc] initWithWords:multiWord fonts:configModel.fontArray]];
-            i += 2;
-        } else if(configModel.localMultiLine != WYPreferLocalMultiLineNone &&
-                  [self shouldApplyMultiLine:wordArray fromIndex:i multiLine:2 currentLine:tmpLine withConfigModel:configModel] &&
-                  (arc4random() % WYPreferLocalMultiLineCount) <= configModel.localMultiLine) {
-            NSArray<NSArray<NSString *> *> *multiWord = @[@[wordArray[i]], @[wordArray[i + 1]]];
-            [tmpLine addConfigUnit:[[WYPosterConfigUnit alloc] initWithWords:multiWord fonts:configModel.fontArray]];
-            i ++;
-        } else if(tmpLine.length + tmpStr.length < configModel.avgLength) {
-            [tmpLine addConfigUnit:[[WYPosterConfigUnit alloc] initWithWord:tmpStr font:configModel.fontArray.firstObject]];
-            
-        } else {
-            if(tmpLine.length > 0) {
-                tmpLine.scale = ((CGFloat)configModel.avgLength) / tmpLine.length;
-                [configModel.configPart addConfigLine:tmpLine];
-                tmpLine = [WYPosterConfigLine new];
+        BOOL canApplyMultiLine = NO;
+        if(configModel.localMultiLine != WYPreferLocalMultiLineNone && (arc4random() % 5) <= 1) {
+            for (NSArray<NSNumber *> *styleArray in [self preSetMultiArray]) {
+                if([WYPosterParticiple shouldApplyMultiLine:wordArray fromIndex:i multiStyle:styleArray currentLine:tmpLine withConfigModel:configModel]) {
+                    //                    NSArray<NSArray<NSString *> *> *multiWord = @[@[wordArray[i]], @[wordArray[i + 1]]];
+                    NSMutableArray<NSArray<NSString *> *> *multiWord = [NSMutableArray array];
+                    NSUInteger startIndex = i;
+                    for (NSUInteger j = 0; j < styleArray.count; j++) {
+                        NSMutableArray<NSString *> *tmpArray = [NSMutableArray array];
+                        for (NSUInteger k = 0; k < styleArray[j].unsignedIntegerValue; k++) {
+                            [tmpArray addObject:wordArray[startIndex ++]];
+                        }
+                        [multiWord addObject:[tmpArray copy]];
+                    }
+                    [tmpLine addConfigUnit:[[WYPosterConfigUnit alloc] initWithWords:[multiWord copy] fonts:configModel.fontArray]];
+                    NSUInteger totalLen = 0;
+                    for (NSUInteger j = 0; j < styleArray.count; j++) {
+                        totalLen +=styleArray[j].unsignedIntegerValue;
+                    }
+                    i = i + totalLen - 1;
+                    canApplyMultiLine = YES;
+                    break;
+                }
             }
-            [tmpLine addConfigUnit:[[WYPosterConfigUnit alloc] initWithWord:tmpStr font:configModel.fontArray.firstObject]];
+        }
+        if(!canApplyMultiLine) {
+            if(tmpLine.length + tmpStr.length < configModel.avgLength) {
+                [tmpLine addConfigUnit:[[WYPosterConfigUnit alloc] initWithWord:tmpStr font:configModel.fontArray.firstObject]];
+                
+            } else {
+                if(tmpLine.length > 0) {
+                    tmpLine.scale = ((CGFloat)configModel.avgLength) / tmpLine.length;
+                    [configModel.configPart addConfigLine:tmpLine];
+                    tmpLine = [WYPosterConfigLine new];
+                }
+                [tmpLine addConfigUnit:[[WYPosterConfigUnit alloc] initWithWord:tmpStr font:configModel.fontArray.firstObject]];
+            }
         }
     }
     if(tmpLine.length > 0) {
@@ -81,27 +96,76 @@
 
 
 #pragma mark - Private
-+ (BOOL)shouldApplyMultiLine:(NSArray<NSString *> *)wordArray fromIndex:(NSUInteger)index multiLine:(NSUInteger)row currentLine:(WYPosterConfigLine *)currentLine withConfigModel:(WYPosterConfigModel *)configModel {
-    if(index + row >= wordArray.count) {
++ (BOOL)shouldApplyMultiLine:(NSArray<NSString *> *)wordArray fromIndex:(NSUInteger)index multiStyle:(NSArray<NSNumber *> *)styleArray currentLine:(WYPosterConfigLine *)currentLine withConfigModel:(WYPosterConfigModel *)configModel {
+    if((configModel.localMultiLine & WYPreferLocalMultiLineNotFirstLine && configModel.configPart.lineArray.count == 0) ||
+       (configModel.localMultiLine & WYPreferLocalMultiLineNotLineHead && currentLine.length == 0)) {
         return NO;
     }
-    NSMutableArray<NSString *> *multiLineWords = [NSMutableArray array];
-    NSUInteger i = row;
+    NSUInteger endIndex = index;
+    for (NSUInteger i = 0; i < styleArray.count; i++) {
+        endIndex +=styleArray[i].unsignedIntegerValue;
+    }
+    if(endIndex >= wordArray.count) {
+        return NO;
+    }
+    NSUInteger startIndex = index;
     NSUInteger maxLen = 0;
     NSUInteger minLen = NSUIntegerMax;
-    while (i--) {
-        [multiLineWords addObject:wordArray[index + row - i - 1]];
-        maxLen = MAX(maxLen, wordArray[index + row - i - 1].length);
-        minLen = MIN(minLen, wordArray[index + row - i - 1].length);
+    for(NSUInteger i = 0; i < styleArray.count ; i++) {
+        NSUInteger tmpLen = 0;
+        for(NSUInteger j = 0; j < styleArray[i].unsignedIntegerValue; j++) {
+            tmpLen += wordArray[startIndex++].length;
+        }
+        maxLen = MAX(tmpLen, maxLen);
+        minLen = MIN(tmpLen, minLen);
     }
-    if(maxLen - minLen > ceil(maxLen * 0.2)) {
+    if(maxLen - minLen > ceil(maxLen * 0.1 * styleArray.count)) {
         return NO;
-    } else if (currentLine.length > 0 && currentLine.length + ceil((CGFloat) maxLen) / multiLineWords.count > configModel.avgLength) {
+    } else if (currentLine.length > 0 && currentLine.length + ceil((CGFloat) maxLen) / styleArray.count > configModel.avgLength) {
         return NO;
-    } else if (currentLine.length + ceil((CGFloat) maxLen) / multiLineWords.count + wordArray[index + row].length > configModel.avgLength) {
+    } else if (currentLine.length + ceil((CGFloat) maxLen) / styleArray.count + wordArray[endIndex].length > configModel.avgLength &&
+               configModel.localMultiLine & WYPreferLocalMultiLineNotLineTail) {
+        return NO;
+    } else if (configModel.localMultiLine & WYPreferLocalMultiLineNotLastLine) {
+        NSUInteger leftLength = 0;
+        BOOL isSattisfied = NO;
+        for (NSUInteger i = endIndex; i < wordArray.count; i++) {
+            leftLength += wordArray[i].length;
+            if(leftLength > configModel.avgLength * 0.6) {
+                isSattisfied = YES;
+                break;
+            }
+        }
+        if (!isSattisfied) {
+            return NO;
+        }
+    } else if(configModel.localMultiLine & WYPreferLocalMultiLineNotAdjacent && [currentLine.unitArray lastObject].unitType == WYPosterConfigUnitTypeMultiLine) {
+        return NO;
+    } else if(configModel.localMultiLine & WYPreferLocalMultiLineNotTwoLine && styleArray.count == 2) {
+        return NO;
+    } else if(configModel.localMultiLine & WYPreferLocalMultiLineNotThreeLine && styleArray.count == 3) {
         return NO;
     }
+    
     return YES;
+}
+
++ (NSArray<NSArray<NSNumber *> *> *)preSetMultiArray {
+    return @[
+             @[@3, @2, @1],
+             @[@3, @1, @2],
+             @[@2, @1, @3],
+             @[@2, @3, @1],
+             @[@1, @2, @3],
+             @[@1, @3, @2],
+             @[@3, @3, @3],
+             @[@2, @2, @2],
+             @[@1, @1, @1],
+             @[@2, @2],
+             @[@2, @1],
+             @[@1, @2],
+             @[@1, @1],
+             ];
 }
 
 @end

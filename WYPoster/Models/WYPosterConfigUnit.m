@@ -10,7 +10,7 @@
 #import "WYPosterConfigLine.h"
 #import "WYPosterConfigPart.h"
 
-CGFloat kHeightScale = 0.9;
+CGFloat kHeightScale = 0.95;
 CGFloat kWidthScale = 0.95;
 
 @interface WYPosterConfigUnit()

@@ -64,14 +64,14 @@
         [btn addTarget:self action:@selector(scaleShow2) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:btn];
     }
-    {
-        UIButton *btn = [UIButton new];
-        [btn setFrame:CGRectMake(220, 20, 50, 50)];
-        [btn setBackgroundColor:[UIColor blackColor]];
-        [btn setTitle:@"multi" forState:UIControlStateNormal];
-        [btn addTarget:self action:@selector(changeMultiLine) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:btn];
-    }
+//    {
+//        UIButton *btn = [UIButton new];
+//        [btn setFrame:CGRectMake(220, 20, 50, 50)];
+//        [btn setBackgroundColor:[UIColor blackColor]];
+//        [btn setTitle:@"multi" forState:UIControlStateNormal];
+//        [btn addTarget:self action:@selector(changeMultiLine) forControlEvents:UIControlEventTouchUpInside];
+//        [self.view addSubview:btn];
+//    }
     
 }
 
@@ -113,19 +113,12 @@
     }];
 }
 
-- (void)changeMultiLine {
-    self.perferMultiLine ++;
-    if(self.perferMultiLine == WYPreferLocalMultiLineCount) {
-        self.perferMultiLine = WYPreferLocalMultiLineNone;
-    }
-    [self actTo:self.index];
-}
-
 - (void)actTo:(NSUInteger)index {
     WYPosterConfigModel *config = [[WYPosterConfigModel alloc] init];
     config.ratio = 1;
     config.preferWidth = 300;
-    config.localMultiLine = self.perferMultiLine;
+//    config.localMultiLine = WYPreferLocalMultiLineNotLineTail | WYPreferLocalMultiLineNotFirstLine | WYPreferLocalMultiLineNotLineHead;
+    config.localMultiLine = WYPreferLocalMultiLineNotTwoLine;
     config.sameWidth = YES;
     if (self.posterView.superview) {
         [self.posterView removeFromSuperview];

@@ -11,14 +11,16 @@
 
 @class WYPosterConfigPart;
 
-typedef NS_ENUM(NSUInteger, WYPreferLocalMultiLine) {
+typedef NS_OPTIONS(NSUInteger, WYPreferLocalMultiLine) {
     WYPreferLocalMultiLineNone = 0,
-    WYPreferLocalMultiLineRare,
-    WYPreferLocalMultiLineOccasional,
-    WYPreferLocalMultiLineSometime,
-    WYPreferLocalMultiLineAlways,
-    WYPreferLocalMultiLineAny,
-    WYPreferLocalMultiLineCount
+    WYPreferLocalMultiLineNormal = 0x1 << 0,
+    WYPreferLocalMultiLineNotFirstLine = 0x1 << 1,
+    WYPreferLocalMultiLineNotLastLine = 0x1 << 2,
+    WYPreferLocalMultiLineNotLineHead = 0x1 << 3,
+    WYPreferLocalMultiLineNotLineTail = 0x1 << 4,
+    WYPreferLocalMultiLineNotAdjacent = 0x1 << 5,
+    WYPreferLocalMultiLineNotTwoLine = 0x1 << 6,
+    WYPreferLocalMultiLineNotThreeLine = 0x1 << 7,
 };
 
 typedef NS_ENUM(NSUInteger, WYAlignmentType) {
