@@ -151,21 +151,29 @@
 }
 
 + (NSArray<NSArray<NSNumber *> *> *)preSetMultiArray {
-    return @[
-             @[@3, @2, @1],
-             @[@3, @1, @2],
-             @[@2, @1, @3],
-             @[@2, @3, @1],
-             @[@1, @2, @3],
-             @[@1, @3, @2],
-             @[@3, @3, @3],
-             @[@2, @2, @2],
-             @[@1, @1, @1],
-             @[@2, @2],
-             @[@2, @1],
-             @[@1, @2],
-             @[@1, @1],
-             ];
+    NSMutableArray<NSArray<NSNumber *> *> *result = [NSMutableArray arrayWithArray:@[
+                                                                                     @[@3, @2, @1],
+                                                                                     @[@3, @1, @2],
+                                                                                     @[@2, @1, @3],
+                                                                                     @[@2, @3, @1],
+                                                                                     @[@1, @2, @3],
+                                                                                     @[@1, @3, @2],
+                                                                                     @[@3, @3, @3],
+                                                                                     @[@2, @2, @2],
+                                                                                     @[@1, @1, @1],
+                                                                                     @[@2, @2],
+                                                                                     @[@2, @1],
+                                                                                     @[@1, @2],
+                                                                                     @[@1, @1],
+                                                                                     ]];
+    for(NSUInteger i = 0; i < result.count; i++) {
+        NSUInteger insert = arc4random() % (result.count - 1);
+        NSUInteger splite = arc4random() % result.count;
+        NSArray<NSNumber *> *obj = [result objectAtIndex:splite];
+        [result removeObjectAtIndex:splite];
+        [result insertObject:obj atIndex:insert];
+    }
+    return [result copy];
 }
 
 @end

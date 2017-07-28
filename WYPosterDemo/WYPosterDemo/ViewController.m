@@ -50,7 +50,7 @@
     }
     {
         UIButton *btn = [UIButton new];
-        [btn setFrame:CGRectMake(120, 20, 50, 50)];
+        [btn setFrame:CGRectMake(140, 20, 50, 50)];
         [btn setBackgroundColor:[UIColor blackColor]];
         [btn setTitle:@"in" forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(scaleShow) forControlEvents:UIControlEventTouchUpInside];
@@ -58,20 +58,20 @@
     }
     {
         UIButton *btn = [UIButton new];
-        [btn setFrame:CGRectMake(170, 20, 50, 50)];
+        [btn setFrame:CGRectMake(190, 20, 50, 50)];
         [btn setBackgroundColor:[UIColor blackColor]];
         [btn setTitle:@"out" forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(scaleShow2) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:btn];
     }
-//    {
-//        UIButton *btn = [UIButton new];
-//        [btn setFrame:CGRectMake(220, 20, 50, 50)];
-//        [btn setBackgroundColor:[UIColor blackColor]];
-//        [btn setTitle:@"multi" forState:UIControlStateNormal];
-//        [btn addTarget:self action:@selector(changeMultiLine) forControlEvents:UIControlEventTouchUpInside];
-//        [self.view addSubview:btn];
-//    }
+    {
+        UIButton *btn = [UIButton new];
+        [btn setFrame:CGRectMake(250, 20, 60, 50)];
+        [btn setBackgroundColor:[UIColor blackColor]];
+        [btn setTitle:@"refresh" forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(refresh) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:btn];
+    }
     
 }
 
@@ -113,12 +113,16 @@
     }];
 }
 
+- (void)refresh {
+    [self actTo:self.index];
+}
+
 - (void)actTo:(NSUInteger)index {
     WYPosterConfigModel *config = [[WYPosterConfigModel alloc] init];
     config.ratio = 1;
     config.preferWidth = 300;
 //    config.localMultiLine = WYPreferLocalMultiLineNotLineTail | WYPreferLocalMultiLineNotFirstLine | WYPreferLocalMultiLineNotLineHead;
-    config.localMultiLine = WYPreferLocalMultiLineNotTwoLine;
+    config.localMultiLine = WYPreferLocalMultiLineNormal;
     config.sameWidth = YES;
     if (self.posterView.superview) {
         [self.posterView removeFromSuperview];
