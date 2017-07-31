@@ -40,7 +40,16 @@
 + (WYPosterConfigModel *)spliteWordArray:(NSArray<NSString *> *)wordArray withConfig:(WYPosterConfigModel *)configModel {
     WYPosterConfigLine *tmpLine = nil;
     NSUInteger index = 0;
-    while ((tmpLine = [self spliteALineFormMultiLine:wordArray fromIndex:index withConfigModel:configModel]).length) {
+    while (index < wordArray.count) {
+        if(configModel.embedImageType & WYEmbedImageTypeLeftRight  && (arc4random() % 10) < 7) {
+            tmpLine = [self spliteALineFormMultiLine:wordArray fromIndex:index withConfigModel:configModel presetLength:configModel.avgLength - 7];
+            if(tmpLine.unitArray.count) {
+                [tmpLine appendPrefixImageUnit:[[WYPosterConfigUnit alloc] initWithImage:[UIImage imageNamed:@"test0"]]];
+                [tmpLine appendSuffixImageUnit:[[WYPosterConfigUnit alloc] initWithImage:[UIImage imageNamed:@"test0"]]];
+            }
+        } else {
+            tmpLine = [self spliteALineFormMultiLine:wordArray fromIndex:index withConfigModel:configModel presetLength:configModel.avgLength];
+        }
         if(tmpLine.unitArray.count) {
             tmpLine.scale = ((CGFloat)configModel.avgLength) / tmpLine.length;
             [configModel.configPart addConfigLine:tmpLine];
@@ -59,16 +68,15 @@
 
 
 #pragma mark - Private
-+ (WYPosterConfigLine *)spliteALineFormMultiLine:(NSArray<NSString *> *)wordArray fromIndex:(NSUInteger)index withConfigModel:(WYPosterConfigModel *)configModel {
++ (WYPosterConfigLine *)spliteALineFormMultiLine:(NSArray<NSString *> *)wordArray fromIndex:(NSUInteger)index withConfigModel:(WYPosterConfigModel *)configModel presetLength:(CGFloat)presetLength {
     
     WYPosterConfigLine *tmpLine = [WYPosterConfigLine new];
     for (NSUInteger i = index; i < wordArray.count; i++) {
         NSString *tmpStr = [wordArray objectAtIndex:i];
         BOOL canApplyMultiLine = NO;
-        if(configModel.localMultiLine != WYPreferLocalMultiLineNone && (arc4random() % 5) <= 1) {
+        if(configModel.localMultiLine != WYPreferLocalMultiLineNone && ((arc4random() % 5) <= 1 || presetLength != configModel.avgLength)) {
             for (NSArray<NSNumber *> *styleArray in [self preSetMultiArray]) {
-                if([WYPosterParticiple shouldApplyMultiLine:wordArray fromIndex:i multiStyle:styleArray currentLine:tmpLine withConfigModel:configModel]) {
-                    //                    NSArray<NSArray<NSString *> *> *multiWord = @[@[wordArray[i]], @[wordArray[i + 1]]];
+                if([WYPosterParticiple shouldApplyMultiLine:wordArray fromIndex:i multiStyle:styleArray currentLine:tmpLine withConfigModel:configModel presetLength:presetLength]) {
                     NSMutableArray<NSArray<NSString *> *> *multiWord = [NSMutableArray array];
                     NSUInteger startIndex = i;
                     for (NSUInteger j = 0; j < styleArray.count; j++) {
@@ -90,7 +98,7 @@
             }
         }
         if(!canApplyMultiLine) {
-            if(tmpLine.length + tmpStr.length < configModel.avgLength) {
+            if(tmpLine.length + tmpStr.length < presetLength) {
                 [tmpLine addConfigUnit:[[WYPosterConfigUnit alloc] initWithWord:tmpStr font:configModel.fontArray.firstObject]];
                 
             } else {
@@ -106,7 +114,7 @@
     return tmpLine;
 }
 
-+ (BOOL)shouldApplyMultiLine:(NSArray<NSString *> *)wordArray fromIndex:(NSUInteger)index multiStyle:(NSArray<NSNumber *> *)styleArray currentLine:(WYPosterConfigLine *)currentLine withConfigModel:(WYPosterConfigModel *)configModel {
++ (BOOL)shouldApplyMultiLine:(NSArray<NSString *> *)wordArray fromIndex:(NSUInteger)index multiStyle:(NSArray<NSNumber *> *)styleArray currentLine:(WYPosterConfigLine *)currentLine withConfigModel:(WYPosterConfigModel *)configModel presetLength:(CGFloat)presetLength {
     if((configModel.localMultiLine & WYPreferLocalMultiLineNotFirstLine && configModel.configPart.lineArray.count == 0) ||
        (configModel.localMultiLine & WYPreferLocalMultiLineNotLineHead && currentLine.length == 0)) {
         return NO;
@@ -131,9 +139,9 @@
     }
     if(maxLen - minLen > ceil(maxLen * 0.1 * styleArray.count)) {
         return NO;
-    } else if (currentLine.length > 0 && currentLine.length + ceil((CGFloat) maxLen) / styleArray.count > configModel.avgLength) {
+    } else if (currentLine.length > 0 && currentLine.length + ceil((CGFloat) maxLen) / styleArray.count > presetLength) {
         return NO;
-    } else if (currentLine.length + ceil((CGFloat) maxLen) / styleArray.count + wordArray[endIndex].length > configModel.avgLength &&
+    } else if (currentLine.length + ceil((CGFloat) maxLen) / styleArray.count + wordArray[endIndex].length > presetLength &&
                configModel.localMultiLine & WYPreferLocalMultiLineNotLineTail) {
         return NO;
     } else if (configModel.localMultiLine & WYPreferLocalMultiLineNotLastLine) {
@@ -141,7 +149,7 @@
         BOOL isSattisfied = NO;
         for (NSUInteger i = endIndex; i < wordArray.count; i++) {
             leftLength += wordArray[i].length;
-            if(leftLength > configModel.avgLength * 0.6) {
+            if(leftLength > presetLength * 0.6) {
                 isSattisfied = YES;
                 break;
             }

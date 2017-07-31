@@ -16,6 +16,7 @@
 
 @property (nonatomic, strong) UILabel         *label;
 @property (nonatomic, strong) WYPosterPartView         *partView;
+@property (nonatomic, strong) UIImageView         *imageView;
 
 @end
 
@@ -53,6 +54,11 @@
         [self.partView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self);
         }];
+    } else if (self.unit.unitType == WYPosterConfigUnitTypeImage) {
+        [self addSubview:self.imageView];
+        [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self);
+        }];
     }
 }
 
@@ -76,6 +82,13 @@
         _partView = [[WYPosterPartView alloc] initWithPosterPart:self.unit.configPart];
     }
     return _partView;
+}
+
+- (UIImageView *)imageView {
+    if(!_imageView) {
+        _imageView = [[UIImageView alloc] initWithImage:self.unit.image];
+    }
+    return _imageView;
 }
 
 @end

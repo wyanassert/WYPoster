@@ -23,11 +23,42 @@
 @synthesize scale = _scale;
 
 - (void)addConfigUnit:(WYPosterConfigUnit *)unit {
+    if(!unit) {
+        return ;
+    }
     [self.unitArray addObject:unit];
     if(self.length != 0) {
         _length ++;
     }
     _length += unit.length;
+    _width += unit.width;
+    _height = MAX(_height, unit.height);
+    _baseCount += unit.baseCount;
+}
+
+- (void)appendPrefixImageUnit:(WYPosterConfigUnit *)unit {
+    if(!unit.image) {
+        return ;
+    }
+    [self.unitArray insertObject:unit atIndex:0];
+    _length += unit.length;
+    
+    CGFloat scale = self.height / unit.height;
+    unit.scale = scale;
+    _width += unit.width;
+    _height = MAX(_height, unit.height);
+    _baseCount += unit.baseCount;
+}
+
+- (void)appendSuffixImageUnit:(WYPosterConfigUnit *)unit {
+    if(!unit.image) {
+        return ;
+    }
+    [self.unitArray addObject:unit];
+    _length += unit.length;
+    
+    CGFloat scale = self.height / unit.height;
+    unit.scale = scale;
     _width += unit.width;
     _height = MAX(_height, unit.height);
     _baseCount += unit.baseCount;

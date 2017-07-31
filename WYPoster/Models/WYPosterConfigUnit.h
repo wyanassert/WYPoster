@@ -48,5 +48,6 @@ typedef NS_ENUM(NSUInteger, WYPosterConfigUintImageOritention) {
 
 - (instancetype)initWithWord:(NSString *)word font:(UIFont *)font;
 - (instancetype)initWithWords:(NSArray<NSArray<NSString *> *> *)multiWords fonts:(NSArray<UIFont *> *)multiFont;
+- (instancetype)initWithImage:(UIImage *)image;
 
 @end

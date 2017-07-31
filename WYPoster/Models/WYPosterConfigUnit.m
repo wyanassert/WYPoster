@@ -77,6 +77,17 @@ CGFloat kWidthScale = 0.95;
     return self;
 }
 
+- (instancetype)initWithImage:(UIImage *)image {
+    if(self = [super init]) {
+        _image = image;
+        _unitType = WYPosterConfigUnitTypeImage;
+        _width = image.size.width;
+        _height = image.size.height;
+        _length = 2;
+    }
+    return self;
+}
+
 #pragma mark - Getter
 - (NSUInteger)baseCount {
     if(self.unitType == WYPosterConfigUnitTypeMultiLine) {
@@ -122,6 +133,16 @@ CGFloat kWidthScale = 0.95;
         _width = self.configPart.width;
         _height = self.configPart.height;
         _scale = scale;
+    } else if(self.unitType == WYPosterConfigUnitTypeImage) {
+        if(_scale == 0) {
+            _width = _width * scale / self.scale;
+            _height = _height * scale / self.scale;
+            _scale = 1;
+        } else {
+            _width = _width * scale / self.scale;
+            _height = _height * scale / self.scale;
+            _scale = scale;
+        }
     }
 }
 

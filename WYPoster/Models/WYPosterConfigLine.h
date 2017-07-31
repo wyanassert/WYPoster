@@ -22,4 +22,7 @@
 
 - (void)addConfigUnit:(WYPosterConfigUnit *)unit;
 
+- (void)appendPrefixImageUnit:(WYPosterConfigUnit *)unit;
+- (void)appendSuffixImageUnit:(WYPosterConfigUnit *)unit;
+
 @end

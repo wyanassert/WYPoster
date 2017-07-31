@@ -24,6 +24,8 @@
 		937CF2401F25C8CE00E9BF9A /* WYPosterParticiple.m in Sources */ = {isa = PBXBuildFile; fileRef = 937CF23F1F25C8CE00E9BF9A /* WYPosterParticiple.m */; };
 		937CF2431F25FB3100E9BF9A /* WYPosterLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 937CF2421F25FB3100E9BF9A /* WYPosterLineView.m */; };
 		937CF2461F25FB4400E9BF9A /* WYPosterUnitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 937CF2451F25FB4400E9BF9A /* WYPosterUnitView.m */; };
+		9388F0F11F2F417B00F25B72 /* test0.png in Resources */ = {isa = PBXBuildFile; fileRef = 93BE75951F2B2DA400D5E3C7 /* test0.png */; };
+		9388F0F21F2F417D00F25B72 /* test1.png in Resources */ = {isa = PBXBuildFile; fileRef = 93BE75961F2B2DA400D5E3C7 /* test1.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -260,8 +262,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9388F0F11F2F417B00F25B72 /* test0.png in Resources */,
 				937ADC261F22026200B22295 /* LaunchScreen.storyboard in Resources */,
 				937ADC231F22026200B22295 /* Assets.xcassets in Resources */,
+				9388F0F21F2F417D00F25B72 /* test1.png in Resources */,
 				937ADC211F22026200B22295 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
