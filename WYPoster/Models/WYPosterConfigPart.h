@@ -23,6 +23,10 @@
 
 - (void)addConfigLine:(WYPosterConfigLine *)line;
 
+- (void)appendPrefixLine:(WYPosterConfigLine *)line;
+
+- (void)appendSuffixLine:(WYPosterConfigLine *)line;
+
 - (void)keepSameWidth;
 
 @end

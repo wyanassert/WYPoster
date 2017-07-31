@@ -64,6 +64,17 @@
     _baseCount += unit.baseCount;
 }
 
+- (void)decorteTopBottomImageUnit:(WYPosterConfigUnit *)unit {
+    if(!unit.image) {
+        return ;
+    }
+    [self.unitArray addObject:unit];
+    _length += unit.length;
+    _width = unit.width;
+    _height = unit.height;
+    _baseCount = unit.baseCount;
+}
+
 #pragma mark - Getter
 
 - (NSMutableArray<WYPosterConfigUnit *> *)unitArray {

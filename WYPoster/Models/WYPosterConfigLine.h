@@ -24,5 +24,6 @@
 
 - (void)appendPrefixImageUnit:(WYPosterConfigUnit *)unit;
 - (void)appendSuffixImageUnit:(WYPosterConfigUnit *)unit;
+- (void)decorteTopBottomImageUnit:(WYPosterConfigUnit *)unit;
 
 @end

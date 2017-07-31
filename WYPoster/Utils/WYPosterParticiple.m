@@ -50,11 +50,35 @@
         } else {
             tmpLine = [self spliteALineFormMultiLine:wordArray fromIndex:index withConfigModel:configModel presetLength:configModel.avgLength];
         }
+
         if(tmpLine.unitArray.count) {
             tmpLine.scale = ((CGFloat)configModel.avgLength) / tmpLine.length;
             [configModel.configPart addConfigLine:tmpLine];
             index += tmpLine.baseCount;
         }
+    }
+    BOOL shouldEnableTopBottomImage = (arc4random() % 10) < 10 && configModel.embedImageType & WYEmbedImageTypeTopBottom;
+    if(shouldEnableTopBottomImage) {
+        CGFloat maxFloat = 0;
+        for(WYPosterConfigLine *line in configModel.configPart.lineArray) {
+            maxFloat = MAX(maxFloat, line.width);
+        }
+        WYPosterConfigUnit *topUnit = [[WYPosterConfigUnit alloc] initWithImage:[UIImage imageNamed:@"test1"]];
+        WYPosterConfigUnit *bottomUnit = [[WYPosterConfigUnit alloc] initWithImage:[UIImage imageNamed:@"test1"]];
+        CGFloat scale = maxFloat / topUnit.width;
+        topUnit.scale = scale;
+        topUnit.oritention = UIImageOrientationUp;
+        bottomUnit.scale = scale;
+        bottomUnit.oritention = UIImageOrientationDown;
+        
+        WYPosterConfigLine *topLine = [WYPosterConfigLine new];
+        WYPosterConfigLine *bottomLine = [WYPosterConfigLine new];
+        
+        [topLine decorteTopBottomImageUnit:topUnit];
+        [bottomLine decorteTopBottomImageUnit:bottomUnit];
+        
+        [configModel.configPart appendPrefixLine:topLine];
+        [configModel.configPart appendSuffixLine:bottomLine];
     }
     
     if(configModel.sameWidth) {

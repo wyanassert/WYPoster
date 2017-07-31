@@ -123,7 +123,7 @@
     config.preferWidth = 300;
 //    config.localMultiLine = WYPreferLocalMultiLineNotLineTail | WYPreferLocalMultiLineNotFirstLine | WYPreferLocalMultiLineNotLineHead;
     config.localMultiLine = WYPreferLocalMultiLineNormal;
-    config.embedImageType = WYEmbedImageTypeLeftRight;
+    config.embedImageType = WYEmbedImageTypeLeftRight | WYEmbedImageTypeTopBottom;
     config.sameWidth = YES;
     if (self.posterView.superview) {
         [self.posterView removeFromSuperview];

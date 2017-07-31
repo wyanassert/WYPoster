@@ -28,6 +28,26 @@
     _baseCount += line.baseCount;
 }
 
+- (void)appendPrefixLine:(WYPosterConfigLine *)line {
+    if(!line.unitArray.count) {
+        return ;
+    }
+    [self.lineArray insertObject:line atIndex:0];
+    _height += line.height;
+    _width = MAX(_width, line.width);
+    _baseCount += line.baseCount;
+}
+
+- (void)appendSuffixLine:(WYPosterConfigLine *)line {
+    if(!line.unitArray.count) {
+        return ;
+    }
+    [self.lineArray addObject:line];
+    _height += line.height;
+    _width = MAX(_width, line.width);
+    _baseCount += line.baseCount;
+}
+
 - (void)keepSameWidth {
     _height = 0;
     _width = 0;
