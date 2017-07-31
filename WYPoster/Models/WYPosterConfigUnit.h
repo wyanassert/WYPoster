@@ -15,6 +15,14 @@ typedef NS_ENUM(NSUInteger, WYPosterConfigUnitType) {
     WYPosterConfigUnitTypeImage
 };
 
+typedef NS_ENUM(NSUInteger, WYPosterConfigUintImageOritention) {
+    WYPosterConfigUintImageTop,
+    WYPosterConfigUintImageLeft,
+    WYPosterConfigUintImageRight,
+    WYPosterConfigUintImageBottom
+};
+
+
 
 @class WYPosterConfigLine;
 @class WYPosterConfigPart;
@@ -22,6 +30,7 @@ typedef NS_ENUM(NSUInteger, WYPosterConfigUnitType) {
 @interface WYPosterConfigUnit : NSObject
 
 @property (nonatomic, assign, readonly) WYPosterConfigUnitType unitType;
+@property (nonatomic, assign, readonly) NSUInteger             baseCount;
 @property (nonatomic, assign, readonly) NSUInteger             length;
 @property (nonatomic, assign, readonly) CGFloat                width;
 @property (nonatomic, assign, readonly) CGFloat                height;
@@ -33,6 +42,9 @@ typedef NS_ENUM(NSUInteger, WYPosterConfigUnitType) {
 @property (nonatomic, strong, readonly) NSArray<NSArray<NSString *> *> *multiWords;
 @property (nonatomic, strong, readonly) NSArray<UIFont *>              *multiFont;
 @property (nonatomic, strong, readonly) WYPosterConfigPart             *configPart;
+
+@property (nonatomic, strong, readonly) UIImage                             *image;
+//@property (nonatomic, assign, readonly) WYPosterConfigUintImageOritention   oritention;
 
 - (instancetype)initWithWord:(NSString *)word font:(UIFont *)font;
 - (instancetype)initWithWords:(NSArray<NSArray<NSString *> *> *)multiWords fonts:(NSArray<UIFont *> *)multiFont;

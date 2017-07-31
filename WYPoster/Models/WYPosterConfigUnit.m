@@ -78,6 +78,18 @@ CGFloat kWidthScale = 0.95;
 }
 
 #pragma mark - Getter
+- (NSUInteger)baseCount {
+    if(self.unitType == WYPosterConfigUnitTypeMultiLine) {
+        return self.configPart.baseCount;
+    } else if(self.unitType == WYPosterConfigUnitTypeNormal) {
+        return 1;
+    } else if(self.unitType == WYPosterConfigUnitTypeImage) {
+        return 0;
+    } else {
+        return 0;
+    }
+}
+
 - (CGFloat)scale {
     if(0 == _scale) {
         _scale = 1;

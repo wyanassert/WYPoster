@@ -25,6 +25,7 @@
     [self.lineArray addObject:line];
     _height += line.height;
     _width = MAX(_width, line.width);
+    _baseCount += line.baseCount;
 }
 
 - (void)keepSameWidth {

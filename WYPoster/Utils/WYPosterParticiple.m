@@ -38,8 +38,31 @@
 }
 
 + (WYPosterConfigModel *)spliteWordArray:(NSArray<NSString *> *)wordArray withConfig:(WYPosterConfigModel *)configModel {
+    WYPosterConfigLine *tmpLine = nil;
+    NSUInteger index = 0;
+    while ((tmpLine = [self spliteALineFormMultiLine:wordArray fromIndex:index withConfigModel:configModel]).length) {
+        if(tmpLine.unitArray.count) {
+            tmpLine.scale = ((CGFloat)configModel.avgLength) / tmpLine.length;
+            [configModel.configPart addConfigLine:tmpLine];
+            index += tmpLine.baseCount;
+        }
+    }
+    
+    if(configModel.sameWidth) {
+        [configModel.configPart keepSameWidth];//保持每行一致的宽度
+    }
+    
+    [configModel resizeToPrefer];//整体缩放
+    
+    return configModel;
+}
+
+
+#pragma mark - Private
++ (WYPosterConfigLine *)spliteALineFormMultiLine:(NSArray<NSString *> *)wordArray fromIndex:(NSUInteger)index withConfigModel:(WYPosterConfigModel *)configModel {
+    
     WYPosterConfigLine *tmpLine = [WYPosterConfigLine new];
-    for (NSUInteger i = 0; i < wordArray.count; i++) {
+    for (NSUInteger i = index; i < wordArray.count; i++) {
         NSString *tmpStr = [wordArray objectAtIndex:i];
         BOOL canApplyMultiLine = NO;
         if(configModel.localMultiLine != WYPreferLocalMultiLineNone && (arc4random() % 5) <= 1) {
@@ -72,30 +95,17 @@
                 
             } else {
                 if(tmpLine.length > 0) {
-                    tmpLine.scale = ((CGFloat)configModel.avgLength) / tmpLine.length;
-                    [configModel.configPart addConfigLine:tmpLine];
-                    tmpLine = [WYPosterConfigLine new];
+                    return tmpLine;
+                } else {
+                    [tmpLine addConfigUnit:[[WYPosterConfigUnit alloc] initWithWord:tmpStr font:configModel.fontArray.firstObject]];
                 }
-                [tmpLine addConfigUnit:[[WYPosterConfigUnit alloc] initWithWord:tmpStr font:configModel.fontArray.firstObject]];
             }
         }
     }
-    if(tmpLine.length > 0) {
-        tmpLine.scale = ((CGFloat)configModel.avgLength) / tmpLine.length;
-        [configModel.configPart addConfigLine:tmpLine];
-    }
     
-    if(configModel.sameWidth) {
-        [configModel.configPart keepSameWidth];
-    }
-    
-    [configModel resizeToPrefer];
-    
-    return configModel;
+    return tmpLine;
 }
 
-
-#pragma mark - Private
 + (BOOL)shouldApplyMultiLine:(NSArray<NSString *> *)wordArray fromIndex:(NSUInteger)index multiStyle:(NSArray<NSNumber *> *)styleArray currentLine:(WYPosterConfigLine *)currentLine withConfigModel:(WYPosterConfigModel *)configModel {
     if((configModel.localMultiLine & WYPreferLocalMultiLineNotFirstLine && configModel.configPart.lineArray.count == 0) ||
        (configModel.localMultiLine & WYPreferLocalMultiLineNotLineHead && currentLine.length == 0)) {
@@ -158,9 +168,15 @@
                                                                                      @[@2, @3, @1],
                                                                                      @[@1, @2, @3],
                                                                                      @[@1, @3, @2],
+                                                                                     @[@3, @3, @2],
+                                                                                     @[@3, @2, @3],
+                                                                                     @[@2, @3, @3],
                                                                                      @[@3, @3, @3],
                                                                                      @[@2, @2, @2],
                                                                                      @[@1, @1, @1],
+                                                                                     @[@3, @3],
+                                                                                     @[@3, @2],
+                                                                                     @[@2, @3],
                                                                                      @[@2, @2],
                                                                                      @[@2, @1],
                                                                                      @[@1, @2],

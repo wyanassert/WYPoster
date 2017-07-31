@@ -58,6 +58,8 @@
 		937CF2421F25FB3100E9BF9A /* WYPosterLineView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WYPosterLineView.m; sourceTree = "<group>"; };
 		937CF2441F25FB4400E9BF9A /* WYPosterUnitView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WYPosterUnitView.h; sourceTree = "<group>"; };
 		937CF2451F25FB4400E9BF9A /* WYPosterUnitView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WYPosterUnitView.m; sourceTree = "<group>"; };
+		93BE75951F2B2DA400D5E3C7 /* test0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test0.png; sourceTree = "<group>"; };
+		93BE75961F2B2DA400D5E3C7 /* test1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test1.png; sourceTree = "<group>"; };
 		9A4B1EF742B2DB84E36F2E2A /* Pods-WYPoster.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WYPoster.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WYPoster/Pods-WYPoster.debug.xcconfig"; sourceTree = "<group>"; };
 		A84FD4F745CD1F8F4948D660 /* libPods-WYPoster.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WYPoster.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -94,6 +96,7 @@
 		937ADC0D1F22026200B22295 = {
 			isa = PBXGroup;
 			children = (
+				93BE75931F2B2DA400D5E3C7 /* Resource */,
 				937ADC2F1F22058700B22295 /* WYPoster */,
 				937ADC181F22026200B22295 /* WYPosterDemo */,
 				937ADC171F22026200B22295 /* Products */,
@@ -176,6 +179,24 @@
 				937CF2391F25974400E9BF9A /* WYPosterConfigModel.m */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		93BE75931F2B2DA400D5E3C7 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				93BE75941F2B2DA400D5E3C7 /* Image */,
+			);
+			name = Resource;
+			path = ../Resource;
+			sourceTree = "<group>";
+		};
+		93BE75941F2B2DA400D5E3C7 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				93BE75951F2B2DA400D5E3C7 /* test0.png */,
+				93BE75961F2B2DA400D5E3C7 /* test1.png */,
+			);
+			path = Image;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

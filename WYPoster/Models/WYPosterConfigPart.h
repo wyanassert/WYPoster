@@ -14,6 +14,7 @@
 @interface WYPosterConfigPart : NSObject
 
 @property (nonatomic, strong, readonly) NSMutableArray<WYPosterConfigLine*> *lineArray;
+@property (nonatomic, assign, readonly) NSUInteger         baseCount;
 @property (nonatomic, assign, readonly) CGFloat            width;
 @property (nonatomic, assign, readonly) CGFloat            height;
 

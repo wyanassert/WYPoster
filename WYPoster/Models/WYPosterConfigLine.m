@@ -30,9 +30,11 @@
     _length += unit.length;
     _width += unit.width;
     _height = MAX(_height, unit.height);
+    _baseCount += unit.baseCount;
 }
 
 #pragma mark - Getter
+
 - (NSMutableArray<WYPosterConfigUnit *> *)unitArray {
     if(!_unitArray) {
         _unitArray = [NSMutableArray array];
