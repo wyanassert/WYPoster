@@ -55,4 +55,6 @@ typedef NS_OPTIONS(NSUInteger, WYEmbedImageType) {
 
 - (void)resizeToPrefer;
 
+- (void)adjustAligment;
+
 @end

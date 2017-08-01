@@ -55,7 +55,7 @@
             }
             make.height.mas_equalTo(obj.height);
             make.width.mas_equalTo(obj.width);
-            make.centerX.equalTo(self);
+            make.left.mas_equalTo(obj.originX);
         }];
     }];
 }

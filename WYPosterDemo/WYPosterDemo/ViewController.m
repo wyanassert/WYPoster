@@ -123,8 +123,9 @@
     config.preferWidth = 300;
 //    config.localMultiLine = WYPreferLocalMultiLineNotLineTail | WYPreferLocalMultiLineNotFirstLine | WYPreferLocalMultiLineNotLineHead;
     config.localMultiLine = WYPreferLocalMultiLineNormal;
-    config.embedImageType = WYEmbedImageTypeLeftRight | WYEmbedImageTypeTopBottom;
-    config.sameWidth = YES;
+//    config.embedImageType = WYEmbedImageTypeLeftRight | WYEmbedImageTypeTopBottom;
+//    config.sameWidth = YES;
+    config.alignment = WYAlignmentCenter;
     if (self.posterView.superview) {
         [self.posterView removeFromSuperview];
     }
@@ -144,6 +145,7 @@
              @"DOUBLE TAP TO EDIT TEXT!!!",
              @"Objective-C is a general-purpose, object-oriented programming language that adds Smalltalk-style messaging to the C programming language. It was the main programming language used by Apple for the OS X and iOS operating systems, and their respective application programming interfaces (APIs) Cocoa and Cocoa Touch prior to the introduction of Swift.",
              @"AAAAAAjjj ggfj CCCCCCCCCCCC",
+             @"The person who associated a work with this deed has dedicated the work to the public domain by waiving all of his or her rights to the work worldwide under copyright law, including all related and neighboring rights, to the extent allowed by law.",
              ];
 }
 

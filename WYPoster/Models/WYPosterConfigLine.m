@@ -15,6 +15,7 @@
 @property (nonatomic, assign, readwrite) NSUInteger length;
 @property (nonatomic, assign, readwrite) CGFloat    width;
 @property (nonatomic, assign, readwrite) CGFloat    height;
+@property (nonatomic, assign, readwrite) CGFloat    originX;
 
 @end
 
@@ -73,6 +74,10 @@
     _width = unit.width;
     _height = unit.height;
     _baseCount = unit.baseCount;
+}
+
+- (void)calOriginX:(CGFloat)originX {
+    _originX = originX;
 }
 
 #pragma mark - Getter

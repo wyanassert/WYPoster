@@ -23,6 +23,7 @@
             [result removeObject:string];
         }
     }
+    NSLog(@"方差::%f", [WYPosterParticiple calVariance:result]);
     return [result copy];
 }
 
@@ -57,7 +58,7 @@
             index += tmpLine.baseCount;
         }
     }
-    BOOL shouldEnableTopBottomImage = (arc4random() % 10) < 10 && configModel.embedImageType & WYEmbedImageTypeTopBottom;
+    BOOL shouldEnableTopBottomImage = (arc4random() % 10) < 6 && configModel.embedImageType & WYEmbedImageTypeTopBottom;
     if(shouldEnableTopBottomImage) {
         CGFloat maxFloat = 0;
         for(WYPosterConfigLine *line in configModel.configPart.lineArray) {
@@ -86,6 +87,7 @@
     }
     
     [configModel resizeToPrefer];//整体缩放
+    [configModel adjustAligment];//调整对齐
     
     return configModel;
 }
@@ -222,6 +224,23 @@
         [result insertObject:obj atIndex:insert];
     }
     return [result copy];
+}
+
++ (CGFloat)calVariance:(NSArray<NSString *> *)wordArray {
+    if(!wordArray.count) {
+        return 0;
+    }
+    CGFloat totalLen = 0;
+    for(NSString *str in wordArray) {
+        totalLen += str.length;
+    }
+    CGFloat avg = totalLen / wordArray.count;
+    totalLen = 0;
+    for(NSString *str in wordArray) {
+        totalLen += pow((str.length - avg), 2);
+    }
+    
+    return sqrt(totalLen / wordArray.count);
 }
 
 @end

@@ -58,6 +58,27 @@
     }
 }
 
+- (void)calOriginXForPerLine:(WYAlignmentType)aligmentType {
+    for(WYPosterConfigLine *line in self.lineArray) {
+        switch (aligmentType) {
+            case WYAlignmentLeft: {
+                [line calOriginX:0];
+            }
+                break;
+            case WYAlignmentRight: {
+                [line calOriginX:self.width - line.width];
+            }
+                break;
+            case WYAlignmentCenter: {
+                [line calOriginX:(self.width - line.width) / 2];
+            }
+                break;
+            default:
+                break;
+        }
+    }
+}
+
 #pragma mark - Setter
 - (void)setScale:(CGFloat)scale {
     _scale = scale;

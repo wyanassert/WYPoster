@@ -29,6 +29,10 @@
     _height = self.configPart.height;
 }
 
+- (void)adjustAligment {
+    [self.configPart calOriginXForPerLine:self.alignment];
+}
+
 #pragma mark - Setter
 - (void)setScale:(CGFloat)scale {
     _scale = scale;
