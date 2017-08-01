@@ -20,6 +20,28 @@
     [WYPosterParticiple calAvgLengthForConfigModel:configModel withText:text];
     [WYPosterParticiple spliteWordArray:wordArray withConfig:configModel];
     
+    CGFloat tmpRatio = [WYPoster checkIfRatioReasonable:configModel];
+    NSUInteger count = 3;
+    WYPosterConfigPart *tmpPart = configModel.configPart;
+    while ([WYPoster checkIfRatioReasonable:configModel] > 0.3 && count--) {
+        CGFloat tmpAvg = configModel.avgLength;
+        if([WYPoster checkIfRatioReasonable:configModel] > 1) {
+            tmpAvg *= 0.8;
+        } else {
+            tmpAvg *= 1.2;
+        }
+        [configModel cleanConfigPart];
+        configModel.avgLength = tmpAvg;
+        [WYPosterParticiple spliteWordArray:wordArray withConfig:configModel];
+        if(tmpRatio > [WYPoster checkIfRatioReasonable:configModel]) {
+            tmpRatio = [WYPoster checkIfRatioReasonable:configModel];
+            tmpPart = configModel.configPart;
+        }
+    }
+    if(tmpPart && tmpPart != configModel.configPart) {
+        [configModel refillConfigPart:tmpPart];
+    }
+    
     return configModel;
 }
 
@@ -34,10 +56,9 @@
 }
 
 #pragma mark - Private
-+ (BOOL)checkIfRatioReasonable:(WYPosterConfigModel *)configModel {
++ (CGFloat)checkIfRatioReasonable:(WYPosterConfigModel *)configModel {
     CGFloat ratio = configModel.configPart.width / configModel.height;
-    NSLog(@"%f, %f", ratio, configModel.ratio);
-    return fabs(ratio - configModel.ratio) / configModel.ratio < 0.3;
+    return fabs(ratio - configModel.ratio) / configModel.ratio;
 }
 
 @end

@@ -28,7 +28,7 @@
     
     
     
-    self.index = 1;
+    self.index = 2;
     self.perferMultiLine = WYPreferLocalMultiLineNone;
     [self actTo:self.index];
     
@@ -123,8 +123,8 @@
     config.preferWidth = 300;
 //    config.localMultiLine = WYPreferLocalMultiLineNotLineTail | WYPreferLocalMultiLineNotFirstLine | WYPreferLocalMultiLineNotLineHead;
     config.localMultiLine = WYPreferLocalMultiLineNormal;
-//    config.embedImageType = WYEmbedImageTypeLeftRight | WYEmbedImageTypeTopBottom;
-//    config.sameWidth = YES;
+    config.embedImageType = WYEmbedImageTypeLeftRight | WYEmbedImageTypeTopBottom;
+    config.sameWidth = YES;
     config.alignment = WYAlignmentCenter;
     if (self.posterView.superview) {
         [self.posterView removeFromSuperview];

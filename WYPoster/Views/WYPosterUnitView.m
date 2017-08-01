@@ -89,6 +89,8 @@
         _imageView = [[UIImageView alloc] initWithImage:self.unit.image];
         if(self.unit.oritention == UIImageOrientationDown) {
             [_imageView setTransform:CGAffineTransformScale(_imageView.transform, 1, -1)];
+        } else if (self.unit.oritention == UIImageOrientationRight) {
+            [_imageView setTransform:CGAffineTransformScale(_imageView.transform, -1, 1)];
         }
     }
     return _imageView;

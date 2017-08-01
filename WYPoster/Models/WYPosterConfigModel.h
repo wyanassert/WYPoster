@@ -48,7 +48,6 @@ typedef NS_OPTIONS(NSUInteger, WYEmbedImageType) {
 @property (nonatomic, assign) CGFloat                ratio;
 @property (nonatomic, assign) CGFloat                preferWidth;
 @property (nonatomic, assign) BOOL                   sameWidth;
-@property (nonatomic, assign) CGFloat                maxSizeDiff;
 @property (nonatomic, assign) WYAlignmentType        alignment;
 @property (nonatomic, strong) NSArray<UIFont *>      *fontArray;
 @property (nonatomic, assign) WYEmbedImageType       embedImageType;
@@ -56,5 +55,9 @@ typedef NS_OPTIONS(NSUInteger, WYEmbedImageType) {
 - (void)resizeToPrefer;
 
 - (void)adjustAligment;
+
+- (void)cleanConfigPart;
+
+- (void)refillConfigPart:(WYPosterConfigPart *)configpart;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "WYPosterConfigPart.h"
 #import "WYPosterConfigLine.h"
+#import "WYPosterConfigUnit.h"
 
 @interface WYPosterConfigPart()
 
@@ -75,6 +76,11 @@
                 break;
             default:
                 break;
+        }
+        for (WYPosterConfigUnit *unit in line.unitArray) {
+            if(unit.unitType == WYPosterConfigUnitTypeMultiLine) {
+                [unit.configPart calOriginXForPerLine:aligmentType];
+            }
         }
     }
 }

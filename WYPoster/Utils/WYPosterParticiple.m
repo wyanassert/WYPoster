@@ -32,7 +32,7 @@
                           NSFontAttributeName:font,
                           };
     CGSize characterSize = [@"A" boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:dic context:nil].size;
-    NSUInteger avg = ceil(sqrt(configModel.ratio * characterSize.height / characterSize.width * text.length) * 1.2);
+    NSUInteger avg = ceil(sqrt(configModel.ratio * characterSize.height / characterSize.width * text.length) * ((arc4random() % 5) / 4.0 * 0.4 + 0.8));
     configModel.avgLength = avg;
     return configModel;
 }
@@ -44,8 +44,12 @@
         if(configModel.embedImageType & WYEmbedImageTypeLeftRight  && (arc4random() % 10) < 7) {
             tmpLine = [self spliteALineFormMultiLine:wordArray fromIndex:index withConfigModel:configModel presetLength:configModel.avgLength - 7];
             if(tmpLine.unitArray.count) {
-                [tmpLine appendPrefixImageUnit:[[WYPosterConfigUnit alloc] initWithImage:[UIImage imageNamed:@"test0"]]];
-                [tmpLine appendSuffixImageUnit:[[WYPosterConfigUnit alloc] initWithImage:[UIImage imageNamed:@"test0"]]];
+                WYPosterConfigUnit *leftUnit = [[WYPosterConfigUnit alloc] initWithImage:[UIImage imageNamed:@"test0"]];
+                leftUnit.oritention = UIImageOrientationLeft;
+                WYPosterConfigUnit *rightUnit = [[WYPosterConfigUnit alloc] initWithImage:[UIImage imageNamed:@"test0"]];
+                rightUnit.oritention = UIImageOrientationRight;
+                [tmpLine appendPrefixImageUnit:leftUnit];
+                [tmpLine appendSuffixImageUnit:rightUnit];
             }
         } else {
             tmpLine = [self spliteALineFormMultiLine:wordArray fromIndex:index withConfigModel:configModel presetLength:configModel.avgLength];
@@ -151,6 +155,7 @@
     if(endIndex >= wordArray.count) {
         return NO;
     }
+    
     NSUInteger startIndex = index;
     NSUInteger maxLen = 0;
     NSUInteger minLen = NSUIntegerMax;
@@ -162,7 +167,7 @@
         maxLen = MAX(tmpLen, maxLen);
         minLen = MIN(tmpLen, minLen);
     }
-    if(maxLen - minLen > ceil(maxLen * 0.1 * styleArray.count)) {
+    if(maxLen - minLen > ceil(maxLen * 0.34)) {
         return NO;
     } else if (currentLine.length > 0 && currentLine.length + ceil((CGFloat) maxLen) / styleArray.count > presetLength) {
         return NO;
@@ -195,18 +200,14 @@
 
 + (NSArray<NSArray<NSNumber *> *> *)preSetMultiArray {
     NSMutableArray<NSArray<NSNumber *> *> *result = [NSMutableArray arrayWithArray:@[
-                                                                                     @[@3, @2, @1],
-                                                                                     @[@3, @1, @2],
-                                                                                     @[@2, @1, @3],
-                                                                                     @[@2, @3, @1],
-                                                                                     @[@1, @2, @3],
-                                                                                     @[@1, @3, @2],
+                                                                                     @[@3, @2, @2],
+                                                                                     @[@2, @3, @2],
+                                                                                     @[@2, @2, @3],
                                                                                      @[@3, @3, @2],
                                                                                      @[@3, @2, @3],
                                                                                      @[@2, @3, @3],
                                                                                      @[@3, @3, @3],
                                                                                      @[@2, @2, @2],
-                                                                                     @[@1, @1, @1],
                                                                                      @[@3, @3],
                                                                                      @[@3, @2],
                                                                                      @[@2, @3],
