@@ -54,6 +54,7 @@
     [self mas_updateConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(self.line.height);
         make.width.mas_equalTo(self.line.width);
+        make.left.mas_equalTo(self.line.originX);
     }];
 
     for (WYPosterUnitView *unitView in self.unitViewArrray) {

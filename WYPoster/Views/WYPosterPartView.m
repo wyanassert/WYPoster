@@ -31,6 +31,8 @@
 
 - (void)reloadPartConfig {
     [self mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.part.origin.y);
+        make.left.mas_equalTo(self.part.origin.x);
         make.height.mas_equalTo(self.part.height);
         make.width.mas_equalTo(self.part.width);
     }];

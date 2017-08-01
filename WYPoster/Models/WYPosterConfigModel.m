@@ -27,6 +27,8 @@
     self.configPart.scale = scale;
     _width = self.preferWidth;
     _height = self.preferWidth / self.ratio;
+    
+    [self adjustAligment];
 }
 
 - (void)adjustAligment {
