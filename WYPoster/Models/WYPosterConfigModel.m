@@ -25,12 +25,32 @@
 - (void)resizeToPrefer {
     CGFloat scale = MIN(self.preferWidth / self.configPart.width, self.preferWidth * self.ratio / self.configPart.height);
     self.configPart.scale = scale;
-    _width = self.configPart.width;
-    _height = self.configPart.height;
+    _width = self.preferWidth;
+    _height = self.preferWidth / self.ratio;
 }
 
 - (void)adjustAligment {
     [self.configPart calOriginXForPerLine:self.alignment];
+    
+    CGFloat originY = (self.preferWidth / self.ratio - self.configPart.height) / 2;
+    CGFloat originX = 0;
+    switch (self.alignment) {
+        case WYAlignmentCenter: {
+            originX = (self.preferWidth - self.configPart.width) / 2;
+        }
+            break;
+        case WYAlignmentLeft: {
+            originX = 0;
+        }
+            break;
+        case WYAlignmentRight: {
+            originX = self.preferWidth - self.configPart.width;
+        }
+            break;
+        default:
+            break;
+    }
+    [self.configPart adjustOrigin:CGPointMake(originX, originY)];
 }
 
 - (void)cleanConfigPart {
@@ -45,8 +65,8 @@
     _configPart = nil;
     _configPart = configpart;
     _scale = 1;
-    _width = self.configPart.width;
-    _height = self.configPart.height;
+    _width = self.preferWidth;
+    _height = self.preferWidth / self.ratio;
 }
 
 #pragma mark - Setter

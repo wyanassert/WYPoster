@@ -16,6 +16,7 @@
 
 @property (nonatomic, strong, readonly ) NSMutableArray<WYPosterConfigLine*> *lineArray;
 @property (nonatomic, assign, readonly ) NSUInteger         baseCount;
+@property (nonatomic, assign, readonly ) CGPoint            origin;
 @property (nonatomic, assign, readonly ) CGFloat            width;
 @property (nonatomic, assign, readonly ) CGFloat            height;
 
@@ -31,5 +32,7 @@
 - (void)keepSameWidth;
 
 - (void)calOriginXForPerLine:(WYAlignmentType)aligmentType;
+
+- (void)adjustOrigin:(CGPoint)origin;
 
 @end

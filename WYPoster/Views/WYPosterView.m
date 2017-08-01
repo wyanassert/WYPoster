@@ -34,8 +34,8 @@
 - (void)configView {
     [self addSubview:self.partView];
     [self.partView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self);
-        make.centerX.equalTo(self);
+        make.top.mas_equalTo(self.configModel.configPart.origin.y);
+        make.left.mas_equalTo(self.configModel.configPart.origin.x);
         make.height.mas_equalTo(self.configModel.configPart.height);
         make.width.mas_equalTo(self.configModel.configPart.width);
     }];

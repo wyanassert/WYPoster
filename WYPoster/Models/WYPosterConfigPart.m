@@ -85,6 +85,10 @@
     }
 }
 
+- (void)adjustOrigin:(CGPoint)origin {
+    _origin = origin;
+}
+
 #pragma mark - Setter
 - (void)setScale:(CGFloat)scale {
     _scale = scale;

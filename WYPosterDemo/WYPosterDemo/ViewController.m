@@ -124,8 +124,8 @@
 //    config.localMultiLine = WYPreferLocalMultiLineNotLineTail | WYPreferLocalMultiLineNotFirstLine | WYPreferLocalMultiLineNotLineHead;
     config.localMultiLine = WYPreferLocalMultiLineNormal;
     config.embedImageType = WYEmbedImageTypeLeftRight | WYEmbedImageTypeTopBottom;
-    config.sameWidth = YES;
-    config.alignment = WYAlignmentCenter;
+//    config.sameWidth = YES;
+    config.alignment = WYAlignmentRight;
     if (self.posterView.superview) {
         [self.posterView removeFromSuperview];
     }
