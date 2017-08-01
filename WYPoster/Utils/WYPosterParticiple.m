@@ -23,7 +23,6 @@
             [result removeObject:string];
         }
     }
-    NSLog(@"方差::%f", [WYPosterParticiple calVariance:result]);
     return [result copy];
 }
 
@@ -224,23 +223,6 @@
         [result insertObject:obj atIndex:insert];
     }
     return [result copy];
-}
-
-+ (CGFloat)calVariance:(NSArray<NSString *> *)wordArray {
-    if(!wordArray.count) {
-        return 0;
-    }
-    CGFloat totalLen = 0;
-    for(NSString *str in wordArray) {
-        totalLen += str.length;
-    }
-    CGFloat avg = totalLen / wordArray.count;
-    totalLen = 0;
-    for(NSString *str in wordArray) {
-        totalLen += pow((str.length - avg), 2);
-    }
-    
-    return sqrt(totalLen / wordArray.count);
 }
 
 @end

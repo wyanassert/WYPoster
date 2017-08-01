@@ -33,4 +33,11 @@
     return view;
 }
 
+#pragma mark - Private
++ (BOOL)checkIfRatioReasonable:(WYPosterConfigModel *)configModel {
+    CGFloat ratio = configModel.configPart.width / configModel.height;
+    NSLog(@"%f, %f", ratio, configModel.ratio);
+    return fabs(ratio - configModel.ratio) / configModel.ratio < 0.3;
+}
+
 @end

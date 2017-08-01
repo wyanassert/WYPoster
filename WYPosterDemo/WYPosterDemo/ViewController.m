@@ -28,7 +28,7 @@
     
     
     
-    self.index = 0;
+    self.index = 1;
     self.perferMultiLine = WYPreferLocalMultiLineNone;
     [self actTo:self.index];
     
