@@ -59,27 +59,29 @@
     }
 }
 
-- (void)calOriginXForPerLine:(WYAlignmentType)aligmentType {
+- (void)calOriginXForPerLine:(WYAlignmentType)aligmentType withLineInterval:(CGFloat)lineInterval {
+    CGFloat tmpOriginY = 0;
     for(WYPosterConfigLine *line in self.lineArray) {
         switch (aligmentType) {
             case WYAlignmentLeft: {
-                [line calOriginX:0];
+                [line calOrigin:CGPointMake(0, tmpOriginY)];
             }
                 break;
             case WYAlignmentRight: {
-                [line calOriginX:self.width - line.width];
+                [line calOrigin:CGPointMake(self.width - line.width, tmpOriginY)];
             }
                 break;
             case WYAlignmentCenter: {
-                [line calOriginX:(self.width - line.width) / 2];
+                [line calOrigin:CGPointMake((self.width - line.width) / 2, tmpOriginY)];
             }
                 break;
             default:
                 break;
         }
+        tmpOriginY += lineInterval + line.height;
         for (WYPosterConfigUnit *unit in line.unitArray) {
             if(unit.unitType == WYPosterConfigUnitTypeMultiLine) {
-                [unit.configPart calOriginXForPerLine:aligmentType];
+                [unit.configPart calOriginXForPerLine:aligmentType withLineInterval:0];
             }
         }
     }

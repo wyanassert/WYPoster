@@ -54,6 +54,7 @@ typedef NS_OPTIONS(NSUInteger, WYEmbedImageType) {
 @property (nonatomic, assign) WYAlignmentType        alignment;
 @property (nonatomic, strong) NSArray<UIFont *>      *fontArray;
 @property (nonatomic, assign) WYEmbedImageType       embedImageType;
+@property (nonatomic, assign) CGFloat                lineInterval;
 
 - (void)resizeToPrefer;
 

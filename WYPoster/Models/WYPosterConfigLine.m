@@ -76,8 +76,8 @@
     _baseCount = unit.baseCount;
 }
 
-- (void)calOriginX:(CGFloat)originX {
-    _originX = originX;
+- (void)calOrigin:(CGPoint)origin {
+    _origin = origin;
 }
 
 #pragma mark - Getter

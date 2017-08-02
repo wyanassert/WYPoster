@@ -21,9 +21,10 @@
 @implementation WYPosterConfigModel
 
 @synthesize scale = _scale;
+@synthesize lineInterval = _lineInterval;
 
 - (void)resizeToPrefer {
-    CGFloat scale = MIN(self.preferWidth / self.configPart.width, self.preferWidth * self.ratio / self.configPart.height);
+    CGFloat scale = MIN(self.preferWidth / self.configPart.width, (self.preferWidth * self.ratio - self.lineInterval * (self.configPart.lineArray.count - 1)) / self.configPart.height);
     self.configPart.scale = scale;
     _width = self.preferWidth;
     _height = self.preferWidth / self.ratio;
@@ -32,9 +33,9 @@
 }
 
 - (void)adjustAligment {
-    [self.configPart calOriginXForPerLine:self.alignment];
+    [self.configPart calOriginXForPerLine:self.alignment withLineInterval:self.lineInterval];
     
-    CGFloat originY = (self.preferWidth / self.ratio - self.configPart.height) / 2;
+    CGFloat originY = (self.preferWidth / self.ratio - self.configPart.height - self.lineInterval * (self.configPart.lineArray.count - 1)) / 2;
     CGFloat originX = 0;
     switch (self.alignment) {
         case WYAlignmentCenter: {
@@ -77,10 +78,16 @@
     [self resizeToPrefer];
 }
 
+- (void)setLineInterval:(CGFloat)lineInterval {
+    _lineInterval = lineInterval;
+    self.configPart.lineInterval = lineInterval;
+}
+
 #pragma mark - Getter
 - (WYPosterConfigPart *)configPart {
     if(!_configPart) {
         _configPart = [[WYPosterConfigPart alloc] init];
+        _configPart.lineInterval = self.lineInterval;
     }
     return _configPart;
 }
@@ -118,6 +125,13 @@
         _scale = 1;
     }
     return _scale;
+}
+
+- (CGFloat)lineInterval {
+    if(_lineInterval == 0) {
+        _lineInterval = 2;
+    }
+    return _lineInterval;
 }
 
 @end

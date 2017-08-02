@@ -45,8 +45,8 @@
     CGPoint origin = self.configPart.origin;
     for (NSUInteger i = 0; i < self.configPart.lineArray.count; i++) {
         WYPosterConfigLine *line = self.configPart.lineArray[i];
-        CGPoint lineOrigin = CGPointMake(origin.x + line.originX, origin.y);
-        origin.y += line.height;
+        origin.y = line.origin.y;
+        CGPoint lineOrigin = CGPointMake(origin.x + line.origin.x, origin.y);
         for(NSUInteger j = 0; j < line.unitArray.count; j++) {
             WYPosterConfigUnit *unit = line.unitArray[j];
             WYPosterUnitLayer *unitLayer = [[WYPosterUnitLayer alloc] initWithConfigUnit:unit];

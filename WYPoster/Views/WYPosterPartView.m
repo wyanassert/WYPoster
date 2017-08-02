@@ -50,14 +50,10 @@
         [self.lineViewArray addObject:lineView];
         [self addSubview:lineView];
         [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-            if(idx == 0) {
-                make.top.equalTo(self);
-            } else {
-                make.top.equalTo(self.lineViewArray[idx - 1].mas_bottom);
-            }
             make.height.mas_equalTo(obj.height);
             make.width.mas_equalTo(obj.width);
-            make.left.mas_equalTo(obj.originX);
+            make.left.mas_equalTo(obj.origin.x);
+            make.top.mas_equalTo(obj.origin.y);
         }];
     }];
 }

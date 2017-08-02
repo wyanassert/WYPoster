@@ -129,6 +129,7 @@
     config.sameWidth = YES;
     config.alignment = WYAlignmentCenter;
     config.maxMultiLineCountPerLine = 1;
+    config.lineInterval = 10;
     
     if (self.posterView.superview) {
         [self.posterView removeFromSuperview];

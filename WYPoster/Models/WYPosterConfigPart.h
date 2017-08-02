@@ -22,6 +22,7 @@
 
 @property (nonatomic, strong, readwrite) NSArray<UIFont*>   *fontArray;
 @property (nonatomic, assign, readwrite) CGFloat            scale;
+@property (nonatomic, assign, readwrite) CGFloat            lineInterval;
 
 - (void)addConfigLine:(WYPosterConfigLine *)line;
 
@@ -31,7 +32,7 @@
 
 - (void)keepSameWidth;
 
-- (void)calOriginXForPerLine:(WYAlignmentType)aligmentType;
+- (void)calOriginXForPerLine:(WYAlignmentType)aligmentType withLineInterval:(CGFloat)lineInterval;
 
 - (void)adjustOrigin:(CGPoint)origin;
 
