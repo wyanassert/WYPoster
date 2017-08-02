@@ -27,6 +27,7 @@
 		9388F0F11F2F417B00F25B72 /* test0.png in Resources */ = {isa = PBXBuildFile; fileRef = 93BE75951F2B2DA400D5E3C7 /* test0.png */; };
 		9388F0F21F2F417D00F25B72 /* test1.png in Resources */ = {isa = PBXBuildFile; fileRef = 93BE75961F2B2DA400D5E3C7 /* test1.png */; };
 		9388F0F61F3072B300F25B72 /* WYPosterLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9388F0F51F3072B300F25B72 /* WYPosterLayer.m */; };
+		9388F0F91F3165E000F25B72 /* WYPosterUnitLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9388F0F81F3165E000F25B72 /* WYPosterUnitLayer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,8 @@
 		937CF2451F25FB4400E9BF9A /* WYPosterUnitView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WYPosterUnitView.m; sourceTree = "<group>"; };
 		9388F0F41F3072B300F25B72 /* WYPosterLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WYPosterLayer.h; sourceTree = "<group>"; };
 		9388F0F51F3072B300F25B72 /* WYPosterLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WYPosterLayer.m; sourceTree = "<group>"; };
+		9388F0F71F3165E000F25B72 /* WYPosterUnitLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WYPosterUnitLayer.h; sourceTree = "<group>"; };
+		9388F0F81F3165E000F25B72 /* WYPosterUnitLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WYPosterUnitLayer.m; sourceTree = "<group>"; };
 		93BE75951F2B2DA400D5E3C7 /* test0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test0.png; sourceTree = "<group>"; };
 		93BE75961F2B2DA400D5E3C7 /* test1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test1.png; sourceTree = "<group>"; };
 		9A4B1EF742B2DB84E36F2E2A /* Pods-WYPoster.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WYPoster.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WYPoster/Pods-WYPoster.debug.xcconfig"; sourceTree = "<group>"; };
@@ -192,6 +195,8 @@
 			children = (
 				9388F0F41F3072B300F25B72 /* WYPosterLayer.h */,
 				9388F0F51F3072B300F25B72 /* WYPosterLayer.m */,
+				9388F0F71F3165E000F25B72 /* WYPosterUnitLayer.h */,
+				9388F0F81F3165E000F25B72 /* WYPosterUnitLayer.m */,
 			);
 			path = Layers;
 			sourceTree = "<group>";
@@ -346,6 +351,7 @@
 				9388F0F61F3072B300F25B72 /* WYPosterLayer.m in Sources */,
 				937CF2341F25954C00E9BF9A /* WYPosterConfigUnit.m in Sources */,
 				9321033C1F286808005B1A57 /* WYPosterPartView.m in Sources */,
+				9388F0F91F3165E000F25B72 /* WYPosterUnitLayer.m in Sources */,
 				937CF23D1F25A61C00E9BF9A /* WYPoster.m in Sources */,
 				937CF2461F25FB4400E9BF9A /* WYPosterUnitView.m in Sources */,
 				937ADC1E1F22026200B22295 /* ViewController.m in Sources */,

@@ -11,11 +11,13 @@
 #import "WYPosterConfigModel.h"
 #import "Masonry.h"
 #import "INTUAnimationEngine.h"
+#import "WYPosterLayer.h"
 
 @interface ViewController ()
 
-@property (nonatomic, strong) WYPosterView *posterView;
-@property (nonatomic, assign) NSInteger         index;
+@property (nonatomic, strong) WYPosterView  *posterView;
+@property (nonatomic, strong) WYPosterLayer *posterLayer;
+@property (nonatomic, assign) NSInteger     index;
 @property (nonatomic, assign) WYPreferLocalMultiLine         perferMultiLine;
 
 @end
@@ -120,19 +122,26 @@
 - (void)actTo:(NSUInteger)index {
     WYPosterConfigModel *config = [[WYPosterConfigModel alloc] init];
     config.ratio = 1;
-    config.preferWidth = 300;
+    config.preferWidth = 200;
 //    config.localMultiLine = WYPreferLocalMultiLineNotLineTail | WYPreferLocalMultiLineNotFirstLine | WYPreferLocalMultiLineNotLineHead;
     config.localMultiLine = WYPreferLocalMultiLineNormal;
     config.embedImageType = WYEmbedImageTypeLeftRight | WYEmbedImageTypeTopBottom;
 //    config.sameWidth = YES;
     config.alignment = WYAlignmentRight;
+    
     if (self.posterView.superview) {
         [self.posterView removeFromSuperview];
     }
     self.posterView = [WYPoster createViewUsingText:[self getArray][index] withConfigModel:config];
-    
+
     [self.view addSubview:self.posterView];
     self.posterView.center = self.view.center;
+    
+    if(self.posterLayer.superlayer) {
+        [self.posterLayer removeFromSuperlayer];
+    }
+    self.posterLayer = [WYPoster createLayerUsingText:[self getArray][index] withConfigModel:config];
+    [self.view.layer addSublayer:self.posterLayer];
 }
 
 - (NSArray<NSString *> *)getArray {

@@ -55,6 +55,16 @@
     return view;
 }
 
++ (WYPosterLayer *)createLayerUsingText:(NSString *)text withConfigModel:(WYPosterConfigModel *)configModel {
+    if(!configModel.configPart.lineArray.count) {
+        configModel = [WYPoster fillLayoutData:text withConfig:configModel];
+    }
+    
+    WYPosterLayer *layer = [[WYPosterLayer alloc] initWithConfigModel:configModel];
+    [layer setFrame:CGRectMake(0, 0, configModel.width, configModel.height)];
+    return layer;
+}
+
 #pragma mark - Private
 + (CGFloat)checkIfRatioReasonable:(WYPosterConfigModel *)configModel {
     CGFloat ratio = configModel.configPart.width / configModel.height;

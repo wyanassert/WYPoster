@@ -90,7 +90,6 @@
     }
     
     [configModel resizeToPrefer];//整体缩放
-//    [configModel adjustAligment];//调整对齐
     
     return configModel;
 }
