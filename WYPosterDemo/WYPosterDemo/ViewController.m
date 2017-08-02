@@ -125,9 +125,9 @@
     config.preferWidth = 300;
 //    config.localMultiLine = WYPreferLocalMultiLineNotLineTail | WYPreferLocalMultiLineNotFirstLine | WYPreferLocalMultiLineNotLineHead;
     config.localMultiLine = WYPreferLocalMultiLineNormal;
-    config.embedImageType = WYEmbedImageTypeLeftRight | WYEmbedImageTypeTopBottom;
-//    config.sameWidth = YES;
-    config.alignment = WYAlignmentRight;
+    config.embedImageType = WYEmbedImageTypeTop | WYEmbedImageTypeBottom | WYEmbedImageTypeRight | WYEmbedImageTypeLeft;
+    config.sameWidth = YES;
+    config.alignment = WYAlignmentCenter;
     
     if (self.posterView.superview) {
         [self.posterView removeFromSuperview];
@@ -135,14 +135,14 @@
     self.posterView = [WYPoster createViewUsingText:[self getArray][index] withConfigModel:config];
 
     [self.view addSubview:self.posterView];
-    self.posterView.frame = CGRectMake((self.view.frame.size.width - self.posterView.frame.size.width)/2, self.view.center.y, self.posterView.bounds.size.width, self.posterView.bounds.size.height);
+    self.posterView.frame = CGRectMake((self.view.frame.size.width - self.posterView.frame.size.width)/2, self.view.bounds.size.height - self.posterView.bounds.size.height, self.posterView.bounds.size.width, self.posterView.bounds.size.height);
     
     if(self.posterLayer.superlayer) {
         [self.posterLayer removeFromSuperlayer];
     }
     self.posterLayer = [WYPoster createLayerUsingText:[self getArray][index] withConfigModel:config];
     [self.view.layer addSublayer:self.posterLayer];
-    [self.posterLayer setFrame:CGRectMake((self.view.bounds.size.width - self.posterLayer.frame.size.width)/2, 100, self.posterLayer.frame.size.width, self.posterLayer.frame.size.height)];
+    [self.posterLayer setFrame:CGRectMake((self.view.bounds.size.width - self.posterLayer.frame.size.width)/2, 80, self.posterLayer.frame.size.width, self.posterLayer.frame.size.height)];
 }
 
 - (NSArray<NSString *> *)getArray {

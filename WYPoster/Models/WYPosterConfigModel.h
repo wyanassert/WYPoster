@@ -30,9 +30,11 @@ typedef NS_ENUM(NSUInteger, WYAlignmentType) {
 };
 
 typedef NS_OPTIONS(NSUInteger, WYEmbedImageType) {
-    WYEmbedImageTypeNone = 0,
-    WYEmbedImageTypeTopBottom = 0x1 << 0,
-    WYEmbedImageTypeLeftRight = 0x1 << 1,
+    WYEmbedImageTypeNone      = 0,
+    WYEmbedImageTypeLeft      = 0x1 << 1,
+    WYEmbedImageTypeRight     = 0x1 << 2,
+    WYEmbedImageTypeTop       = 0x1 << 3,
+    WYEmbedImageTypeBottom    = 0x1 << 4,
 };
 
 @interface WYPosterConfigModel : NSObject

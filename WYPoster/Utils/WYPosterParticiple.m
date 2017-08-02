@@ -41,15 +41,19 @@
     WYPosterConfigLine *tmpLine = nil;
     NSUInteger index = 0;
     while (index < wordArray.count) {
-        if(configModel.embedImageType & WYEmbedImageTypeLeftRight  && (arc4random() % 10) < 7) {
+        if((configModel.embedImageType & WYEmbedImageTypeLeft || configModel.embedImageType & WYEmbedImageTypeRight)  && (arc4random() % 10) < 7) {
             tmpLine = [self spliteALineFormMultiLine:wordArray fromIndex:index withConfigModel:configModel presetLength:configModel.avgLength - 7];
             if(tmpLine.unitArray.count) {
-                WYPosterConfigUnit *leftUnit = [[WYPosterConfigUnit alloc] initWithImage:[UIImage imageNamed:@"test0"]];
-                leftUnit.oritention = UIImageOrientationLeft;
-                WYPosterConfigUnit *rightUnit = [[WYPosterConfigUnit alloc] initWithImage:[UIImage imageNamed:@"test0"]];
-                rightUnit.oritention = UIImageOrientationRight;
-                [tmpLine appendPrefixImageUnit:leftUnit];
-                [tmpLine appendSuffixImageUnit:rightUnit];
+                if(configModel.embedImageType & WYEmbedImageTypeLeft) {
+                    WYPosterConfigUnit *leftUnit = [[WYPosterConfigUnit alloc] initWithImage:[UIImage imageNamed:@"test0"]];
+                    leftUnit.oritention = UIImageOrientationLeft;
+                    [tmpLine appendPrefixImageUnit:leftUnit];
+                }
+                if(configModel.embedImageType & WYEmbedImageTypeRight) {
+                    WYPosterConfigUnit *rightUnit = [[WYPosterConfigUnit alloc] initWithImage:[UIImage imageNamed:@"test0"]];
+                    rightUnit.oritention = UIImageOrientationRight;
+                    [tmpLine appendSuffixImageUnit:rightUnit];
+                }
             }
         } else {
             tmpLine = [self spliteALineFormMultiLine:wordArray fromIndex:index withConfigModel:configModel presetLength:configModel.avgLength];
@@ -61,28 +65,32 @@
             index += tmpLine.baseCount;
         }
     }
-    BOOL shouldEnableTopBottomImage = (arc4random() % 10) < 6 && configModel.embedImageType & WYEmbedImageTypeTopBottom;
+    BOOL shouldEnableTopBottomImage = (arc4random() % 10) < 6 && (configModel.embedImageType & WYEmbedImageTypeTop || configModel.embedImageType & WYEmbedImageTypeBottom);
     if(shouldEnableTopBottomImage) {
         CGFloat maxFloat = 0;
         for(WYPosterConfigLine *line in configModel.configPart.lineArray) {
             maxFloat = MAX(maxFloat, line.width);
         }
-        WYPosterConfigUnit *topUnit = [[WYPosterConfigUnit alloc] initWithImage:[UIImage imageNamed:@"test1"]];
-        WYPosterConfigUnit *bottomUnit = [[WYPosterConfigUnit alloc] initWithImage:[UIImage imageNamed:@"test1"]];
-        CGFloat scale = maxFloat / topUnit.width;
-        topUnit.scale = scale;
-        topUnit.oritention = UIImageOrientationUp;
-        bottomUnit.scale = scale;
-        bottomUnit.oritention = UIImageOrientationDown;
         
-        WYPosterConfigLine *topLine = [WYPosterConfigLine new];
-        WYPosterConfigLine *bottomLine = [WYPosterConfigLine new];
+        if(configModel.embedImageType & WYEmbedImageTypeTop) {
+            WYPosterConfigUnit *topUnit = [[WYPosterConfigUnit alloc] initWithImage:[UIImage imageNamed:@"test1"]];
+            CGFloat scale = maxFloat / topUnit.width;
+            topUnit.scale = scale;
+            topUnit.oritention = UIImageOrientationUp;
+            WYPosterConfigLine *topLine = [WYPosterConfigLine new];
+            [topLine decorteTopBottomImageUnit:topUnit];
+            [configModel.configPart appendPrefixLine:topLine];
+        }
         
-        [topLine decorteTopBottomImageUnit:topUnit];
-        [bottomLine decorteTopBottomImageUnit:bottomUnit];
-        
-        [configModel.configPart appendPrefixLine:topLine];
-        [configModel.configPart appendSuffixLine:bottomLine];
+        if(configModel.embedImageType & WYEmbedImageTypeBottom) {
+            WYPosterConfigUnit *bottomUnit = [[WYPosterConfigUnit alloc] initWithImage:[UIImage imageNamed:@"test1"]];
+            CGFloat scale = maxFloat / bottomUnit.width;
+            bottomUnit.scale = scale;
+            bottomUnit.oritention = UIImageOrientationDown;
+            WYPosterConfigLine *bottomLine = [WYPosterConfigLine new];
+            [bottomLine decorteTopBottomImageUnit:bottomUnit];
+            [configModel.configPart appendSuffixLine:bottomLine];
+        }
     }
     
     if(configModel.sameWidth) {
