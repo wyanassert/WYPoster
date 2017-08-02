@@ -30,7 +30,7 @@
     
     
     
-    self.index = 2;
+    self.index = 1;
     self.perferMultiLine = WYPreferLocalMultiLineNone;
     [self actTo:self.index];
     
@@ -149,7 +149,7 @@
 - (NSArray<NSString *> *)getArray {
     return @[
              @"deerjakbcx",
-             @"a bb ccc ddd eeee",
+             @"a bb ccc ddd eEgG",
              @"Looks to me like you can determine nWords however you like... it's just a variable used for the purposes of illustration here.",
              @"la la Land",
              @"iOS: set font size of UILabel Programmatically - Stack Overflow",

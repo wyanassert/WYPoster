@@ -98,12 +98,31 @@
 
 #pragma mark - Setter
 - (void)setScale:(CGFloat)scale {
-    _width *= scale / self.scale;
-    _height *= scale / self.scale;
+    _width = 0;
+    _height = 0;
     _scale = scale;
+    
+    CGFloat tmpHeight = 0;
     for(WYPosterConfigUnit *unit in self.unitArray) {
         unit.scale = scale;
+        _height = MAX(_height, unit.height);
+        _width += unit.width;
+        if(unit.unitType != WYPosterConfigUnitTypeImage) {
+            tmpHeight = MAX(tmpHeight, unit.height);
+        }
     }
+    if(tmpHeight > 0) {
+        _width = 0;
+        _height = 0;
+        for(WYPosterConfigUnit *unit in self.unitArray) {
+            if(unit.unitType == WYPosterConfigUnitTypeImage) {
+                unit.scale = tmpHeight / unit.height * unit.scale;
+            }
+            _height = MAX(_height, unit.height);
+            _width += unit.width;
+        }
+    }
+    
 }
 
 @end

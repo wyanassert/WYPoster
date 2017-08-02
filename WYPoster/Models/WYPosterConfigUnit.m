@@ -10,7 +10,7 @@
 #import "WYPosterConfigLine.h"
 #import "WYPosterConfigPart.h"
 
-CGFloat kHeightScale = 0.95;
+CGFloat kHeightScale = 1;
 CGFloat kWidthScale = 0.95;
 
 @interface WYPosterConfigUnit()
@@ -125,7 +125,7 @@ CGFloat kWidthScale = 0.95;
                                            attributes:@{NSFontAttributeName:font}
                                               context:nil];
         _width = rect.size.width / (self.word.length) * (self.word.length + 1) * kWidthScale;
-        _height = rect.size.height * kHeightScale;
+        _height = font.ascender * kHeightScale;
         
         _scale = scale;
     } else if(self.unitType == WYPosterConfigUnitTypeMultiLine) {
