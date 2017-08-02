@@ -23,6 +23,7 @@
     CGFloat tmpRatio = [WYPoster checkIfRatioReasonable:configModel];
     NSUInteger count = 3;
     WYPosterConfigPart *tmpPart = configModel.configPart;
+    NSLog(@"%f", [WYPoster checkIfRatioReasonable:configModel]);
     while ([WYPoster checkIfRatioReasonable:configModel] > 0.3 && count--) {
         CGFloat tmpAvg = configModel.avgLength;
         if([WYPoster checkIfRatioReasonable:configModel] > 1) {
@@ -37,6 +38,7 @@
             tmpRatio = [WYPoster checkIfRatioReasonable:configModel];
             tmpPart = configModel.configPart;
         }
+        NSLog(@"%f", [WYPoster checkIfRatioReasonable:configModel]);
     }
     if(tmpPart && tmpPart != configModel.configPart) {
         [configModel refillConfigPart:tmpPart];
@@ -67,7 +69,7 @@
 
 #pragma mark - Private
 + (CGFloat)checkIfRatioReasonable:(WYPosterConfigModel *)configModel {
-    CGFloat ratio = configModel.configPart.width / configModel.height;
+    CGFloat ratio = configModel.configPart.width / configModel.configPart.height;
     return fabs(ratio - configModel.ratio) / configModel.ratio;
 }
 

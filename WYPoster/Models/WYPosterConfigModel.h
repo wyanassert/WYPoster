@@ -47,6 +47,7 @@ typedef NS_OPTIONS(NSUInteger, WYEmbedImageType) {
 @property (nonatomic, assign) CGFloat                scale;
 
 @property (nonatomic, assign) WYPreferLocalMultiLine localMultiLine;
+@property (nonatomic, assign) NSUInteger             maxMultiLineCountPerLine;
 @property (nonatomic, assign) CGFloat                ratio;
 @property (nonatomic, assign) CGFloat                preferWidth;
 @property (nonatomic, assign) BOOL                   sameWidth;

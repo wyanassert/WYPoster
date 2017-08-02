@@ -85,6 +85,13 @@
     return _configPart;
 }
 
+- (NSUInteger)maxMultiLineCountPerLine {
+    if(0 == _maxMultiLineCountPerLine) {
+        _maxMultiLineCountPerLine = 2;
+    }
+    return _maxMultiLineCountPerLine;
+}
+
 - (CGFloat)ratio {
     if(0 == _ratio) {
         _ratio = 1;

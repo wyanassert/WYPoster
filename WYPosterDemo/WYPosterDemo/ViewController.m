@@ -128,6 +128,7 @@
     config.embedImageType = WYEmbedImageTypeTop | WYEmbedImageTypeBottom | WYEmbedImageTypeRight | WYEmbedImageTypeLeft;
     config.sameWidth = YES;
     config.alignment = WYAlignmentCenter;
+    config.maxMultiLineCountPerLine = 1;
     
     if (self.posterView.superview) {
         [self.posterView removeFromSuperview];

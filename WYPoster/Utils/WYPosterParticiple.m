@@ -107,10 +107,11 @@
 + (WYPosterConfigLine *)spliteALineFormMultiLine:(NSArray<NSString *> *)wordArray fromIndex:(NSUInteger)index withConfigModel:(WYPosterConfigModel *)configModel presetLength:(CGFloat)presetLength {
     
     WYPosterConfigLine *tmpLine = [WYPosterConfigLine new];
+    NSUInteger tmpMultiLinePerLineCount = 0;
     for (NSUInteger i = index; i < wordArray.count; i++) {
         NSString *tmpStr = [wordArray objectAtIndex:i];
         BOOL canApplyMultiLine = NO;
-        if(configModel.localMultiLine != WYPreferLocalMultiLineNone && ((arc4random() % 5) <= 1 || presetLength != configModel.avgLength)) {
+        if(configModel.localMultiLine != WYPreferLocalMultiLineNone && ((arc4random() % 5) <= 1 || presetLength != configModel.avgLength) && tmpMultiLinePerLineCount < configModel.maxMultiLineCountPerLine) {
             for (NSArray<NSNumber *> *styleArray in [self preSetMultiArray]) {
                 if([WYPosterParticiple shouldApplyMultiLine:wordArray fromIndex:i multiStyle:styleArray currentLine:tmpLine withConfigModel:configModel presetLength:presetLength]) {
                     NSMutableArray<NSArray<NSString *> *> *multiWord = [NSMutableArray array];
@@ -129,6 +130,7 @@
                     }
                     i = i + totalLen - 1;
                     canApplyMultiLine = YES;
+                    tmpMultiLinePerLineCount ++;
                     break;
                 }
             }
