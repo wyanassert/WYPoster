@@ -10,9 +10,11 @@
 #import <UIKit/UIKit.h>
 
 @class WYPosterConfigModel;
+@class WYPosterConfigPart;
 
 @interface WYPosterLayer : CALayer
 
 - (instancetype)initWithConfigModel:(WYPosterConfigModel *)configModel;
+- (instancetype)initWithConfigpart:(WYPosterConfigPart *)configPart;
 
 @end

@@ -16,6 +16,7 @@
 @interface WYPosterLayer()
 
 @property (nonatomic, strong) WYPosterConfigModel   *configModel;
+@property (nonatomic, strong) WYPosterConfigPart    *configPart;
 @property (nonatomic, strong) NSMutableArray<WYPosterUnitLayer *>         *layerArray;
 
 @end
@@ -30,12 +31,20 @@
     return self;
 }
 
+- (instancetype)initWithConfigpart:(WYPosterConfigPart *)configPart {
+    if (self = [super init]) {
+        _configPart = configPart;
+        [self configLayer];
+    }
+    return self;
+}
+
 #pragma mark - Private
 - (void)configLayer {
-    self.frame = CGRectMake(0, 0, self.configModel.height, self.configModel.width);
-    CGPoint origin = self.configModel.configPart.origin;
-    for (NSUInteger i = 0; i < self.configModel.configPart.lineArray.count; i++) {
-        WYPosterConfigLine *line = self.configModel.configPart.lineArray[i];
+    self.frame = CGRectMake(0, 0, self.configPart.height, self.configPart.width);
+    CGPoint origin = self.configPart.origin;
+    for (NSUInteger i = 0; i < self.configPart.lineArray.count; i++) {
+        WYPosterConfigLine *line = self.configPart.lineArray[i];
         CGPoint lineOrigin = CGPointMake(origin.x + line.originX, origin.y);
         origin.y += line.height;
         for(NSUInteger j = 0; j < line.unitArray.count; j++) {
@@ -56,6 +65,14 @@
         _layerArray = [NSMutableArray array];
     }
     return _layerArray;
+}
+
+- (WYPosterConfigPart *)configPart {
+    if(!_configPart) {
+        return self.configModel.configPart;
+    } else {
+        return _configPart;
+    }
 }
 
 @end
