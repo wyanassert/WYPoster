@@ -11,7 +11,7 @@
 #import "WYPosterConfigPart.h"
 
 CGFloat kHeightScale = 1;
-CGFloat kWidthScale = 0.95;
+CGFloat kWidthScale = 1;
 
 @interface WYPosterConfigUnit()
 
@@ -124,7 +124,7 @@ CGFloat kWidthScale = 0.95;
                                               options:NSStringDrawingUsesLineFragmentOrigin
                                            attributes:@{NSFontAttributeName:font}
                                               context:nil];
-        _width = rect.size.width / (self.word.length) * (self.word.length + 1) * kWidthScale;
+        _width = rect.size.width * kWidthScale;
         _height = font.ascender * kHeightScale;
         
         _scale = scale;

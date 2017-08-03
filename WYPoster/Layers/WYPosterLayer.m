@@ -27,6 +27,8 @@
     if (self = [super init]) {
         _configModel = configModel;
         [self configLayer];
+//        self.borderColor = [UIColor blueColor].CGColor;
+//        self.borderWidth = 1;
     }
     return self;
 }
@@ -45,7 +47,7 @@
     CGPoint origin = self.configPart.origin;
     for (NSUInteger i = 0; i < self.configPart.lineArray.count; i++) {
         WYPosterConfigLine *line = self.configPart.lineArray[i];
-        origin.y = line.origin.y;
+        origin.y = line.origin.y + self.configPart.origin.y;
         CGPoint lineOrigin = CGPointMake(origin.x + line.origin.x, origin.y);
         for(NSUInteger j = 0; j < line.unitArray.count; j++) {
             WYPosterConfigUnit *unit = line.unitArray[j];

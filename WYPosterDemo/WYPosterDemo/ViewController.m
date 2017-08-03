@@ -125,9 +125,9 @@
     config.preferWidth = 300;
 //    config.localMultiLine = WYPreferLocalMultiLineNotLineTail | WYPreferLocalMultiLineNotFirstLine | WYPreferLocalMultiLineNotLineHead;
     config.localMultiLine = WYPreferLocalMultiLineNormal;
-    config.embedImageType = WYEmbedImageTypeTop | WYEmbedImageTypeBottom | WYEmbedImageTypeRight | WYEmbedImageTypeLeft;
-    config.sameWidth = YES;
-    config.alignment = WYAlignmentCenter;
+//    config.embedImageType = WYEmbedImageTypeTop | WYEmbedImageTypeBottom | WYEmbedImageTypeRight | WYEmbedImageTypeLeft;
+//    config.sameWidth = YES;
+    config.alignment = WYAlignmentLeft;
     config.maxMultiLineCountPerLine = 1;
     config.lineInterval = 10;
     
