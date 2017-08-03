@@ -44,13 +44,14 @@
         if((configModel.embedImageType & WYEmbedImageTypeLeft || configModel.embedImageType & WYEmbedImageTypeRight)  && (arc4random() % 10) < 7) {
             tmpLine = [self spliteALineFormMultiLine:wordArray fromIndex:index withConfigModel:configModel presetLength:configModel.avgLength - 7];
             if(tmpLine.unitArray.count) {
+                NSString *imageName = configModel.leftRightImageNames[arc4random() % configModel.leftRightImageNames.count];
                 if(configModel.embedImageType & WYEmbedImageTypeLeft) {
-                    WYPosterConfigUnit *leftUnit = [[WYPosterConfigUnit alloc] initWithImage:[UIImage imageNamed:@"test0"]];
+                    WYPosterConfigUnit *leftUnit = [[WYPosterConfigUnit alloc] initWithImage:[UIImage imageNamed:imageName]];
                     leftUnit.oritention = UIImageOrientationLeft;
                     [tmpLine appendPrefixImageUnit:leftUnit];
                 }
                 if(configModel.embedImageType & WYEmbedImageTypeRight) {
-                    WYPosterConfigUnit *rightUnit = [[WYPosterConfigUnit alloc] initWithImage:[UIImage imageNamed:@"test0"]];
+                    WYPosterConfigUnit *rightUnit = [[WYPosterConfigUnit alloc] initWithImage:[UIImage imageNamed:imageName]];
                     rightUnit.oritention = UIImageOrientationRight;
                     [tmpLine appendSuffixImageUnit:rightUnit];
                 }
@@ -71,9 +72,9 @@
         for(WYPosterConfigLine *line in configModel.configPart.lineArray) {
             maxFloat = MAX(maxFloat, line.width);
         }
-        
+        NSString *imageName = configModel.topBottomImageNames[arc4random() % configModel.topBottomImageNames.count];
         if(configModel.embedImageType & WYEmbedImageTypeTop) {
-            WYPosterConfigUnit *topUnit = [[WYPosterConfigUnit alloc] initWithImage:[UIImage imageNamed:@"test1"]];
+            WYPosterConfigUnit *topUnit = [[WYPosterConfigUnit alloc] initWithImage:[UIImage imageNamed:imageName]];
             CGFloat scale = maxFloat / topUnit.width;
             topUnit.scale = scale;
             topUnit.oritention = UIImageOrientationUp;
@@ -83,7 +84,7 @@
         }
         
         if(configModel.embedImageType & WYEmbedImageTypeBottom) {
-            WYPosterConfigUnit *bottomUnit = [[WYPosterConfigUnit alloc] initWithImage:[UIImage imageNamed:@"test1"]];
+            WYPosterConfigUnit *bottomUnit = [[WYPosterConfigUnit alloc] initWithImage:[UIImage imageNamed:imageName]];
             CGFloat scale = maxFloat / bottomUnit.width;
             bottomUnit.scale = scale;
             bottomUnit.oritention = UIImageOrientationDown;

@@ -58,6 +58,8 @@ typedef NS_OPTIONS(NSUInteger, WYEmbedImageType) {
 @property (nonatomic, assign) CGFloat                lineInterval;
 @property (nonatomic, strong) NSArray<UIColor *>     *defaultColors;
 @property (nonatomic, assign) BOOL                   enableMultiColorInLine;
+@property (nonatomic, strong) NSArray<NSString *>    *leftRightImageNames;
+@property (nonatomic, strong) NSArray<NSString *>    *topBottomImageNames;
 
 - (void)resizeToPrefer;
 

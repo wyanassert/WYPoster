@@ -41,7 +41,7 @@
         }
     } else if (self.configUnit.unitType == WYPosterConfigUnitTypeNormal) {
         self.textLayer = [CATextLayer layer];
-        [self.textLayer setFrame:CGRectMake(0, self.configUnit.font.capHeight - self.configUnit.font.ascender, self.configUnit.width, self.configUnit.height + self.configUnit.font.ascender - self.configUnit.font.capHeight)];
+        [self.textLayer setFrame:CGRectMake(0, self.configUnit.font.capHeight - self.configUnit.font.ascender, self.configUnit.width, (self.configUnit.height + self.configUnit.font.ascender - self.configUnit.font.capHeight) * 1.1)];
         [self addSublayer:self.textLayer];
         self.textLayer.foregroundColor = self.configUnit.color.CGColor;
         self.textLayer.alignmentMode = kCAAlignmentCenter;

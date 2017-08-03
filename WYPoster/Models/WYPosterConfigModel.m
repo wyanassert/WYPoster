@@ -141,4 +141,18 @@
     return _defaultColors;
 }
 
+- (NSArray<NSString *> *)leftRightImageNames {
+    if(!_leftRightImageNames || !_leftRightImageNames.count) {
+        _leftRightImageNames = @[@"h000"];
+    }
+    return _leftRightImageNames;
+}
+
+- (NSArray<NSString *> *)topBottomImageNames {
+    if(!_topBottomImageNames || !_topBottomImageNames.count) {
+        _topBottomImageNames = @[@"v000"];
+    }
+    return _topBottomImageNames;
+}
+
 @end
