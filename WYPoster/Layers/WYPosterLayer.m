@@ -45,6 +45,7 @@
 }
 
 - (void)setColor:(NSArray<UIColor *> *)colors {
+    [self closeGradient];
     UIColor *color = [UIColor blackColor];
     if(colors.count) {
         color = colors.firstObject;
@@ -66,6 +67,14 @@
     }
     self.gradientLayer.colors = gradientColors;
     self.gradientLayer.locations = @[@(pow(percentage, 2)), @(sqrt(percentage))];
+    
+    while (rotate > 2 * M_PI || rotate < 0) {
+        if(rotate > 2 * M_PI) {
+            rotate -= 2 * M_PI;
+        } else if (rotate < 0) {
+            rotate += 2 * M_PI;
+        }
+    }
     
     CGFloat l = 0;
     CGPoint startPoint = CGPointZero;

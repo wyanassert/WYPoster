@@ -19,6 +19,8 @@
 @property (nonatomic, strong) WYPosterLayer *posterLayer;
 @property (nonatomic, assign) NSInteger     index;
 @property (nonatomic, assign) WYPreferLocalMultiLine         perferMultiLine;
+@property (nonatomic, assign) CGFloat       percentage;
+@property (nonatomic, assign) CGFloat       rotate;
 
 @end
 
@@ -33,6 +35,7 @@
     self.index = 1;
     self.perferMultiLine = WYPreferLocalMultiLineNone;
     [self actTo:self.index];
+    self.percentage = 0.5;
     
     {
         UIButton *btn = [UIButton new];
@@ -60,15 +63,32 @@
     }
     {
         UIButton *btn = [UIButton new];
-        [btn setFrame:CGRectMake(190, 20, 50, 50)];
+        [btn setFrame:CGRectMake(200, 20, 30, 50)];
         [btn setBackgroundColor:[UIColor blackColor]];
-        [btn setTitle:@"gra" forState:UIControlStateNormal];
-        [btn addTarget:self action:@selector(scaleShow2) forControlEvents:UIControlEventTouchUpInside];
+        [btn setTitle:@"per" forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(changePercentage) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:btn];
     }
     {
         UIButton *btn = [UIButton new];
-        [btn setFrame:CGRectMake(250, 20, 60, 50)];
+        [btn setFrame:CGRectMake(240, 20, 30, 50)];
+        [btn setBackgroundColor:[UIColor blackColor]];
+        [btn setTitle:@"rot" forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(changeRotate) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:btn];
+    }
+    {
+        UIButton *btn = [UIButton new];
+        [btn setFrame:CGRectMake(280, 20, 30, 50)];
+        [btn setBackgroundColor:[UIColor blackColor]];
+        [btn setTitle:@"clo" forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(closeGradient) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:btn];
+    }
+    
+    {
+        UIButton *btn = [UIButton new];
+        [btn setFrame:CGRectMake(320, 20, 60, 50)];
         [btn setBackgroundColor:[UIColor blackColor]];
         [btn setTitle:@"refresh" forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(refresh) forControlEvents:UIControlEventTouchUpInside];
@@ -110,9 +130,23 @@
     if(i == maxCount -1) {
         [self.posterLayer closeGradient];
     } else {
-        [self.posterLayer setGradientColor:@[[UIColor redColor], [UIColor blackColor]] percentage:(i / (maxCount - 2)) rotate:2 * M_PI * (i / (maxCount - 2))];
+        [self.posterLayer setGradientColor:@[[UIColor redColor], [UIColor blueColor]] percentage:(i / (maxCount - 2)) rotate:2 * M_PI * (i / (maxCount - 2))];
     }
     i++;
+}
+
+- (void)changePercentage {
+    self.percentage += 0.1;
+    [self.posterLayer setGradientColor:@[[UIColor redColor], [UIColor blueColor]] percentage:self.percentage rotate:self.rotate];
+}
+
+- (void)changeRotate {
+    self.rotate += 0.5;
+    [self.posterLayer setGradientColor:@[[UIColor redColor], [UIColor blueColor]] percentage:self.percentage rotate:self.rotate];
+}
+
+- (void)closeGradient {
+    [self.posterLayer closeGradient];
 }
 
 - (void)refresh {
