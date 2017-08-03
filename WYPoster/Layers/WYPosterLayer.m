@@ -41,6 +41,16 @@
     return self;
 }
 
+- (void)setColor:(NSArray<UIColor *> *)colors {
+    UIColor *color = [UIColor blackColor];
+    if(colors.count) {
+        color = colors.firstObject;
+    }
+    for(WYPosterUnitLayer *unitLayer in self.layerArray) {
+        [unitLayer setColor:color];
+    }
+}
+
 #pragma mark - Private
 - (void)configLayer {
     self.frame = CGRectMake(0, 0, self.configPart.height, self.configPart.width);

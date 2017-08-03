@@ -54,7 +54,7 @@
         UIButton *btn = [UIButton new];
         [btn setFrame:CGRectMake(140, 20, 50, 50)];
         [btn setBackgroundColor:[UIColor blackColor]];
-        [btn setTitle:@"in" forState:UIControlStateNormal];
+        [btn setTitle:@"chCol" forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(scaleShow) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:btn];
     }
@@ -62,7 +62,7 @@
         UIButton *btn = [UIButton new];
         [btn setFrame:CGRectMake(190, 20, 50, 50)];
         [btn setBackgroundColor:[UIColor blackColor]];
-        [btn setTitle:@"out" forState:UIControlStateNormal];
+        [btn setTitle:@"" forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(scaleShow2) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:btn];
     }
@@ -100,19 +100,11 @@
 }
 
 - (void)scaleShow {
-    [INTUAnimationEngine animateWithDuration:3 delay:0 animations:^(CGFloat percentage) {
-        [self.posterView scaleTo:(1 - 0.7 * percentage)];
-    } completion:^(BOOL finished) {
-        [self.posterView scaleTo:1];
-    }];
+    [self.posterLayer setColor:@[[UIColor purpleColor]]];
 }
 
 - (void)scaleShow2 {
-    [INTUAnimationEngine animateWithDuration:3 delay:0 animations:^(CGFloat percentage) {
-        [self.posterView scaleTo:(1 + percentage * 3)];
-    } completion:^(BOOL finished) {
-        [self.posterView scaleTo:1];
-    }];
+    
 }
 
 - (void)refresh {

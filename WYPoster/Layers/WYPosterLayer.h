@@ -17,4 +17,6 @@
 - (instancetype)initWithConfigModel:(WYPosterConfigModel *)configModel;
 - (instancetype)initWithConfigpart:(WYPosterConfigPart *)configPart;
 
+- (void)setColor:(NSArray<UIColor *> *)colors;
+
 @end

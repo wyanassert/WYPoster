@@ -15,4 +15,6 @@
 
 - (instancetype)initWithConfigUnit:(WYPosterConfigUnit *)configUnit;
 
+- (void)setColor:(UIColor *)color;
+
 @end

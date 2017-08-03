@@ -13,6 +13,8 @@
 @interface WYPosterUnitLayer()
 
 @property (nonatomic, strong) WYPosterConfigUnit         *configUnit;
+@property (nonatomic, strong) CATextLayer         *textLayer;
+@property (nonatomic, strong) WYPosterLayer         *partLayer;
 
 @end
 
@@ -38,26 +40,34 @@
             self.affineTransform = CGAffineTransformMakeScale(-1, 1);
         }
     } else if (self.configUnit.unitType == WYPosterConfigUnitTypeNormal) {
-        CATextLayer *textLayer = [CATextLayer layer];
-        [textLayer setFrame:CGRectMake(0, self.configUnit.font.capHeight - self.configUnit.font.ascender, self.configUnit.width, self.configUnit.height + self.configUnit.font.ascender - self.configUnit.font.capHeight)];
-        [self addSublayer:textLayer];
-        textLayer.foregroundColor = self.configUnit.color.CGColor;
-        textLayer.alignmentMode = kCAAlignmentCenter;
-        textLayer.wrapped = YES;
-        textLayer.contentsScale = [UIScreen mainScreen].scale;
+        self.textLayer = [CATextLayer layer];
+        [self.textLayer setFrame:CGRectMake(0, self.configUnit.font.capHeight - self.configUnit.font.ascender, self.configUnit.width, self.configUnit.height + self.configUnit.font.ascender - self.configUnit.font.capHeight)];
+        [self addSublayer:self.textLayer];
+        self.textLayer.foregroundColor = self.configUnit.color.CGColor;
+        self.textLayer.alignmentMode = kCAAlignmentCenter;
+        self.textLayer.wrapped = YES;
+        self.textLayer.contentsScale = [UIScreen mainScreen].scale;
         
         CFStringRef fontName = (__bridge CFStringRef)self.configUnit.font.fontName;
         CGFontRef fontRef = CGFontCreateWithFontName(fontName);
-        textLayer.font = fontRef;
-        textLayer.fontSize = self.configUnit.font.pointSize;
+        self.textLayer.font = fontRef;
+        self.textLayer.fontSize = self.configUnit.font.pointSize;
         CGFontRelease(fontRef);
         
-        textLayer.string = self.configUnit.word;
+        self.textLayer.string = self.configUnit.word;
         
     } else if (self.configUnit.unitType == WYPosterConfigUnitTypeMultiLine) {
-        WYPosterLayer *layer = [[WYPosterLayer alloc] initWithConfigpart:self.configUnit.configPart];
-        [layer setFrame:CGRectMake(0, 0, self.configUnit.width, self.configUnit.height)];
-        [self addSublayer:layer];
+        self.partLayer = [[WYPosterLayer alloc] initWithConfigpart:self.configUnit.configPart];
+        [self.partLayer setFrame:CGRectMake(0, 0, self.configUnit.width, self.configUnit.height)];
+        [self addSublayer:self.partLayer];
+    }
+}
+
+- (void)setColor:(UIColor *)color {
+    if (self.configUnit.unitType == WYPosterConfigUnitTypeNormal) {
+        self.textLayer.foregroundColor = color.CGColor;
+    } else if(self.configUnit.unitType == WYPosterConfigUnitTypeMultiLine) {
+        [self.partLayer setColor:@[color]];
     }
 }
 
