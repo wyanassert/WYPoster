@@ -62,7 +62,7 @@
         UIButton *btn = [UIButton new];
         [btn setFrame:CGRectMake(190, 20, 50, 50)];
         [btn setBackgroundColor:[UIColor blackColor]];
-        [btn setTitle:@"" forState:UIControlStateNormal];
+        [btn setTitle:@"gra" forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(scaleShow2) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:btn];
     }
@@ -104,7 +104,15 @@
 }
 
 - (void)scaleShow2 {
-    
+    static NSUInteger i = 0;
+    CGFloat maxCount = 10;
+    i %= @(maxCount).unsignedIntegerValue;
+    if(i == maxCount -1) {
+        [self.posterLayer closeGradient];
+    } else {
+        [self.posterLayer setGradientColor:@[[UIColor redColor], [UIColor blackColor]] percentage:(i / (maxCount - 2)) rotate:2 * M_PI * (i / (maxCount - 2))];
+    }
+    i++;
 }
 
 - (void)refresh {

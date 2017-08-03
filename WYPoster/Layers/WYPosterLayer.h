@@ -19,4 +19,7 @@
 
 - (void)setColor:(NSArray<UIColor *> *)colors;
 
+- (void)setGradientColor:(NSArray<UIColor *> *)colors percentage:(CGFloat)percentage rotate:(CGFloat)rotate;
+- (void)closeGradient;
+
 @end
