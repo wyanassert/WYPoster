@@ -121,8 +121,14 @@
     config.sameWidth = YES;
     config.alignment = WYAlignmentCenter;
     config.maxMultiLineCountPerLine = 1;
-    config.lineInterval = 0.1;
-    config.fontArray = @[[UIFont fontWithName:@"Arial-BoldItalicMT" size:13], [UIFont fontWithName:@"Baskerville-Italic" size:12], [UIFont fontWithName:@"BradleyHandITCTT-Bold" size:14]];
+    config.lineInterval = 10;
+    config.fontArray = @[
+                         [UIFont fontWithName:@"Arial-BoldItalicMT" size:13],
+                         [UIFont fontWithName:@"Baskerville-Italic" size:12],
+                         [UIFont fontWithName:@"BradleyHandITCTT-Bold" size:14],
+                         [UIFont fontWithName:@"SnellRoundhand-Bold" size:17],
+//                         [UIFont fontWithName:@"Zapfino" size:10],
+                         ];
     config.enableMultiFontInLine = YES;
     config.defaultColors = @[[UIColor redColor], [UIColor greenColor], [UIColor blueColor]];
     config.enableMultiColorInLine = YES;

@@ -62,7 +62,7 @@
         for(NSUInteger j = 0; j < line.unitArray.count; j++) {
             WYPosterConfigUnit *unit = line.unitArray[j];
             WYPosterUnitLayer *unitLayer = [[WYPosterUnitLayer alloc] initWithConfigUnit:unit];
-            unitLayer.frame = CGRectMake(lineOrigin.x, lineOrigin.y, unit.width, unit.height);
+            unitLayer.frame = CGRectMake(lineOrigin.x, lineOrigin.y + unit.originY, unit.width, unit.height);
             lineOrigin.x += unit.width;
             [self addSublayer:unitLayer];
             [self.layerArray addObject:unitLayer];

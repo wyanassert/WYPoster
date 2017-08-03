@@ -121,6 +121,11 @@
             _height = MAX(_height, unit.height);
             _width += unit.width;
         }
+        for(WYPosterConfigUnit *unit in self.unitArray) {
+            if(unit.unitType != WYPosterConfigUnitTypeImage) {
+                unit.originY = (_height - unit.height) / 2;
+            }
+        }
     }
     
 }
