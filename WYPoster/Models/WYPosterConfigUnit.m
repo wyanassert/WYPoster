@@ -11,7 +11,7 @@
 #import "WYPosterConfigPart.h"
 
 CGFloat kHeightScale = 1;
-CGFloat kWidthScale = 1;
+CGFloat kWidthScale = 1.05;
 
 @interface WYPosterConfigUnit()
 
@@ -22,6 +22,7 @@ CGFloat kWidthScale = 1;
 
 @property (nonatomic, strong, readwrite) NSString               *word;
 @property (nonatomic, strong, readwrite) UIFont                 *font;
+@property (nonatomic, strong, readwrite) UIColor                *color;
 
 @property (nonatomic, strong, readwrite) NSArray<NSArray<NSString *> *> *multiWords;
 @property (nonatomic, strong, readwrite) NSArray<UIFont *>              *multiFont;
@@ -33,12 +34,13 @@ CGFloat kWidthScale = 1;
 
 @synthesize scale = _scale;
 
-- (instancetype)initWithWord:(NSString *)word font:(UIFont *)font {
+- (instancetype)initWithWord:(NSString *)word font:(UIFont *)font color:(UIColor *)color {
     if(self = [super init]) {
         _unitType = WYPosterConfigUnitTypeNormal;
         _length = word.length;
         _word = word;
         _font = font;
+        _color = color;
         CGRect rect = [word boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)
                                          options:NSStringDrawingUsesLineFragmentOrigin
                                       attributes:@{NSFontAttributeName:font}
@@ -49,7 +51,7 @@ CGFloat kWidthScale = 1;
     return self;
 }
 
-- (instancetype)initWithWords:(NSArray<NSArray<NSString *> *> *)multiWords fonts:(NSArray<UIFont *> *)multiFont {
+- (instancetype)initWithWords:(NSArray<NSArray<NSString *> *> *)multiWords fonts:(NSArray<UIFont *> *)multiFont colors:(NSArray<UIColor *> *)colorArray {
     if(self = [super init]) {
         _unitType = WYPosterConfigUnitTypeMultiLine;
         _multiWords = multiWords;
@@ -58,9 +60,13 @@ CGFloat kWidthScale = 1;
         for (NSUInteger i = 0; i < multiWords.count; i++) {
             NSArray<NSString *> *wordArray = multiWords[i];
             WYPosterConfigLine *line = [[WYPosterConfigLine alloc] init];
+            UIColor *color = [UIColor blackColor];
+            if(colorArray.count) {
+                color = colorArray[arc4random() % [colorArray count]];
+            }
             for(NSUInteger j = 0; j < wordArray.count; j++) {
                 NSString *str = [wordArray objectAtIndex:j];
-                [line addConfigUnit:[[WYPosterConfigUnit alloc] initWithWord:str font:[multiFont firstObject]]];
+                [line addConfigUnit:[[WYPosterConfigUnit alloc] initWithWord:str font:[multiFont firstObject] color:color]];
             }
             totalLength += line.length;
             if(line.length) {
@@ -113,6 +119,13 @@ CGFloat kWidthScale = 1;
         _configPart = [[WYPosterConfigPart alloc] init];
     }
     return _configPart;
+}
+
+- (UIColor *)color {
+    if(!_color) {
+        _color = [UIColor blackColor];
+    }
+    return _color;
 }
 
 #pragma mark - Setter

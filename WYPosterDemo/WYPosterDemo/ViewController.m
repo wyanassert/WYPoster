@@ -125,19 +125,23 @@
     config.preferWidth = 300;
 //    config.localMultiLine = WYPreferLocalMultiLineNotLineTail | WYPreferLocalMultiLineNotFirstLine | WYPreferLocalMultiLineNotLineHead;
     config.localMultiLine = WYPreferLocalMultiLineNormal;
-//    config.embedImageType = WYEmbedImageTypeTop | WYEmbedImageTypeBottom | WYEmbedImageTypeRight | WYEmbedImageTypeLeft;
-//    config.sameWidth = YES;
-    config.alignment = WYAlignmentLeft;
+    config.embedImageType = WYEmbedImageTypeTop | WYEmbedImageTypeBottom | WYEmbedImageTypeRight | WYEmbedImageTypeLeft;
+    config.sameWidth = YES;
+    config.alignment = WYAlignmentCenter;
     config.maxMultiLineCountPerLine = 1;
-    config.lineInterval = 10;
+    config.lineInterval = 0.1;
+    config.fontArray = @[[UIFont fontWithName:@"Arial-BoldItalicMT" size:13], [UIFont fontWithName:@"Baskerville-Italic" size:12], [UIFont fontWithName:@"BradleyHandITCTT-Bold" size:14]];
+    config.enableMultiFontInLine = YES;
+    config.defaultColors = @[[UIColor redColor], [UIColor greenColor], [UIColor blueColor]];
+    config.enableMultiColorInLine = YES;
     
     if (self.posterView.superview) {
         [self.posterView removeFromSuperview];
     }
-    self.posterView = [WYPoster createViewUsingText:[self getArray][index] withConfigModel:config];
+//    self.posterView = [WYPoster createViewUsingText:[self getArray][index] withConfigModel:config];
 
-    [self.view addSubview:self.posterView];
-    self.posterView.frame = CGRectMake((self.view.frame.size.width - self.posterView.frame.size.width)/2, self.view.bounds.size.height - self.posterView.bounds.size.height, self.posterView.bounds.size.width, self.posterView.bounds.size.height);
+//    [self.view addSubview:self.posterView];
+//    self.posterView.frame = CGRectMake((self.view.frame.size.width - self.posterView.frame.size.width)/2, self.view.bounds.size.height - self.posterView.bounds.size.height, self.posterView.bounds.size.width, self.posterView.bounds.size.height);
     
     if(self.posterLayer.superlayer) {
         [self.posterLayer removeFromSuperlayer];

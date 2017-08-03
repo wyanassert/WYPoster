@@ -38,6 +38,7 @@ typedef NS_ENUM(NSUInteger, WYPosterConfigUintImageOritention) {
 
 @property (nonatomic, strong, readonly) NSString               *word;
 @property (nonatomic, strong, readonly) UIFont                 *font;
+@property (nonatomic, strong, readonly) UIColor                *color;
 
 @property (nonatomic, strong, readonly) NSArray<NSArray<NSString *> *> *multiWords;
 @property (nonatomic, strong, readonly) NSArray<UIFont *>              *multiFont;
@@ -46,8 +47,8 @@ typedef NS_ENUM(NSUInteger, WYPosterConfigUintImageOritention) {
 @property (nonatomic, strong, readonly) UIImage                        *image;
 @property (nonatomic, assign, readwrite) UIImageOrientation            oritention;
 
-- (instancetype)initWithWord:(NSString *)word font:(UIFont *)font;
-- (instancetype)initWithWords:(NSArray<NSArray<NSString *> *> *)multiWords fonts:(NSArray<UIFont *> *)multiFont;
+- (instancetype)initWithWord:(NSString *)word font:(UIFont *)font color:(UIColor *)color;
+- (instancetype)initWithWords:(NSArray<NSArray<NSString *> *> *)multiWords fonts:(NSArray<UIFont *> *)multiFont colors:(NSArray<UIColor *> *)colorArray;
 - (instancetype)initWithImage:(UIImage *)image;
 
 @end

@@ -107,7 +107,7 @@
 }
 
 - (NSArray<UIFont *> *)fontArray {
-    if(!_fontArray) {
+    if(!_fontArray || !_fontArray.count) {
         _fontArray = @[[UIFont systemFontOfSize:[UIFont systemFontSize]]];
     }
     return _fontArray;
@@ -132,6 +132,13 @@
         _lineInterval = 2;
     }
     return _lineInterval;
+}
+
+- (NSArray<UIColor *> *)defaultColors {
+    if(!_defaultColors || !_defaultColors.count) {
+        _defaultColors = @[[UIColor blackColor]];
+    }
+    return _defaultColors;
 }
 
 @end

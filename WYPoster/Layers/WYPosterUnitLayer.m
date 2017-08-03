@@ -41,7 +41,7 @@
         CATextLayer *textLayer = [CATextLayer layer];
         [textLayer setFrame:CGRectMake(0, self.configUnit.font.capHeight - self.configUnit.font.ascender, self.configUnit.width, self.configUnit.height + self.configUnit.font.ascender - self.configUnit.font.capHeight)];
         [self addSublayer:textLayer];
-        textLayer.foregroundColor = [UIColor redColor].CGColor;
+        textLayer.foregroundColor = self.configUnit.color.CGColor;
         textLayer.alignmentMode = kCAAlignmentCenter;
         textLayer.wrapped = YES;
         textLayer.contentsScale = [UIScreen mainScreen].scale;

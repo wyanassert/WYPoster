@@ -53,8 +53,11 @@ typedef NS_OPTIONS(NSUInteger, WYEmbedImageType) {
 @property (nonatomic, assign) BOOL                   sameWidth;
 @property (nonatomic, assign) WYAlignmentType        alignment;
 @property (nonatomic, strong) NSArray<UIFont *>      *fontArray;
+@property (nonatomic, assign) BOOL                   enableMultiFontInLine;
 @property (nonatomic, assign) WYEmbedImageType       embedImageType;
 @property (nonatomic, assign) CGFloat                lineInterval;
+@property (nonatomic, strong) NSArray<UIColor *>     *defaultColors;
+@property (nonatomic, assign) BOOL                   enableMultiColorInLine;
 
 - (void)resizeToPrefer;
 

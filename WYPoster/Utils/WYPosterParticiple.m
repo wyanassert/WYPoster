@@ -105,7 +105,8 @@
 
 #pragma mark - Private
 + (WYPosterConfigLine *)spliteALineFormMultiLine:(NSArray<NSString *> *)wordArray fromIndex:(NSUInteger)index withConfigModel:(WYPosterConfigModel *)configModel presetLength:(CGFloat)presetLength {
-    
+    UIFont *font = configModel.fontArray[arc4random() % [configModel.fontArray count]];
+    UIColor *color = configModel.defaultColors[arc4random() % [configModel.defaultColors count]];
     WYPosterConfigLine *tmpLine = [WYPosterConfigLine new];
     NSUInteger tmpMultiLinePerLineCount = 0;
     for (NSUInteger i = index; i < wordArray.count; i++) {
@@ -123,7 +124,13 @@
                         }
                         [multiWord addObject:[tmpArray copy]];
                     }
-                    [tmpLine addConfigUnit:[[WYPosterConfigUnit alloc] initWithWords:[multiWord copy] fonts:configModel.fontArray]];
+                    if(configModel.enableMultiFontInLine) {
+                        font = configModel.fontArray[arc4random() % [configModel.fontArray count]];
+                    }
+                    if(configModel.enableMultiColorInLine) {
+                        color = configModel.defaultColors[arc4random() % [configModel.defaultColors count]];
+                    }
+                    [tmpLine addConfigUnit:[[WYPosterConfigUnit alloc] initWithWords:[multiWord copy] fonts:configModel.fontArray colors:@[color]]];
                     NSUInteger totalLen = 0;
                     for (NSUInteger j = 0; j < styleArray.count; j++) {
                         totalLen +=styleArray[j].unsignedIntegerValue;
@@ -137,13 +144,25 @@
         }
         if(!canApplyMultiLine) {
             if(tmpLine.length + tmpStr.length < presetLength) {
-                [tmpLine addConfigUnit:[[WYPosterConfigUnit alloc] initWithWord:tmpStr font:configModel.fontArray.firstObject]];
+                if(configModel.enableMultiFontInLine) {
+                    font = configModel.fontArray[arc4random() % [configModel.fontArray count]];
+                }
+                if(configModel.enableMultiColorInLine) {
+                    color = configModel.defaultColors[arc4random() % [configModel.defaultColors count]];
+                }
+                [tmpLine addConfigUnit:[[WYPosterConfigUnit alloc] initWithWord:tmpStr font:font color:color]];
                 
             } else {
                 if(tmpLine.length > 0) {
                     return tmpLine;
                 } else {
-                    [tmpLine addConfigUnit:[[WYPosterConfigUnit alloc] initWithWord:tmpStr font:configModel.fontArray.firstObject]];
+                    if(configModel.enableMultiFontInLine) {
+                        font = configModel.fontArray[arc4random() % [configModel.fontArray count]];
+                    }
+                    if(configModel.enableMultiColorInLine) {
+                        color = configModel.defaultColors[arc4random() % [configModel.defaultColors count]];
+                    }
+                    [tmpLine addConfigUnit:[[WYPosterConfigUnit alloc] initWithWord:tmpStr font:font color:color]];
                 }
             }
         }
