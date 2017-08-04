@@ -31,16 +31,20 @@ typedef NS_ENUM(NSUInteger, WYAlignmentType) {
 
 typedef NS_OPTIONS(NSUInteger, WYEmbedImageType) {
     WYEmbedImageTypeNone      = 0,
-    WYEmbedImageTypeLeft      = 0x1 << 1,
-    WYEmbedImageTypeRight     = 0x1 << 2,
-    WYEmbedImageTypeTop       = 0x1 << 3,
-    WYEmbedImageTypeBottom    = 0x1 << 4,
+    WYEmbedImageTypeLeft      = 0x1 << 0,
+    WYEmbedImageTypeRight     = 0x1 << 1,
+    WYEmbedImageTypeTop       = 0x1 << 2,
+    WYEmbedImageTypeBottom    = 0x1 << 3,
 };
 
 @interface WYPosterConfigModel : NSObject
 
-@property (nonatomic, assign, readonly) CGFloat            width;
-@property (nonatomic, assign, readonly) CGFloat            height;
+@property (nonatomic, assign, readonly) NSUInteger order;
+@property (nonatomic, strong, readonly) NSString   *identifier;
+@property (nonatomic, strong, readonly) NSString   *name;
+
+@property (nonatomic, assign, readonly) CGFloat    width;
+@property (nonatomic, assign, readonly) CGFloat    height;
 
 @property (nonatomic, strong, readonly) WYPosterConfigPart *configPart;
 @property (nonatomic, assign) NSUInteger             avgLength;
@@ -68,5 +72,7 @@ typedef NS_OPTIONS(NSUInteger, WYEmbedImageType) {
 - (void)cleanConfigPart;
 
 - (void)refillConfigPart:(WYPosterConfigPart *)configpart;
+
+- (instancetype)initWithDict:(NSDictionary *)dict;
 
 @end

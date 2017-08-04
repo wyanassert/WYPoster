@@ -21,4 +21,6 @@
 
 + (WYPosterLayer *)createLayerUsingText:(NSString *)text withConfigModel:(WYPosterConfigModel *)configModel;
 
++ (NSArray<WYPosterConfigModel *> *)getAllConfigModels;
+
 @end

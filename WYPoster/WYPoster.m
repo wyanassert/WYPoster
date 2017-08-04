@@ -13,6 +13,11 @@
 #import "WYPosterConfigLine.h"
 #import "WYPosterParticiple.h"
 
+static NSArray<WYPosterConfigModel *> *defaultConfigs;
+
+#define WYPosterBundleName @"WYPoster"
+#define WYPosterBundle [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:WYPosterBundleName ofType:@"bundle"]]
+
 @implementation WYPoster
 
 + (WYPosterConfigModel *)fillLayoutData:(NSString *)text withConfig:(WYPosterConfigModel *)configModel {
@@ -65,6 +70,32 @@
     WYPosterLayer *layer = [[WYPosterLayer alloc] initWithConfigModel:configModel];
     [layer setFrame:CGRectMake(0, 0, configModel.width, configModel.height)];
     return layer;
+}
+
++ (NSArray<WYPosterConfigModel *> *)getAllConfigModels {
+    if(!defaultConfigs) {
+        NSString *path = [WYPosterBundle pathForResource:@"WYPoster" ofType:@"json"];
+        NSData *data = [NSData dataWithContentsOfFile:path];
+        NSDictionary *configDict = nil;
+        if(data) {
+            NSError *error;
+            configDict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+            NSLog(@"%@", error);
+        }
+        if([configDict isKindOfClass:[NSDictionary class]] && [configDict objectForKey:@"default"] && [[configDict objectForKey:@"default"] isKindOfClass:[NSArray class]]) {
+            NSArray *configJsonArray = [configDict objectForKey:@"default"];
+            NSMutableArray<WYPosterConfigModel *> *tmpArray = [NSMutableArray array];
+            for(NSDictionary *json in configJsonArray) {
+                WYPosterConfigModel *configModel = [[WYPosterConfigModel alloc] initWithDict:json];
+                if(configModel) {
+                    [tmpArray addObject:configModel];
+                }
+            }
+            defaultConfigs = [tmpArray copy];
+        }
+    }
+    
+    return defaultConfigs;
 }
 
 #pragma mark - Private

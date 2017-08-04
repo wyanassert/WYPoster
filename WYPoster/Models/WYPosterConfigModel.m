@@ -8,6 +8,15 @@
 
 #import "WYPosterConfigModel.h"
 #import "WYPosterConfigPart.h"
+#import "UIFont+wy_customFont.h"
+
+#ifndef UIColorFromHexWithAlpha
+#define UIColorFromHexWithAlpha(hexValue,a) [UIColor colorWithRed:((float)((hexValue & 0xFF0000) >> 16))/255.0 green:((float)((hexValue & 0xFF00) >> 8))/255.0 blue:((float)(hexValue & 0xFF))/255.0 alpha:a]
+#endif
+
+#ifndef UIColorFromHex
+#define UIColorFromHex(hexValue)            UIColorFromHexWithAlpha(hexValue,1.0)
+#endif
 
 @interface WYPosterConfigModel()
 
@@ -22,6 +31,84 @@
 
 @synthesize scale = _scale;
 @synthesize lineInterval = _lineInterval;
+
+- (instancetype)initWithDict:(NSDictionary *)dict {
+    if(self = [super init]) {
+        _order = [[dict objectForKey:@"order"] unsignedIntegerValue];
+        _identifier = [dict objectForKey:@"id"];
+        _name = [dict objectForKey:@"name"];
+
+        NSArray *multiLineArray = [dict objectForKey:@"localMultiLine"];
+        if([multiLineArray isKindOfClass:[NSArray class]]) {
+            _localMultiLine = 0;
+            for(NSString *str in multiLineArray) {
+                NSDictionary *map = [self multiLineMap];
+                NSNumber *multi = [map objectForKey:str];
+                if(multi) {
+                    _localMultiLine |= [multi unsignedIntegerValue];
+                }
+            }
+        }
+        
+        _maxMultiLineCountPerLine = [[dict objectForKey:@"maxMultiLineCountPerLine"] unsignedIntegerValue];
+        _ratio = [[dict objectForKey:@"ratio"] floatValue];
+        _preferWidth = [[dict objectForKey:@"preferWidth"] floatValue];
+        _sameWidth = [[dict objectForKey:@"sameWidth"] boolValue];
+        
+        NSString *tmpAligment = [dict objectForKey:@"alignment"];
+        if(tmpAligment.length) {
+            NSNumber *aligmentNumber = [self aligmentMap][tmpAligment];
+            _alignment = aligmentNumber.unsignedIntegerValue;
+        }
+        
+        NSArray *fontArray = [dict objectForKey:@"fontArray"];
+        if([fontArray isKindOfClass:[NSArray class]]) {
+            NSMutableArray<UIFont *> *tmpFonArray = [NSMutableArray array];
+            for(NSDictionary *dict in fontArray) {
+                NSString *fontName = [dict objectForKey:@"name"];
+                NSUInteger size = [[dict objectForKey:@"size"] unsignedIntegerValue];
+                if(fontName.length && size) {
+                    UIFont *font = [UIFont wy_customFontWithName:fontName size:size];
+                    if(font) {
+                        [tmpFonArray addObject:font];
+                    }
+                }
+            }
+            _fontArray = [tmpFonArray copy];
+        }
+        _enableMultiFontInLine = [[dict objectForKey:@"enableMultiFontInLine"] boolValue];
+        
+//        _embedImageType = [[dict objectForKey:@"embedImageType"] unsignedIntegerValue];
+        NSArray *embedImageArray = [dict objectForKey:@"embedImageType"];
+        if([embedImageArray isKindOfClass:[NSArray class]]) {
+            for (NSString *str in embedImageArray) {
+                NSNumber *embedNumber = [self embedImagemap][str];
+                if(embedNumber) {
+                    _embedImageType |= embedNumber.unsignedIntegerValue;
+                }
+            }
+        }
+        
+        _lineInterval = [[dict objectForKey:@"lineInterval"] floatValue];
+        
+        NSArray *colorArray = [dict objectForKey:@"defaultColors"];
+        if([colorArray isKindOfClass:[NSArray class]]) {
+            NSMutableArray<UIColor *> *tmpColorArray = [NSMutableArray array];
+            for(NSString *str in colorArray) {
+                unsigned int outVal;
+                NSScanner* scanner = [NSScanner scannerWithString:str];
+                [scanner scanHexInt:&outVal];
+                [tmpColorArray addObject:UIColorFromHex(outVal)];
+            }
+            _defaultColors = [tmpColorArray copy];
+        }
+        _enableMultiColorInLine = [[dict objectForKey:@"enableMultiColorInLine"] boolValue];
+        
+        _leftRightImageNames = [dict objectForKey:@"leftRightImageNames"];
+        _topBottomImageNames = [dict objectForKey:@"topBottomImageNames"];
+    }
+    return self;
+}
 
 - (void)resizeToPrefer {
     CGFloat scale = MIN(self.preferWidth / self.configPart.width, (self.preferWidth * self.ratio - self.lineInterval * (self.configPart.lineArray.count - 1)) / self.configPart.height);
@@ -153,6 +240,39 @@
         _topBottomImageNames = @[@"v000"];
     }
     return _topBottomImageNames;
+}
+
+
+#pragma mark - Config
+- (NSDictionary *)multiLineMap {
+    return @{
+             @"Normal"       : @(WYPreferLocalMultiLineNormal),
+             @"NotFirstLine" : @(WYPreferLocalMultiLineNotFirstLine),
+             @"NotLastLine"  : @(WYPreferLocalMultiLineNotLastLine),
+             @"NotLineHead"  : @(WYPreferLocalMultiLineNotLineHead),
+             @"NotLineTail"  : @(WYPreferLocalMultiLineNotLineTail),
+             @"NotAdjacent"  : @(WYPreferLocalMultiLineNotAdjacent),
+             @"NotTwoLine"   : @(WYPreferLocalMultiLineNotTwoLine),
+             @"NotThreeLine" : @(WYPreferLocalMultiLineNotThreeLine)
+             };
+}
+
+- (NSDictionary *)aligmentMap {
+    return @{
+             @"Center" : @(WYAlignmentCenter),
+             @"Left"   : @(WYAlignmentLeft),
+             @"Right"  : @(WYAlignmentRight)
+             };
+}
+
+- (NSDictionary *)embedImagemap {
+    return @{
+             @"None" : @(WYEmbedImageTypeNone),
+             @"Left" : @(WYEmbedImageTypeLeft),
+             @"Right" : @(WYEmbedImageTypeRight),
+             @"Top" : @(WYEmbedImageTypeTop),
+             @"Bottom" : @(WYEmbedImageTypeBottom)
+             };
 }
 
 @end

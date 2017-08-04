@@ -21,6 +21,7 @@
 @property (nonatomic, assign) WYPreferLocalMultiLine         perferMultiLine;
 @property (nonatomic, assign) CGFloat       percentage;
 @property (nonatomic, assign) CGFloat       rotate;
+@property (nonatomic, assign) NSUInteger         configIndex;
 
 @end
 
@@ -36,6 +37,8 @@
     self.perferMultiLine = WYPreferLocalMultiLineNone;
     [self actTo:self.index];
     self.percentage = 0.5;
+    
+    [WYPoster getAllConfigModels];
     
     {
         UIButton *btn = [UIButton new];
@@ -92,6 +95,15 @@
         [btn setBackgroundColor:[UIColor blackColor]];
         [btn setTitle:@"refresh" forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(refresh) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:btn];
+    }
+    
+    {
+        UIButton *btn = [UIButton new];
+        [btn setFrame:CGRectMake(20, 400, 60, 50)];
+        [btn setBackgroundColor:[UIColor blackColor]];
+        [btn setTitle:@"config" forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(changeConfig) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:btn];
     }
     
@@ -153,33 +165,42 @@
     [self actTo:self.index];
 }
 
+- (void)changeConfig {
+    self.configIndex ++;
+    self.configIndex %= [WYPoster getAllConfigModels].count;
+    [self actTo:self.index];
+}
+
 - (void)actTo:(NSUInteger)index {
-    WYPosterConfigModel *config = [[WYPosterConfigModel alloc] init];
-    config.ratio = 1;
-    config.preferWidth = 300;
-//    config.localMultiLine = WYPreferLocalMultiLineNotLineTail | WYPreferLocalMultiLineNotFirstLine | WYPreferLocalMultiLineNotLineHead;
-    config.localMultiLine = WYPreferLocalMultiLineNormal;
-    config.embedImageType = WYEmbedImageTypeTop | WYEmbedImageTypeBottom | WYEmbedImageTypeRight | WYEmbedImageTypeLeft;
-    config.sameWidth = YES;
-    config.alignment = WYAlignmentCenter;
-    config.maxMultiLineCountPerLine = 1;
-    config.lineInterval = 10;
-    config.fontArray = @[
-                         [UIFont fontWithName:@"Arial-BoldItalicMT" size:13],
-                         [UIFont fontWithName:@"Baskerville-Italic" size:12],
-                         [UIFont fontWithName:@"BradleyHandITCTT-Bold" size:14],
-                         [UIFont fontWithName:@"SnellRoundhand-Bold" size:17],
-//                         [UIFont fontWithName:@"Zapfino" size:10],
-                         ];
-    config.enableMultiFontInLine = YES;
-    config.defaultColors = @[[UIColor redColor], [UIColor greenColor], [UIColor blueColor]];
-//    config.enableMultiColorInLine = YES;
-    config.leftRightImageNames = @[@"h000", @"h001", @"h002", @"h003", @"h004", @"h005", @"h006", @"h007", @"h008", @"h009", @"h010", @"h011", @"h012", @"h013", @"h014", @"h015", @"h016", @"h017"];
-    config.topBottomImageNames = @[@"v000", @"v001", @"v002", @"v003", @"v004", @"v005", @"v006", @"v007", @"v008", @"v009", @"v010", @"v011", @"v012", @"v013", @"v014", @"v015", @"v016", @"v017", @"v018", @"v019"];
+//    WYPosterConfigModel *config = [[WYPosterConfigModel alloc] init];
+//    config.ratio = 1;
+//    config.preferWidth = 300;
+////    config.localMultiLine = WYPreferLocalMultiLineNotLineTail | WYPreferLocalMultiLineNotFirstLine | WYPreferLocalMultiLineNotLineHead;
+//    config.localMultiLine = WYPreferLocalMultiLineNormal;
+//    config.embedImageType = WYEmbedImageTypeTop | WYEmbedImageTypeBottom | WYEmbedImageTypeRight | WYEmbedImageTypeLeft;
+//    config.sameWidth = YES;
+//    config.alignment = WYAlignmentCenter;
+//    config.maxMultiLineCountPerLine = 1;
+//    config.lineInterval = 10;
+//    config.fontArray = @[
+//                         [UIFont fontWithName:@"Arial-BoldItalicMT" size:13],
+//                         [UIFont fontWithName:@"Baskerville-Italic" size:12],
+//                         [UIFont fontWithName:@"BradleyHandITCTT-Bold" size:14],
+//                         [UIFont fontWithName:@"SnellRoundhand-Bold" size:17],
+////                         [UIFont fontWithName:@"Zapfino" size:10],
+//                         ];
+//    config.enableMultiFontInLine = YES;
+//    config.defaultColors = @[[UIColor redColor], [UIColor greenColor], [UIColor blueColor]];
+////    config.enableMultiColorInLine = YES;
+//    config.leftRightImageNames = @[@"h000", @"h001", @"h002", @"h003", @"h004", @"h005", @"h006", @"h007", @"h008", @"h009", @"h010", @"h011", @"h012", @"h013", @"h014", @"h015", @"h016", @"h017"];
+//    config.topBottomImageNames = @[@"v000", @"v001", @"v002", @"v003", @"v004", @"v005", @"v006", @"v007", @"v008", @"v009", @"v010", @"v011", @"v012", @"v013", @"v014", @"v015", @"v016", @"v017", @"v018", @"v019"];
     
-    if (self.posterView.superview) {
-        [self.posterView removeFromSuperview];
-    }
+    WYPosterConfigModel *config = [WYPoster getAllConfigModels][self.configIndex];
+    [config cleanConfigPart];
+    
+//    if (self.posterView.superview) {
+//        [self.posterView removeFromSuperview];
+//    }
 //    self.posterView = [WYPoster createViewUsingText:[self getArray][index] withConfigModel:config];
 
 //    [self.view addSubview:self.posterView];

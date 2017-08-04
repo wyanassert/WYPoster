@@ -64,6 +64,8 @@
 		939CFAC21F3334800055B8D8 /* v019.png in Resources */ = {isa = PBXBuildFile; fileRef = 939CFA9C1F3334800055B8D8 /* v019.png */; };
 		939CFAC31F3334800055B8D8 /* h014.png in Resources */ = {isa = PBXBuildFile; fileRef = 939CFA9D1F3334800055B8D8 /* h014.png */; };
 		939CFAC41F3334800055B8D8 /* v010.png in Resources */ = {isa = PBXBuildFile; fileRef = 939CFA9E1F3334800055B8D8 /* v010.png */; };
+		93ACFB171F3482F600D68B57 /* WYPoster.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 93ACFB161F3482F500D68B57 /* WYPoster.bundle */; };
+		93ACFB1A1F34864600D68B57 /* UIFont+wy_customFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 93ACFB191F34864600D68B57 /* UIFont+wy_customFont.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -140,6 +142,9 @@
 		939CFA9C1F3334800055B8D8 /* v019.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = v019.png; sourceTree = "<group>"; };
 		939CFA9D1F3334800055B8D8 /* h014.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = h014.png; sourceTree = "<group>"; };
 		939CFA9E1F3334800055B8D8 /* v010.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = v010.png; sourceTree = "<group>"; };
+		93ACFB161F3482F500D68B57 /* WYPoster.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WYPoster.bundle; sourceTree = "<group>"; };
+		93ACFB181F34864600D68B57 /* UIFont+wy_customFont.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIFont+wy_customFont.h"; sourceTree = "<group>"; };
+		93ACFB191F34864600D68B57 /* UIFont+wy_customFont.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIFont+wy_customFont.m"; sourceTree = "<group>"; };
 		9A4B1EF742B2DB84E36F2E2A /* Pods-WYPoster.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WYPoster.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WYPoster/Pods-WYPoster.debug.xcconfig"; sourceTree = "<group>"; };
 		A84FD4F745CD1F8F4948D660 /* libPods-WYPoster.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WYPoster.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -228,6 +233,8 @@
 			children = (
 				937CF23E1F25C8CE00E9BF9A /* WYPosterParticiple.h */,
 				937CF23F1F25C8CE00E9BF9A /* WYPosterParticiple.m */,
+				93ACFB181F34864600D68B57 /* UIFont+wy_customFont.h */,
+				93ACFB191F34864600D68B57 /* UIFont+wy_customFont.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -276,6 +283,7 @@
 		93BE75931F2B2DA400D5E3C7 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				93ACFB161F3482F500D68B57 /* WYPoster.bundle */,
 				93BE75941F2B2DA400D5E3C7 /* Image */,
 			);
 			name = Resource;
@@ -414,6 +422,7 @@
 				939CFAA61F3334800055B8D8 /* h012.png in Resources */,
 				939CFABF1F3334800055B8D8 /* v007.png in Resources */,
 				939CFAB11F3334800055B8D8 /* v005.png in Resources */,
+				93ACFB171F3482F600D68B57 /* WYPoster.bundle in Resources */,
 				939CFAAD1F3334800055B8D8 /* v015.png in Resources */,
 				939CFAAE1F3334800055B8D8 /* h011.png in Resources */,
 				939CFAA11F3334800055B8D8 /* h003.png in Resources */,
@@ -492,6 +501,7 @@
 			files = (
 				937CF2371F25970000E9BF9A /* WYPosterConfigLine.m in Sources */,
 				932103391F283E9A005B1A57 /* WYPosterConfigPart.m in Sources */,
+				93ACFB1A1F34864600D68B57 /* UIFont+wy_customFont.m in Sources */,
 				9388F0F61F3072B300F25B72 /* WYPosterLayer.m in Sources */,
 				937CF2341F25954C00E9BF9A /* WYPosterConfigUnit.m in Sources */,
 				9321033C1F286808005B1A57 /* WYPosterPartView.m in Sources */,
