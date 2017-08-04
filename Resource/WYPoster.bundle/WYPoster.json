@@ -8,17 +8,12 @@
                                    "Normal",
                                    "NotFirstLine",
                                    "NotLastLine",
-                                   "NotLineHead",
-                                   "NotLineTail",
-                                   "NotAdjacent",
-                                   "NotTwoLine",
-                                   "NotThreeLine"
                                    ],
                 "maxMultiLineCountPerLine": 2,
                 "ratio": 1,
                 "preferWidth": 300,
                 "sameWidth": false,
-                "alignment": "Left",
+                "alignment": "Center",
                 "fontArray": [
                               {
                               "name": "AmericanTypewriter-CondensedBold",
@@ -87,6 +82,95 @@
                                         "v014",
                                         "v015",
                                         "v016",
+                                        "v017",
+                                        "v018",
+                                        "v019"
+                                        ]
+                },
+                {
+                "order": 1,
+                "id": "001",
+                "name": "test001",
+                "localMultiLine": [
+                                   "Normal",
+                                   "NotThreeLine"
+                                   ],
+                "maxMultiLineCountPerLine": 2,
+                "ratio": 0.66,
+                "preferWidth": 200,
+                "sameWidth": false,
+                "alignment": "Left",
+                "fontArray": [
+                              {
+                              "name": "Cinzel-Regular",
+                              "size": 12
+                              }
+                              ],
+                "enableMultiFontInLine": false,
+                "embedImageType": [
+                                   "None",
+                                   "Left",
+                                   "Right"
+                                   ],
+                "lineInterval": 0.1,
+                "defaultColors": [
+                                  "0xff0000",
+                                  "0xf03fea"
+                                  ],
+                "enableMultiColorInLine": false,
+                "leftRightImageNames": [
+                                        "h000",
+                                        "h001",
+                                        "h002",
+                                        ],
+                "topBottomImageNames": [
+                                        "v000",
+                                        "v001",
+                                        "v002"
+                                        ]
+                },
+                {
+                "order": 2,
+                "id": "002",
+                "name": "test002",
+                "localMultiLine": [
+                                   "Normal",
+                                   ],
+                "maxMultiLineCountPerLine": 3,
+                "ratio": 1,
+                "preferWidth": 300,
+                "sameWidth": false,
+                "alignment": "Right",
+                "fontArray": [
+                              {
+                              "name": "AmericanTypewriter-CondensedBold",
+                              "size": 12
+                              },
+                              {
+                              "name": "Abel-Regular",
+                              "size": 12
+                              }
+                              ],
+                "enableMultiFontInLine": true,
+                "embedImageType": [
+                                   "None",
+                                   "Top",
+                                   "Bottom"
+                                   ],
+                "lineInterval": 0.1,
+                "defaultColors": [
+                                  "0x1f30fa",
+                                  "0xf03fea"
+                                  ],
+                "enableMultiColorInLine": true,
+                "leftRightImageNames": [
+                                        "h005",
+                                        "h006",
+                                        "h007",
+                                        "h008",
+                                        "h009",
+                                        ],
+                "topBottomImageNames": [
                                         "v017",
                                         "v018",
                                         "v019"
