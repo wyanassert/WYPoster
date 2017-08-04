@@ -63,11 +63,15 @@
     }
 }
 
-- (void)setColor:(UIColor *)color {
+- (void)setColors:(NSArray<UIColor *> *)colors {
     if (self.configUnit.unitType == WYPosterConfigUnitTypeNormal) {
+        UIColor *color = [UIColor blackColor];
+        if(colors.count) {
+            color = colors.firstObject;
+        }
         self.textLayer.foregroundColor = color.CGColor;
     } else if(self.configUnit.unitType == WYPosterConfigUnitTypeMultiLine) {
-        [self.partLayer setColor:@[color]];
+        [self.partLayer setColor:colors];
     }
 }
 

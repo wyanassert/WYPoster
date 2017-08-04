@@ -13,8 +13,10 @@
 
 @interface WYPosterUnitLayer : CALayer
 
+@property (nonatomic, assign) NSUInteger row;
+
 - (instancetype)initWithConfigUnit:(WYPosterConfigUnit *)configUnit;
 
-- (void)setColor:(UIColor *)color;
+- (void)setColors:(NSArray<UIColor *> *)colors;
 
 @end

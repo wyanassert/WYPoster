@@ -46,12 +46,18 @@
 
 - (void)setColor:(NSArray<UIColor *> *)colors {
     [self closeGradient];
+    NSArray<UIColor *> *tmpColors = nil;
     UIColor *color = [UIColor blackColor];
-    if(colors.count) {
-        color = colors.firstObject;
-    }
     for(WYPosterUnitLayer *unitLayer in self.layerArray) {
-        [unitLayer setColor:color];
+        if(colors.count) {
+            color = colors[unitLayer.row % colors.count];
+        }
+        if(self.configModel.enableMultiColorInLine) {
+            tmpColors = colors;
+        } else {
+            tmpColors = @[color];
+        }
+        [unitLayer setColors:tmpColors];
     }
 }
 
@@ -130,6 +136,7 @@
         for(NSUInteger j = 0; j < line.unitArray.count; j++) {
             WYPosterConfigUnit *unit = line.unitArray[j];
             WYPosterUnitLayer *unitLayer = [[WYPosterUnitLayer alloc] initWithConfigUnit:unit];
+            unitLayer.row = i;
             unitLayer.frame = CGRectMake(lineOrigin.x, lineOrigin.y + unit.originY, unit.width, unit.height);
             lineOrigin.x += unit.width;
             [self.containerLayer addSublayer:unitLayer];

@@ -120,7 +120,7 @@
 }
 
 - (void)scaleShow {
-    [self.posterLayer setColor:@[[UIColor purpleColor]]];
+    [self.posterLayer setColor:@[[UIColor purpleColor], [UIColor orangeColor], [UIColor cyanColor]]];
 }
 
 - (void)scaleShow2 {
@@ -173,7 +173,7 @@
                          ];
     config.enableMultiFontInLine = YES;
     config.defaultColors = @[[UIColor redColor], [UIColor greenColor], [UIColor blueColor]];
-    config.enableMultiColorInLine = YES;
+//    config.enableMultiColorInLine = YES;
     config.leftRightImageNames = @[@"h000", @"h001", @"h002", @"h003", @"h004", @"h005", @"h006", @"h007", @"h008", @"h009", @"h010", @"h011", @"h012", @"h013", @"h014", @"h015", @"h016", @"h017"];
     config.topBottomImageNames = @[@"v000", @"v001", @"v002", @"v003", @"v004", @"v005", @"v006", @"v007", @"v008", @"v009", @"v010", @"v011", @"v012", @"v013", @"v014", @"v015", @"v016", @"v017", @"v018", @"v019"];
     
