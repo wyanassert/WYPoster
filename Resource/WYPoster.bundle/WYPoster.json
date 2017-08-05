@@ -266,6 +266,220 @@
                 ],
                 "topBottomImageNames": [
                 ]
+                },
+                {
+                "order": 6,
+                "id": "006",
+                "name": "test006",
+                "localMultiLine": [
+                                   "Normal",
+                                   "NotFirstLine",
+                                   "NotLastLine",
+                                   "NotLineHead",
+                                   "NotLineTail",
+                                   "NotAdjacent",
+                                   "NotTwoLine",
+                                   "NotThreeLine"
+                                   ],
+                "maxMultiLineCountPerLine": 2,
+                "ratio": 1,
+                "preferWidth": 300,
+                "sameWidth": false,
+                "alignment": "Center",
+                "fontArray": [
+                              {
+                              "name": "againts",
+                              "size": 12
+                              },
+                              {
+                              "name": "Calligraffitti-Regular",
+                              "size": 12
+                              },
+                              {
+                              "name": "DancingScript",
+                              "size": 12
+                              }
+                              ],
+                "enableMultiFontInLine": false,
+                "embedImageType": [
+                                   "None",
+                                   "Left",
+                                   "Right",
+                                   "Top",
+                                   "Bottom"
+                                   ],
+                "lineInterval": 0.1,
+                "defaultColors": [
+                                  "0x003399",
+                                  "0x000000",
+                                  "0xcc3333",
+                                  "0x663333"
+                                  ],
+                "enableMultiColorInLine": true,
+                "leftRightImageNames": [
+                                        "h013",
+                                        "h014",
+                                        "h015",
+                                        "h016",
+                                        "h017"
+                                        ],
+                "topBottomImageNames": [
+                                        "v017",
+                                        "v018",
+                                        "v019"
+                                        ]
+                },
+                {
+                "order": 7,
+                "id": "007",
+                "name": "test007",
+                "localMultiLine": [
+                                   "Normal",
+                                   "NotFirstLine",
+                                   "NotLastLine",
+                                   "NotAdjacent",
+                                   ],
+                "maxMultiLineCountPerLine": 2,
+                "ratio": 1,
+                "preferWidth": 300,
+                "sameWidth": false,
+                "alignment": "Left",
+                "fontArray": [
+                              {
+                              "name": "BlackOpsOne-Regular",
+                              "size": 12
+                              },
+                              {
+                              "name": "Capture_it",
+                              "size": 12
+                              }
+                              ],
+                "enableMultiFontInLine": true,
+                "embedImageType": [
+                                   "Right"
+                                   ],
+                "lineInterval": 5,
+                "defaultColors": [
+                                  "0xff6600",
+                                  "0xffaa66",
+                                  "0x009966",
+                                  "0x99cc33"
+                                  ],
+                "enableMultiColorInLine": true,
+                "leftRightImageNames": [
+                                        "h000",
+                                        "h002",
+                                        "h005",
+                                        "h012",
+                                        ],
+                "topBottomImageNames": [
+                                        ]
+                },
+                {
+                "order": 8,
+                "id": "008",
+                "name": "test008",
+                "localMultiLine": [
+                                   "Normal"
+                                   ],
+                "maxMultiLineCountPerLine": 1,
+                "ratio": 1,
+                "preferWidth": 300,
+                "sameWidth": true,
+                "alignment": "Center",
+                "fontArray": [
+                              {
+                              "name": "KOMIKAX_",
+                              "size": 12
+                              },
+                              {
+                              "name": "Komika_Hand_Italic",
+                              "size": 12
+                              }
+                              ],
+                "enableMultiFontInLine": true,
+                "embedImageType": [
+                                   "Left",
+                                   "Right",
+                                   "Top",
+                                   "Bottom"
+                                   ],
+                "lineInterval": 5,
+                "defaultColors": [
+                                  "0x990033",
+                                  "0xccff66",
+                                  "0xff9900",
+                                  "0xcc0033"
+                                  ],
+                "enableMultiColorInLine": true,
+                "leftRightImageNames": [
+                                        "h001",
+                                        "h003",
+                                        "h004",
+                                        "h015",
+                                        ],
+                "topBottomImageNames": [
+                                        "v004",
+                                        "v005",
+                                        "v015",
+                                        "v019"
+                ]
+                },
+                {
+                "order": 9,
+                "id": "009",
+                "name": "test009",
+                "localMultiLine": [
+                                   "Normal",
+                                   "NotFirstLine",
+                                   "NotLastLine",
+                                   "NotLineHead",
+                                   "NotLineTail",
+                                   "NotAdjacent",
+                                   "NotTwoLine",
+                                   "NotThreeLine"
+                                   ],
+                "maxMultiLineCountPerLine": 0,
+                "ratio": 1,
+                "preferWidth": 300,
+                "sameWidth": false,
+                "alignment": "Left",
+                "fontArray": [
+                              {
+                              "name": "Homestead-Display",
+                              "size": 12
+                              },
+                              {
+                              "name": "NexaRustScriptH-02",
+                              "size": 12
+                              }
+                              ],
+                "enableMultiFontInLine": true,
+                "embedImageType": [
+                                   "Left",
+                                   "Right",
+                                   "Top",
+                                   "Bottom"
+                                   ],
+                "lineInterval": 5,
+                "defaultColors": [
+                                  "0x99ccff",
+                                  "0xffff00",
+                                  "0x99cc99"
+                                  ],
+                "enableMultiColorInLine": true,
+                "leftRightImageNames": [
+                                        "h002",
+                                        "h004",
+                                        "h006",
+                                        "h008",
+                                        ],
+                "topBottomImageNames": [
+                                        "v000",
+                                        "v002",
+                                        "v005",
+                                        "v009"
+                                        ]
                 }
                 ]
 }
