@@ -480,6 +480,228 @@
                                         "v005",
                                         "v009"
                                         ]
+                },
+                {
+                "order": 10,
+                "id": "010",
+                "name": "test010",
+                "localMultiLine": [
+                                   "Normal",
+                                   "NotLastLine",
+                                   "NotLineTail",
+                                   "NotTwoLine"
+                                   ],
+                "maxMultiLineCountPerLine": 2,
+                "ratio": 1,
+                "preferWidth": 300,
+                "sameWidth": false,
+                "alignment": "Left",
+                "fontArray": [
+                              {
+                              "name": "DJB Letter Game Tiles 3",
+                              "size": 12
+                              }
+                              ],
+                "enableMultiFontInLine": false,
+                "embedImageType": [
+                                   "None"
+                                   ],
+                "lineInterval": 5,
+                "defaultColors": [
+                                  "0x333333",
+                                  "0x003399",
+                                  "0xccff99",
+                                  "0x990066"
+                                  ],
+                "enableMultiColorInLine": false,
+                "leftRightImageNames": [
+                                        ],
+                "topBottomImageNames": [
+                                        ]
+                },
+                {
+                "order": 11,
+                "id": "011",
+                "name": "test011",
+                "localMultiLine": [
+                                   "Normal",
+                                   "NotFirstLine",
+                                   "NotLastLine",
+                                   "NotLineHead",
+                                   "NotLineTail",
+                                   "NotAdjacent",
+                                   "NotTwoLine",
+                                   "NotThreeLine"
+                                   ],
+                "maxMultiLineCountPerLine": 2,
+                "ratio": 1,
+                "preferWidth": 300,
+                "sameWidth": false,
+                "alignment": "Center",
+                "fontArray": [
+                              {
+                              "name": "Capture_it_2",
+                              "size": 12
+                              },
+                              {
+                              "name": "Capture_it",
+                              "size": 12
+                              }
+                              ],
+                "enableMultiFontInLine": false,
+                "embedImageType": [
+                                   "None",
+                                   "Left",
+                                   "Right",
+                                   "Top",
+                                   "Bottom"
+                                   ],
+                "lineInterval": 9,
+                "defaultColors": [
+                                  "0xff6666",
+                                  "0xff9966",
+                                  "0xff3366",
+                                  "0xff3333"
+                                  ],
+                "enableMultiColorInLine": false,
+                "leftRightImageNames": [
+                                        "h000",
+                                        "h001",
+                                        "h002",
+                                        "h003",
+                                        "h004",
+                                        "h005",
+                                        "h006",
+                                        ],
+                "topBottomImageNames": [
+                                        "v016",
+                                        "v017",
+                                        "v018",
+                                        "v019"
+                                        ]
+                },
+                {
+                "order": 12,
+                "id": "012",
+                "name": "test012",
+                "localMultiLine": [
+                                   "Normal",
+                                   "NotAdjacent",
+                                   ],
+                "maxMultiLineCountPerLine": 3,
+                "ratio": 1,
+                "preferWidth": 300,
+                "sameWidth": false,
+                "alignment": "Center",
+                "fontArray": [
+                              {
+                              "name": "Batik_Alin",
+                              "size": 12
+                              },
+                              {
+                              "name": "Graduate-Regular",
+                              "size": 12
+                              }
+                              ],
+                "enableMultiFontInLine": false,
+                "embedImageType": [
+                                   "None"
+                                   ],
+                "lineInterval": 12,
+                "defaultColors": [
+                                  "0x666699",
+                                  "0x660033"
+                                  ],
+                "enableMultiColorInLine": true,
+                "leftRightImageNames": [
+                                        ],
+                "topBottomImageNames": [
+                                        ]
+                },
+                {
+                "order": 13,
+                "id": "013",
+                "name": "test013",
+                "localMultiLine": [
+                                   "Normal",
+                                   "NotLineHead",
+                                   "NotAdjacent",
+                                   ],
+                "maxMultiLineCountPerLine": 3,
+                "ratio": 1,
+                "preferWidth": 300,
+                "sameWidth": false,
+                "alignment": "Left",
+                "fontArray": [
+                              {
+                              "name": "Quicksand_Dash",
+                              "size": 12
+                              }
+                              ],
+                "enableMultiFontInLine": false,
+                "embedImageType": [
+                                   "None",
+                                   "Left",
+                                   "Right",
+                                   "Top",
+                                   "Bottom"
+                                   ],
+                "lineInterval": 3,
+                "defaultColors": [
+                                  "0xcc3399",
+                                  "0xffcc99",
+                                  "0xff6666",
+                                  ],
+                "enableMultiColorInLine": true,
+                "leftRightImageNames": [
+                                        "h001",
+                                        "h007",
+                                        "h008",
+                                        "h009",
+                                        "h017"
+                                        ],
+                "topBottomImageNames": [
+                                        "v000",
+                                        "v001",
+                                        "v018",
+                                        "v019"
+                                        ]
+                },
+                {
+                "order": 14,
+                "id": "014",
+                "name": "test014",
+                "localMultiLine": [
+                                   "Normal",
+                                   "NotFirstLine",
+                                   "NotAdjacent",
+                                   "NotTwoLine",
+                                   ],
+                "maxMultiLineCountPerLine": 2,
+                "ratio": 1,
+                "preferWidth": 300,
+                "sameWidth": false,
+                "alignment": "Center",
+                "fontArray": [
+                              {
+                              "name": "Homestead-Display",
+                              "size": 12
+                              }
+                              ],
+                "enableMultiFontInLine": false,
+                "embedImageType": [
+                                   "None",
+                                   ],
+                "lineInterval": 0.1,
+                "defaultColors": [
+                                  "0x006699",
+                                  "0x6699cc"
+                                  ],
+                "enableMultiColorInLine": true,
+                "leftRightImageNames": [
+                                        ],
+                "topBottomImageNames": [
+                                        ]
                 }
                 ]
 }
