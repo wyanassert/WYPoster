@@ -702,6 +702,99 @@
                                         ],
                 "topBottomImageNames": [
                                         ]
+                },
+                {
+                "order": 0,
+                "id": "000",
+                "name": "test000",
+                "localMultiLine": [
+                                   "Normal",
+                                   "NotFirstLine",
+                                   "NotLastLine",
+                                   "NotLineHead",
+                                   "NotLineTail",
+                                   "NotAdjacent",
+                                   "NotTwoLine",
+                                   "NotThreeLine"
+                                   ],
+                "maxMultiLineCountPerLine": 2,
+                "ratio": 1,
+                "preferWidth": 300,
+                "sameWidth": false,
+                "alignment": "Center",
+                "fontArray": [
+                              {
+                              "name": "AmericanTypewriter-CondensedBold",
+                              "size": 12
+                              },
+                              {
+                              "name": "Abel-Regular",
+                              "size": 12
+                              },
+                              {
+                              "name": "AlegreyaSans-Regular",
+                              "size": 12
+                              }
+                              ],
+                "enableMultiFontInLine": true,
+                "embedImageType": [
+                                   "None",
+                                   "Left",
+                                   "Right",
+                                   "Top",
+                                   "Bottom"
+                                   ],
+                "lineInterval": 0.1,
+                "defaultColors": [
+                                  "0xff0000",
+                                  "0xffff00",
+                                  "0xff00ff",
+                                  "0xf03fea"
+                                  ],
+                "enableMultiColorInLine": true,
+                "leftRightImageNames": [
+                                        "h000",
+                                        "h001",
+                                        "h002",
+                                        "h003",
+                                        "h004",
+                                        "h005",
+                                        "h006",
+                                        "h007",
+                                        "h008",
+                                        "h009",
+                                        "h010",
+                                        "h011",
+                                        "h012",
+                                        "h013",
+                                        "h014",
+                                        "h015",
+                                        "h016",
+                                        "h017"
+                                        ],
+                "topBottomImageNames": [
+                                        "v000",
+                                        "v001",
+                                        "v002",
+                                        "v003",
+                                        "v004",
+                                        "v005",
+                                        "v006",
+                                        "v007",
+                                        "v008",
+                                        "v009",
+                                        "v010",
+                                        "v011",
+                                        "v012",
+                                        "v013",
+                                        "v014",
+                                        "v015",
+                                        "v016",
+                                        "v017",
+                                        "v018",
+                                        "v019"
+                                        ]
                 }
+
                 ]
 }
