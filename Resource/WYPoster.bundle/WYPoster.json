@@ -12,19 +12,15 @@
                 "maxMultiLineCountPerLine": 2,
                 "ratio": 1,
                 "preferWidth": 300,
-                "sameWidth": false,
+                "sameWidth": true,
                 "alignment": "Center",
                 "fontArray": [
                               {
-                              "name": "AmericanTypewriter-CondensedBold",
+                              "name": "armalite_rifle",
                               "size": 12
                               },
                               {
-                              "name": "Abel-Regular",
-                              "size": 12
-                              },
-                              {
-                              "name": "AlegreyaSans-Regular",
+                              "name": "BOYCOTT_",
                               "size": 12
                               }
                               ],
@@ -38,53 +34,23 @@
                                    ],
                 "lineInterval": 0.1,
                 "defaultColors": [
-                                  "0xff0000",
-                                  "0xffff00",
-                                  "0xff00ff",
-                                  "0xf03fea"
+                                  "0xff0033",
+                                  "0x333399",
+                                  "0xcccc00"
                                   ],
                 "enableMultiColorInLine": true,
                 "leftRightImageNames": [
                                         "h000",
                                         "h001",
-                                        "h002",
-                                        "h003",
-                                        "h004",
-                                        "h005",
-                                        "h006",
-                                        "h007",
                                         "h008",
                                         "h009",
                                         "h010",
                                         "h011",
-                                        "h012",
-                                        "h013",
-                                        "h014",
-                                        "h015",
-                                        "h016",
-                                        "h017"
+                                        "h012"
                                         ],
                 "topBottomImageNames": [
-                                        "v000",
-                                        "v001",
-                                        "v002",
-                                        "v003",
-                                        "v004",
-                                        "v005",
                                         "v006",
-                                        "v007",
-                                        "v008",
-                                        "v009",
-                                        "v010",
-                                        "v011",
-                                        "v012",
-                                        "v013",
-                                        "v014",
-                                        "v015",
-                                        "v016",
-                                        "v017",
-                                        "v018",
-                                        "v019"
+                                        "v010"
                                         ]
                 },
                 {
@@ -96,37 +62,38 @@
                                    "NotThreeLine"
                                    ],
                 "maxMultiLineCountPerLine": 2,
-                "ratio": 0.66,
-                "preferWidth": 200,
+                "ratio": 1,
+                "preferWidth": 300,
                 "sameWidth": false,
                 "alignment": "Left",
                 "fontArray": [
                               {
-                              "name": "Cinzel-Regular",
+                              "name": "Laura Worthington - CharcuterieDeco",
+                              "size": 12
+                              },
+                              {
+                              "name": "Amadeus",
                               "size": 12
                               }
                               ],
-                "enableMultiFontInLine": false,
+                "enableMultiFontInLine": true,
                 "embedImageType": [
-                                   "None",
                                    "Left",
                                    "Right"
                                    ],
                 "lineInterval": 0.1,
                 "defaultColors": [
-                                  "0xff0000",
-                                  "0xf03fea"
+                                  "0xcc6699",
+                                  "0x99cc66",
+                                  "0x663366"
                                   ],
-                "enableMultiColorInLine": false,
+                "enableMultiColorInLine": true,
                 "leftRightImageNames": [
                                         "h000",
                                         "h001",
                                         "h002",
                                         ],
                 "topBottomImageNames": [
-                                        "v000",
-                                        "v001",
-                                        "v002"
                                         ]
                 },
                 {
@@ -136,7 +103,7 @@
                 "localMultiLine": [
                                    "Normal",
                                    ],
-                "maxMultiLineCountPerLine": 3,
+                "maxMultiLineCountPerLine": 0,
                 "ratio": 1,
                 "preferWidth": 300,
                 "sameWidth": false,
@@ -154,13 +121,14 @@
                 "enableMultiFontInLine": true,
                 "embedImageType": [
                                    "None",
-                                   "Top",
-                                   "Bottom"
+                                   "Left",
+                                   "Right"
                                    ],
                 "lineInterval": 0.1,
                 "defaultColors": [
-                                  "0x1f30fa",
-                                  "0xf03fea"
+                                  "0xff0033",
+                                  "0x333399",
+                                  "0x99cc33"
                                   ],
                 "enableMultiColorInLine": true,
                 "leftRightImageNames": [
@@ -171,10 +139,133 @@
                                         "h009",
                                         ],
                 "topBottomImageNames": [
-                                        "v017",
-                                        "v018",
-                                        "v019"
                                         ]
+                },
+                {
+                "order": 3,
+                "id": "003",
+                "name": "test003",
+                "localMultiLine": [
+                                   "Normal",
+                                   "NotFirstLine",
+                                   "NotLastLine",
+                                   "NotLineHead",
+                                   "NotLineTail",
+                                   "NotAdjacent"
+                                   ],
+                "maxMultiLineCountPerLine": 1,
+                "ratio": 1,
+                "preferWidth": 300,
+                "sameWidth": false,
+                "alignment": "Center",
+                "fontArray": [
+                              {
+                              "name": "AbrilFatface-Regular",
+                              "size": 12
+                              },
+                              {
+                              "name": "AppertoAlternateGoth3D",
+                              "size": 12
+                              }
+                              ],
+                "enableMultiFontInLine": false,
+                "embedImageType": [
+                                   "None"
+                                   ],
+                "lineInterval": 0.1,
+                "defaultColors": [
+                                  "0xff9966",
+                                  "0xff6666",
+                                  "0xff6699",
+                                  "0xff9999"
+                                  ],
+                "enableMultiColorInLine": false,
+                "leftRightImageNames": [
+                ],
+                "topBottomImageNames": [
+                ]
+                },
+                {
+                "order": 4,
+                "id": "004",
+                "name": "test004",
+                "localMultiLine": [
+                                   "NotAdjacent",
+                                   "NotTwoLine",
+                                   ],
+                "maxMultiLineCountPerLine": 1,
+                "ratio": 1,
+                "preferWidth": 300,
+                "sameWidth": false,
+                "alignment": "Right",
+                "fontArray": [
+                              {
+                              "name": "KristenITC-Regular",
+                              "size": 12
+                              },
+                              {
+                              "name": "Laura Worthington - CharcuterieCursive",
+                              "size": 12
+                              }
+                              ],
+                "enableMultiFontInLine": false,
+                "embedImageType": [
+                                   "Left"
+                                   ],
+                "lineInterval": 0.1,
+                "defaultColors": [
+                                  "0xccff99",
+                                  "0x99cccc",
+                                  "0xffcc99",
+                                  "0xff99cc"
+                                  ],
+                "enableMultiColorInLine": true,
+                "leftRightImageNames": [
+                                        "h009",
+                                        "h010",
+                                        "h011",
+                                        "h012",
+                                        "h013",
+                                        "h014"
+                                        ],
+                "topBottomImageNames": [
+                ]
+                },
+                {
+                "order": 5,
+                "id": "005",
+                "name": "test005",
+                "localMultiLine": [
+                                   "Normal",
+                                   "NotAdjacent",
+                                   "NotTwoLine"
+                                   ],
+                "maxMultiLineCountPerLine": 3,
+                "ratio": 1,
+                "preferWidth": 300,
+                "sameWidth": true,
+                "alignment": "Center",
+                "fontArray": [
+                              {
+                              "name": "Starstrp",
+                              "size": 12
+                              }
+                              ],
+                "enableMultiFontInLine": false,
+                "embedImageType": [
+                ],
+                "lineInterval": 20,
+                "defaultColors": [
+                                  "0x003399",
+                                  "0x000000",
+                                  "0xcc3333",
+                                  "0x663333"
+                                  ],
+                "enableMultiColorInLine": true,
+                "leftRightImageNames": [
+                ],
+                "topBottomImageNames": [
+                ]
                 }
                 ]
 }

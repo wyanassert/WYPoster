@@ -35,6 +35,7 @@
     
     self.index = 1;
     self.perferMultiLine = WYPreferLocalMultiLineNone;
+    self.configIndex = [WYPoster getAllConfigModels].count - 1;
     [self actTo:self.index];
     self.percentage = 0.5;
     
