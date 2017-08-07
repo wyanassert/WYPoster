@@ -20,6 +20,7 @@
 @property (nonatomic, assign, readonly) CGFloat            width;
 @property (nonatomic, assign, readonly) CGFloat            height;
 @property (nonatomic, assign,         ) CGFloat            scale;
+@property (nonatomic, strong,         ) UIColor            *lineColor;
 
 - (void)addConfigUnit:(WYPosterConfigUnit *)unit;
 

@@ -83,9 +83,10 @@ CGFloat kWidthScale = 1.15;
     return self;
 }
 
-- (instancetype)initWithImage:(UIImage *)image {
+- (instancetype)initWithImage:(UIImage *)image color:(UIColor *)color {
     if(self = [super init]) {
         _image = image;
+        _color = color;
         _unitType = WYPosterConfigUnitTypeImage;
         _width = image.size.width;
         _height = image.size.height;

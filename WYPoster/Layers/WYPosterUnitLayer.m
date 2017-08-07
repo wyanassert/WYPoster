@@ -9,6 +9,7 @@
 #import "WYPosterUnitLayer.h"
 #import "WYPosterConfigUnit.h"
 #import "WYPosterLayer.h"
+#import "UIImage+wy_customColor.h"
 
 @interface WYPosterUnitLayer()
 
@@ -32,7 +33,7 @@
 
 - (void)configLayer {
     if(self.configUnit.unitType == WYPosterConfigUnitTypeImage) {
-        self.contents = (__bridge id)self.configUnit.image.CGImage;
+        self.contents = (__bridge id)[UIImage wy_customeColorImage:self.configUnit.image color:self.configUnit.color].CGImage;
         self.contentsGravity = kCAGravityResizeAspect;
         if(self.configUnit.oritention == UIImageOrientationDown) {
             self.affineTransform = CGAffineTransformMakeScale(1, -1);

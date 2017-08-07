@@ -45,13 +45,17 @@
             tmpLine = [self spliteALineFormMultiLine:wordArray fromIndex:index withConfigModel:configModel presetLength:configModel.avgLength - 7];
             if(tmpLine.unitArray.count) {
                 NSString *imageName = configModel.leftRightImageNames[arc4random() % configModel.leftRightImageNames.count];
+                UIColor *color = tmpLine.lineColor;
+                if(!color) {
+                    color = configModel.defaultColors[arc4random() % [configModel.defaultColors count]];
+                }
                 if(configModel.embedImageType & WYEmbedImageTypeLeft) {
-                    WYPosterConfigUnit *leftUnit = [[WYPosterConfigUnit alloc] initWithImage:[UIImage imageNamed:imageName]];
+                    WYPosterConfigUnit *leftUnit = [[WYPosterConfigUnit alloc] initWithImage:[UIImage imageNamed:imageName] color:color];
                     leftUnit.oritention = UIImageOrientationLeft;
                     [tmpLine appendPrefixImageUnit:leftUnit];
                 }
                 if(configModel.embedImageType & WYEmbedImageTypeRight) {
-                    WYPosterConfigUnit *rightUnit = [[WYPosterConfigUnit alloc] initWithImage:[UIImage imageNamed:imageName]];
+                    WYPosterConfigUnit *rightUnit = [[WYPosterConfigUnit alloc] initWithImage:[UIImage imageNamed:imageName] color:color];
                     rightUnit.oritention = UIImageOrientationRight;
                     [tmpLine appendSuffixImageUnit:rightUnit];
                 }
@@ -72,9 +76,13 @@
         for(WYPosterConfigLine *line in configModel.configPart.lineArray) {
             maxFloat = MAX(maxFloat, line.width);
         }
+        UIColor *color = tmpLine.lineColor;
+        if(!color) {
+            color = configModel.defaultColors[arc4random() % [configModel.defaultColors count]];
+        }
         NSString *imageName = configModel.topBottomImageNames[arc4random() % configModel.topBottomImageNames.count];
         if(configModel.embedImageType & WYEmbedImageTypeTop) {
-            WYPosterConfigUnit *topUnit = [[WYPosterConfigUnit alloc] initWithImage:[UIImage imageNamed:imageName]];
+            WYPosterConfigUnit *topUnit = [[WYPosterConfigUnit alloc] initWithImage:[UIImage imageNamed:imageName] color:color];
             CGFloat scale = maxFloat / topUnit.width;
             topUnit.scale = scale;
             topUnit.oritention = UIImageOrientationUp;
@@ -84,7 +92,7 @@
         }
         
         if(configModel.embedImageType & WYEmbedImageTypeBottom) {
-            WYPosterConfigUnit *bottomUnit = [[WYPosterConfigUnit alloc] initWithImage:[UIImage imageNamed:imageName]];
+            WYPosterConfigUnit *bottomUnit = [[WYPosterConfigUnit alloc] initWithImage:[UIImage imageNamed:imageName] color:color];
             CGFloat scale = maxFloat / bottomUnit.width;
             bottomUnit.scale = scale;
             bottomUnit.oritention = UIImageOrientationDown;
@@ -109,6 +117,7 @@
     UIFont *font = configModel.fontArray[arc4random() % [configModel.fontArray count]];
     UIColor *color = configModel.defaultColors[arc4random() % [configModel.defaultColors count]];
     WYPosterConfigLine *tmpLine = [WYPosterConfigLine new];
+    tmpLine.lineColor = color;
     NSUInteger tmpMultiLinePerLineCount = 0;
     for (NSUInteger i = index; i < wordArray.count; i++) {
         NSString *tmpStr = [wordArray objectAtIndex:i];
@@ -130,6 +139,7 @@
                     }
                     if(configModel.enableMultiColorInLine) {
                         color = configModel.defaultColors[arc4random() % [configModel.defaultColors count]];
+                        tmpLine.lineColor = nil;
                     }
                     [tmpLine addConfigUnit:[[WYPosterConfigUnit alloc] initWithWords:[multiWord copy] fonts:configModel.fontArray colors:@[color]]];
                     NSUInteger totalLen = 0;
@@ -150,6 +160,7 @@
                 }
                 if(configModel.enableMultiColorInLine) {
                     color = configModel.defaultColors[arc4random() % [configModel.defaultColors count]];
+                    tmpLine.lineColor = nil;
                 }
                 [tmpLine addConfigUnit:[[WYPosterConfigUnit alloc] initWithWord:tmpStr font:font color:color]];
                 
@@ -162,6 +173,7 @@
                     }
                     if(configModel.enableMultiColorInLine) {
                         color = configModel.defaultColors[arc4random() % [configModel.defaultColors count]];
+                        tmpLine.lineColor = nil;
                     }
                     [tmpLine addConfigUnit:[[WYPosterConfigUnit alloc] initWithWord:tmpStr font:font color:color]];
                 }
