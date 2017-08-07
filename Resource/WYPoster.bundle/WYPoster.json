@@ -726,6 +726,14 @@
                               {
                               "name": "AmericanTypewriter-CondensedBold",
                               "size": 12
+                              },
+                              {
+                              "name": "Abel-Regular",
+                              "size": 12
+                              },
+                              {
+                              "name": "AlegreyaSans-Regular",
+                              "size": 12
                               }
                               ],
                 "enableMultiFontInLine": true,

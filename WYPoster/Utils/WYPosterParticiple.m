@@ -42,17 +42,19 @@
             tmpLine = [self spliteALineFormMultiLine:wordArray fromIndex:index withConfigModel:configModel presetLength:configModel.avgLength - 7];
             if(tmpLine.unitArray.count) {
                 NSString *imageName = configModel.leftRightImageNames[arc4random() % configModel.leftRightImageNames.count];
+                
+                UIImage *image = [UIImage imageNamed:imageName];
                 UIColor *color = tmpLine.lineColor;
                 if(!color) {
                     color = configModel.defaultColors[arc4random() % [configModel.defaultColors count]];
                 }
                 if(configModel.embedImageType & WYEmbedImageTypeLeft) {
-                    WYPosterConfigUnit *leftUnit = [[WYPosterConfigUnit alloc] initWithImage:[UIImage imageNamed:imageName] color:color];
+                    WYPosterConfigUnit *leftUnit = [[WYPosterConfigUnit alloc] initWithImage:image color:color];
                     leftUnit.oritention = UIImageOrientationLeft;
                     [tmpLine appendPrefixImageUnit:leftUnit];
                 }
                 if(configModel.embedImageType & WYEmbedImageTypeRight) {
-                    WYPosterConfigUnit *rightUnit = [[WYPosterConfigUnit alloc] initWithImage:[UIImage imageNamed:imageName] color:color];
+                    WYPosterConfigUnit *rightUnit = [[WYPosterConfigUnit alloc] initWithImage:image color:color];
                     rightUnit.oritention = UIImageOrientationRight;
                     [tmpLine appendSuffixImageUnit:rightUnit];
                 }
@@ -78,8 +80,9 @@
             color = configModel.defaultColors[arc4random() % [configModel.defaultColors count]];
         }
         NSString *imageName = configModel.topBottomImageNames[arc4random() % configModel.topBottomImageNames.count];
+        UIImage *image = [UIImage imageNamed:imageName];
         if(configModel.embedImageType & WYEmbedImageTypeTop) {
-            WYPosterConfigUnit *topUnit = [[WYPosterConfigUnit alloc] initWithImage:[UIImage imageNamed:imageName] color:color];
+            WYPosterConfigUnit *topUnit = [[WYPosterConfigUnit alloc] initWithImage:image color:color];
             CGFloat scale = maxFloat / topUnit.width;
             topUnit.scale = scale;
             topUnit.oritention = UIImageOrientationUp;
@@ -89,7 +92,7 @@
         }
         
         if(configModel.embedImageType & WYEmbedImageTypeBottom) {
-            WYPosterConfigUnit *bottomUnit = [[WYPosterConfigUnit alloc] initWithImage:[UIImage imageNamed:imageName] color:color];
+            WYPosterConfigUnit *bottomUnit = [[WYPosterConfigUnit alloc] initWithImage:image color:color];
             CGFloat scale = maxFloat / bottomUnit.width;
             bottomUnit.scale = scale;
             bottomUnit.oritention = UIImageOrientationDown;

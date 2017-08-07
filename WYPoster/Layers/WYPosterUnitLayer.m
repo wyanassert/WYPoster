@@ -25,8 +25,8 @@
     if(self = [super init]) {
         _configUnit = configUnit;
         [self configLayer];
-        self.borderColor = [UIColor redColor].CGColor;
-        self.borderWidth = 1;
+//        self.borderColor = [UIColor redColor].CGColor;
+//        self.borderWidth = 1;
     }
     return self;
 }
