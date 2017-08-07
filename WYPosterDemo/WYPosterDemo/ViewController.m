@@ -13,9 +13,11 @@
 #import "INTUAnimationEngine.h"
 #import "WYPosterLayer.h"
 
+#define TICK   CFTimeInterval startTime = CACurrentMediaTime()
+#define TOCK   NSLog(@"Time: %lf", (CACurrentMediaTime() - startTime));startTime = CACurrentMediaTime()
+
 @interface ViewController ()
 
-@property (nonatomic, strong) WYPosterView  *posterView;
 @property (nonatomic, strong) WYPosterLayer *posterLayer;
 @property (nonatomic, assign) NSInteger     index;
 @property (nonatomic, assign) WYPreferLocalMultiLine         perferMultiLine;
@@ -196,16 +198,9 @@
 //    config.leftRightImageNames = @[@"h000", @"h001", @"h002", @"h003", @"h004", @"h005", @"h006", @"h007", @"h008", @"h009", @"h010", @"h011", @"h012", @"h013", @"h014", @"h015", @"h016", @"h017"];
 //    config.topBottomImageNames = @[@"v000", @"v001", @"v002", @"v003", @"v004", @"v005", @"v006", @"v007", @"v008", @"v009", @"v010", @"v011", @"v012", @"v013", @"v014", @"v015", @"v016", @"v017", @"v018", @"v019"];
     
+    TICK;
     WYPosterConfigModel *config = [WYPoster getAllConfigModels][self.configIndex];
     [config cleanConfigPart];
-    
-//    if (self.posterView.superview) {
-//        [self.posterView removeFromSuperview];
-//    }
-//    self.posterView = [WYPoster createViewUsingText:[self getArray][index] withConfigModel:config];
-
-//    [self.view addSubview:self.posterView];
-//    self.posterView.frame = CGRectMake((self.view.frame.size.width - self.posterView.frame.size.width)/2, self.view.bounds.size.height - self.posterView.bounds.size.height, self.posterView.bounds.size.width, self.posterView.bounds.size.height);
     
     if(self.posterLayer.superlayer) {
         [self.posterLayer removeFromSuperlayer];
@@ -213,6 +208,8 @@
     self.posterLayer = [WYPoster createLayerUsingText:[self getArray][index] withConfigModel:config];
     [self.view.layer addSublayer:self.posterLayer];
     [self.posterLayer setFrame:CGRectMake((self.view.bounds.size.width - self.posterLayer.frame.size.width)/2, 80, self.posterLayer.frame.size.width, self.posterLayer.frame.size.height)];
+    
+    TOCK;
 }
 
 - (NSArray<NSString *> *)getArray {

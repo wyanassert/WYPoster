@@ -8,7 +8,6 @@
 
 #import "WYPosterConfigModel.h"
 #import "WYPosterConfigPart.h"
-#import "UIFont+wy_customFont.h"
 
 #ifndef UIColorFromHexWithAlpha
 #define UIColorFromHexWithAlpha(hexValue,a) [UIColor colorWithRed:((float)((hexValue & 0xFF0000) >> 16))/255.0 green:((float)((hexValue & 0xFF00) >> 8))/255.0 blue:((float)(hexValue & 0xFF))/255.0 alpha:a]
@@ -63,12 +62,12 @@
         
         NSArray *fontArray = [dict objectForKey:@"fontArray"];
         if([fontArray isKindOfClass:[NSArray class]]) {
-            NSMutableArray<UIFont *> *tmpFonArray = [NSMutableArray array];
+            NSMutableArray<WYPosterFont *> *tmpFonArray = [NSMutableArray array];
             for(NSDictionary *dict in fontArray) {
                 NSString *fontName = [dict objectForKey:@"name"];
                 NSUInteger size = [[dict objectForKey:@"size"] unsignedIntegerValue];
                 if(fontName.length && size) {
-                    UIFont *font = [UIFont wy_customFontWithName:fontName size:size];
+                    WYPosterFont *font = [[WYPosterFont alloc] initWithFontName:fontName size:size];
                     if(font) {
                         [tmpFonArray addObject:font];
                     }
@@ -193,9 +192,9 @@
     return _ratio;
 }
 
-- (NSArray<UIFont *> *)fontArray {
+- (NSArray<WYPosterFont *> *)fontArray {
     if(!_fontArray || !_fontArray.count) {
-        _fontArray = @[[UIFont systemFontOfSize:[UIFont systemFontSize]]];
+        _fontArray = @[[[WYPosterFont alloc] initWithFontName:[UIFont systemFontOfSize:12].fontName size:12]];
     }
     return _fontArray;
 }

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "WYPosterFont.h"
 
 @class WYPosterConfigPart;
 
@@ -56,13 +57,13 @@ typedef NS_OPTIONS(NSUInteger, WYEmbedImageType) {
 @property (nonatomic, assign) CGFloat                preferWidth;
 @property (nonatomic, assign) BOOL                   sameWidth;
 @property (nonatomic, assign) WYAlignmentType        alignment;
-@property (nonatomic, strong) NSArray<UIFont *>      *fontArray;
+@property (nonatomic, strong) NSArray<WYPosterFont*> *fontArray;
 @property (nonatomic, assign) BOOL                   enableMultiFontInLine;
 @property (nonatomic, assign) WYEmbedImageType       embedImageType;
 @property (nonatomic, assign) CGFloat                lineInterval;
-@property (nonatomic, strong) NSArray<UIColor *>     *defaultColors;
+@property (nonatomic, strong) NSArray<UIColor*>      *defaultColors;
 @property (nonatomic, assign) BOOL                   enableMultiColorInLine;
-@property (nonatomic, strong) NSArray<NSString *>    *leftRightImageNames;
+@property (nonatomic, strong) NSArray<NSString*>     *leftRightImageNames;
 @property (nonatomic, strong) NSArray<NSString *>    *topBottomImageNames;
 
 - (void)resizeToPrefer;

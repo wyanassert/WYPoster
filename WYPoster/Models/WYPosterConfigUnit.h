@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "WYPosterFont.h"
 
 typedef NS_ENUM(NSUInteger, WYPosterConfigUnitType) {
     WYPosterConfigUnitTypeNormal = 0,
@@ -37,11 +38,11 @@ typedef NS_ENUM(NSUInteger, WYPosterConfigUintImageOritention) {
 @property (nonatomic, assign,         ) CGFloat                scale;
 
 @property (nonatomic, strong, readonly) NSString               *word;
-@property (nonatomic, strong, readonly) UIFont                 *font;
+@property (nonatomic, strong, readonly) WYPosterFont           *font;
 @property (nonatomic, strong, readonly) UIColor                *color;
 
 @property (nonatomic, strong, readonly) NSArray<NSArray<NSString *> *> *multiWords;
-@property (nonatomic, strong, readonly) NSArray<UIFont *>              *multiFont;
+@property (nonatomic, strong, readonly) NSArray<WYPosterFont *>        *multiFont;
 @property (nonatomic, strong, readonly) WYPosterConfigPart             *configPart;
 
 @property (nonatomic, strong, readonly) UIImage                        *image;
@@ -49,8 +50,8 @@ typedef NS_ENUM(NSUInteger, WYPosterConfigUintImageOritention) {
 
 @property (nonatomic, assign, readwrite) CGFloat                       originY;
 
-- (instancetype)initWithWord:(NSString *)word font:(UIFont *)font color:(UIColor *)color;
-- (instancetype)initWithWords:(NSArray<NSArray<NSString *> *> *)multiWords fonts:(NSArray<UIFont *> *)multiFont colors:(NSArray<UIColor *> *)colorArray;
+- (instancetype)initWithWord:(NSString *)word font:(WYPosterFont *)font color:(UIColor *)color;
+- (instancetype)initWithWords:(NSArray<NSArray<NSString *> *> *)multiWords fonts:(NSArray<WYPosterFont *> *)multiFont colors:(NSArray<UIColor *> *)colorArray;
 - (instancetype)initWithImage:(UIImage *)image color:(UIColor *)color;
 
 @end

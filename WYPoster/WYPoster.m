@@ -8,7 +8,6 @@
 
 #import "WYPoster.h"
 #import "WYPosterConfigModel.h"
-#import "WYPosterView.h"
 #import "WYPosterConfigPart.h"
 #import "WYPosterConfigLine.h"
 #import "WYPosterParticiple.h"
@@ -52,16 +51,6 @@ static NSArray<WYPosterConfigModel *> *defaultConfigs;
     return configModel;
 }
 
-+ (WYPosterView *)createViewUsingText:(NSString *)text withConfigModel:(WYPosterConfigModel *)configModel {
-    if(!configModel.configPart.lineArray.count) {
-        configModel = [WYPoster fillLayoutData:text withConfig:configModel];
-    }
-    
-    WYPosterView *view = [[WYPosterView alloc] initWithConfig:configModel];
-    [view setFrame:CGRectMake(0, 0, configModel.width, configModel.height)];
-    return view;
-}
-
 + (WYPosterLayer *)createLayerUsingText:(NSString *)text withConfigModel:(WYPosterConfigModel *)configModel {
     if(!configModel.configPart.lineArray.count) {
         configModel = [WYPoster fillLayoutData:text withConfig:configModel];
@@ -80,7 +69,6 @@ static NSArray<WYPosterConfigModel *> *defaultConfigs;
         if(data) {
             NSError *error;
             configDict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-            NSLog(@"%@", error);
         }
         if([configDict isKindOfClass:[NSDictionary class]] && [configDict objectForKey:@"default"] && [[configDict objectForKey:@"default"] isKindOfClass:[NSArray class]]) {
             NSArray *configJsonArray = [configDict objectForKey:@"default"];

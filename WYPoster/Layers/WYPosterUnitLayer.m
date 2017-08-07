@@ -25,8 +25,8 @@
     if(self = [super init]) {
         _configUnit = configUnit;
         [self configLayer];
-//        self.borderColor = [UIColor redColor].CGColor;
-//        self.borderWidth = 1;
+        self.borderColor = [UIColor redColor].CGColor;
+        self.borderWidth = 1;
     }
     return self;
 }
@@ -41,18 +41,19 @@
             self.affineTransform = CGAffineTransformMakeScale(-1, 1);
         }
     } else if (self.configUnit.unitType == WYPosterConfigUnitTypeNormal) {
+        UIFont *font = [self.configUnit.font uiFont];
         self.textLayer = [CATextLayer layer];
-        [self.textLayer setFrame:CGRectMake(0, self.configUnit.font.capHeight - self.configUnit.font.ascender, self.configUnit.width, (self.configUnit.height + self.configUnit.font.ascender - self.configUnit.font.capHeight) * 1.1)];
+        [self.textLayer setFrame:CGRectMake(0, font.capHeight - font.ascender, self.configUnit.width, (self.configUnit.height + font.ascender - font.capHeight) * 1.1)];
         [self addSublayer:self.textLayer];
         self.textLayer.foregroundColor = self.configUnit.color.CGColor;
         self.textLayer.alignmentMode = kCAAlignmentCenter;
         self.textLayer.wrapped = YES;
         self.textLayer.contentsScale = [UIScreen mainScreen].scale;
         
-        CFStringRef fontName = (__bridge CFStringRef)self.configUnit.font.fontName;
+        CFStringRef fontName = (__bridge CFStringRef)font.fontName;
         CGFontRef fontRef = CGFontCreateWithFontName(fontName);
         self.textLayer.font = fontRef;
-        self.textLayer.fontSize = self.configUnit.font.pointSize;
+        self.textLayer.fontSize = font.pointSize;
         CGFontRelease(fontRef);
         
         self.textLayer.string = self.configUnit.word;

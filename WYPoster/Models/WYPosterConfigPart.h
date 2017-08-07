@@ -20,7 +20,7 @@
 @property (nonatomic, assign, readonly ) CGFloat            width;
 @property (nonatomic, assign, readonly ) CGFloat            height;
 
-@property (nonatomic, strong, readwrite) NSArray<UIFont*>   *fontArray;
+@property (nonatomic, strong, readwrite) NSArray<WYPosterFont*> *fontArray;
 @property (nonatomic, assign, readwrite) CGFloat            scale;
 @property (nonatomic, assign, readwrite) CGFloat            lineInterval;
 

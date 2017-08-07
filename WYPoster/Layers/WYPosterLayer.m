@@ -30,8 +30,8 @@
     if (self = [super init]) {
         _configModel = configModel;
         [self configLayer];
-//        self.borderColor = [UIColor blueColor].CGColor;
-//        self.borderWidth = 1;
+        self.borderColor = [UIColor blueColor].CGColor;
+        self.borderWidth = 1;
     }
     return self;
 }

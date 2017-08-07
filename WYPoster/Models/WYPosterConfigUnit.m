@@ -21,11 +21,11 @@ CGFloat kWidthScale = 1.15;
 @property (nonatomic, assign, readwrite) CGFloat                height;
 
 @property (nonatomic, strong, readwrite) NSString               *word;
-@property (nonatomic, strong, readwrite) UIFont                 *font;
+@property (nonatomic, strong, readwrite) WYPosterFont           *font;
 @property (nonatomic, strong, readwrite) UIColor                *color;
 
 @property (nonatomic, strong, readwrite) NSArray<NSArray<NSString *> *> *multiWords;
-@property (nonatomic, strong, readwrite) NSArray<UIFont *>              *multiFont;
+@property (nonatomic, strong, readwrite) NSArray<WYPosterFont *>        *multiFont;
 @property (nonatomic, strong, readwrite) WYPosterConfigPart             *configPart;
 
 @end
@@ -34,24 +34,21 @@ CGFloat kWidthScale = 1.15;
 
 @synthesize scale = _scale;
 
-- (instancetype)initWithWord:(NSString *)word font:(UIFont *)font color:(UIColor *)color {
+- (instancetype)initWithWord:(NSString *)word font:(WYPosterFont *)font color:(UIColor *)color {
     if(self = [super init]) {
         _unitType = WYPosterConfigUnitTypeNormal;
         _length = word.length;
         _word = word;
         _font = font;
         _color = color;
-        CGRect rect = [word boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)
-                                         options:NSStringDrawingUsesLineFragmentOrigin
-                                      attributes:@{NSFontAttributeName:font}
-                                         context:nil];
-        _width = rect.size.width / (word.length) * (word.length + 1) * self.scale * kWidthScale;
-        _height = rect.size.height * self.scale * kHeightScale;
+        CGSize tmpSize = CGSizeMake(_font.widthPerPoint * _font.size * _word.length, _font.heightPerPoint * _font.size);
+        _width = tmpSize.width / (word.length) * (word.length + 1) * self.scale * kWidthScale;
+        _height = tmpSize.height * self.scale * kHeightScale;
     }
     return self;
 }
 
-- (instancetype)initWithWords:(NSArray<NSArray<NSString *> *> *)multiWords fonts:(NSArray<UIFont *> *)multiFont colors:(NSArray<UIColor *> *)colorArray {
+- (instancetype)initWithWords:(NSArray<NSArray<NSString *> *> *)multiWords fonts:(NSArray<WYPosterFont *> *)multiFont colors:(NSArray<UIColor *> *)colorArray {
     if(self = [super init]) {
         _unitType = WYPosterConfigUnitTypeMultiLine;
         _multiWords = multiWords;
@@ -132,14 +129,9 @@ CGFloat kWidthScale = 1.15;
 #pragma mark - Setter
 - (void)setScale:(CGFloat)scale {
     if(self.unitType == WYPosterConfigUnitTypeNormal) {
-        UIFont *font = [UIFont fontWithName:self.font.fontName size:self.font.pointSize * scale / self.scale];
-        _font = font;
-        CGRect rect = [self.word boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)
-                                              options:NSStringDrawingUsesLineFragmentOrigin
-                                           attributes:@{NSFontAttributeName:font}
-                                              context:nil];
-        _width = rect.size.width * kWidthScale;
-        _height = font.ascender * kHeightScale;
+        self.font = [[WYPosterFont alloc] initWithFontName:self.font.fontName size:self.font.size * scale / self.scale];
+        _width = self.font.widthPerPoint * self.font.size * self.word.length * kWidthScale;
+        _height = self.font.heightPerPoint * self.font.size * kHeightScale;
         
         _scale = scale;
     } else if(self.unitType == WYPosterConfigUnitTypeMultiLine) {

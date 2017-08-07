@@ -27,11 +27,8 @@
 }
 
 + (WYPosterConfigModel *)calAvgLengthForConfigModel:(WYPosterConfigModel *)configModel withText:(NSString *)text {
-    UIFont *font= configModel.fontArray[0];
-    NSDictionary* dic = @{
-                          NSFontAttributeName:font,
-                          };
-    CGSize characterSize = [@"A" boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:dic context:nil].size;
+    WYPosterFont *font= configModel.fontArray[0];
+    CGSize characterSize = CGSizeMake(font.widthPerPoint, font.heightPerPoint);
     NSUInteger avg = ceil(sqrt(configModel.ratio * characterSize.height / characterSize.width * text.length) * ((arc4random() % 5) / 4.0 * 0.4 + 0.8));
     configModel.avgLength = avg;
     return configModel;
@@ -114,7 +111,7 @@
 
 #pragma mark - Private
 + (WYPosterConfigLine *)spliteALineFormMultiLine:(NSArray<NSString *> *)wordArray fromIndex:(NSUInteger)index withConfigModel:(WYPosterConfigModel *)configModel presetLength:(CGFloat)presetLength {
-    UIFont *font = configModel.fontArray[arc4random() % [configModel.fontArray count]];
+    WYPosterFont *font = configModel.fontArray[arc4random() % [configModel.fontArray count]];
     UIColor *color = configModel.defaultColors[arc4random() % [configModel.defaultColors count]];
     WYPosterConfigLine *tmpLine = [WYPosterConfigLine new];
     tmpLine.lineColor = color;

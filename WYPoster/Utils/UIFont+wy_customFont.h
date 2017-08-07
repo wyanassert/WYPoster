@@ -10,6 +10,6 @@
 
 @interface UIFont (wy_customFont)
 
-+ (nullable UIFont *)wy_customFontWithName:(NSString *)fontName size:(CGFloat)fontSize;
++ (nullable UIFont *)wy_customFontWithName:(NSString *_Nullable)fontName size:(CGFloat)fontSize;
 
 @end
