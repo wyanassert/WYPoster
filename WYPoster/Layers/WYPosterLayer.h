@@ -8,6 +8,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import <UIKit/UIKit.h>
+#import "WYPosterLayerConfig.h"
 
 @class WYPosterConfigModel;
 @class WYPosterConfigPart;
@@ -21,5 +22,7 @@
 
 - (void)setGradientColor:(NSArray<UIColor *> *)colors percentage:(CGFloat)percentage rotate:(CGFloat)rotate;
 - (void)closeGradient;
+
+- (void)loadLayerConfig:(WYPosterLayerConfig *)layerConfig;
 
 @end

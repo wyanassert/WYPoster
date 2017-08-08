@@ -22,6 +22,8 @@
 @property (nonatomic, strong) CALayer         *containerLayer;
 @property (nonatomic, strong) CAGradientLayer         *gradientLayer;
 
+@property (nonatomic, assign) WYPosterLayerConfig         *layerConfig;
+
 @end
 
 @implementation WYPosterLayer
@@ -120,6 +122,17 @@
 - (void)closeGradient {
     self.containerLayer.hidden = NO;
     self.gradientLayer.hidden = YES;
+}
+
+- (void)loadLayerConfig:(WYPosterLayerConfig *)layerConfig {
+    if(!layerConfig.gradientEnabled) {
+        [self closeGradient];
+        [self setColor:layerConfig.displayColors];
+    } else {
+        [self setGradientColor:layerConfig.gradientColors percentage:layerConfig.gradientPercentage rotate:layerConfig.gradientRotateAngel];
+    }
+    
+    _layerArray = [layerConfig copy];
 }
 
 #pragma mark - Private
