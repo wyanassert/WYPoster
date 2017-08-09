@@ -86,6 +86,26 @@ static NSArray<WYPosterConfigModel *> *defaultConfigs;
     return defaultConfigs;
 }
 
++ (NSArray<NSNumber *> *)getAllConfigNumber {
+    NSArray<WYPosterConfigModel *> *configArray = [WYPoster getAllConfigModels];
+    NSMutableArray *idArray = [NSMutableArray array];
+    for (WYPosterConfigModel *config in configArray) {
+        [idArray addObject:@(config.order)];
+    }
+    return [idArray copy];
+}
+
++ (WYPosterConfigModel *)getConfigWithIdNumber:(NSNumber *)number {
+    
+    NSArray<WYPosterConfigModel *> *configArray = [WYPoster getAllConfigModels];
+    for (WYPosterConfigModel *config in configArray) {
+        if(config.order == number.unsignedIntegerValue) {
+            return config;
+        }
+    }
+    return nil;
+}
+
 #pragma mark - Private
 + (CGFloat)checkIfRatioReasonable:(WYPosterConfigModel *)configModel {
     CGFloat ratio = configModel.configPart.width / configModel.configPart.height;

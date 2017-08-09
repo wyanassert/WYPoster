@@ -20,4 +20,8 @@
 
 + (NSArray<WYPosterConfigModel *> *)getAllConfigModels;
 
++ (NSArray<NSNumber *> *)getAllConfigNumber;
+
++ (WYPosterConfigModel *)getConfigWithIdNumber:(NSNumber *)number;
+
 @end
