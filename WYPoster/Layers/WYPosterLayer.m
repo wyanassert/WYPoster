@@ -22,7 +22,7 @@
 @property (nonatomic, strong) CALayer         *containerLayer;
 @property (nonatomic, strong) CAGradientLayer         *gradientLayer;
 
-@property (nonatomic, assign) WYPosterLayerConfig         *layerConfig;
+@property (nonatomic, strong) WYPosterLayerConfig         *layerConfig;
 
 @end
 
@@ -48,6 +48,9 @@
 
 - (void)setColor:(NSArray<UIColor *> *)colors {
     [self closeGradient];
+    if(!colors.count) {
+        return ;
+    }
     NSArray<UIColor *> *tmpColors = nil;
     UIColor *color = [UIColor blackColor];
     for(WYPosterUnitLayer *unitLayer in self.layerArray) {
@@ -119,6 +122,12 @@
     self.gradientLayer.hidden = NO;
 }
 
+- (void)setShadowOpacity:(CGFloat)opacity blurRadius:(CGFloat)blurRadius color:(UIColor *)color offset:(CGSize)offset {
+    for(WYPosterUnitLayer *unitLayer in self.layerArray) {
+        [unitLayer setShadowOpacity:opacity blurRadius:blurRadius color:color offset:offset];
+    }
+}
+
 - (void)closeGradient {
     self.containerLayer.hidden = NO;
     self.gradientLayer.hidden = YES;
@@ -132,7 +141,13 @@
         [self setGradientColor:layerConfig.gradientColors percentage:layerConfig.gradientPercentage rotate:layerConfig.gradientRotateAngel];
     }
     
-    _layerArray = [layerConfig copy];
+    if(layerConfig.shadowEnabled) {
+        [self setShadowOpacity:layerConfig.shadowOpacity blurRadius:layerConfig.shadowBlurRadius color:layerConfig.shadowColor offset:layerConfig.shadowOffset];
+    } else {
+        [self setShadowOpacity:0 blurRadius:0 color:[UIColor clearColor] offset:CGSizeZero];
+    }
+    
+    _layerConfig = [layerConfig copy];
 }
 
 #pragma mark - Private
@@ -141,6 +156,9 @@
     [self addSublayer:self.containerLayer];
     [self addSublayer:self.gradientLayer];
     self.gradientLayer.hidden = YES;
+    
+    static NSUInteger showCount = 0;
+    
     CGPoint origin = self.configPart.origin;
     for (NSUInteger i = 0; i < self.configPart.lineArray.count; i++) {
         WYPosterConfigLine *line = self.configPart.lineArray[i];
@@ -153,8 +171,15 @@
             unitLayer.frame = CGRectMake(lineOrigin.x, lineOrigin.y + unit.originY, unit.width, unit.height);
             lineOrigin.x += unit.width;
             [self.containerLayer addSublayer:unitLayer];
+            if(unit.unitType != WYPosterConfigUnitTypeMultiLine) {
+                [self showUpAnimationGroup:showCount duration:0.2 layer:unitLayer];
+                showCount += unit.baseCount;
+            }
             [self.layerArray addObject:unitLayer];
         }
+    }
+    if(_configModel) {
+        showCount = 0;
     }
 }
 
@@ -170,6 +195,44 @@
     UIGraphicsEndImageContext();
     
     return snap;
+}
+
+- (void)showUpAnimationGroup:(NSUInteger)i duration:(CGFloat)duration layer:(CALayer *)layer {
+    CABasicAnimation* animationOpacity = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    animationOpacity.beginTime = CACurrentMediaTime();
+    animationOpacity.duration = (i+1)*duration;
+    animationOpacity.removedOnCompletion = YES;
+    animationOpacity.fromValue = @0.0f;
+    animationOpacity.toValue = @0.0f;
+    animationOpacity.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    [layer addAnimation:animationOpacity forKey:@"opacity"];
+    
+    CABasicAnimation *animationScaleX = [CABasicAnimation animationWithKeyPath:@"transform.scale.x"];
+    animationScaleX.beginTime = CACurrentMediaTime() + (i+1)*duration;
+    animationScaleX.duration = duration;
+    animationScaleX.removedOnCompletion = YES;
+    animationScaleX.fromValue = @2.0f;
+    animationScaleX.toValue = @1.0f;
+    animationScaleX.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    [layer addAnimation:animationScaleX forKey:@"scaleXIn"];
+    
+    CABasicAnimation *animationScaleY = [CABasicAnimation animationWithKeyPath:@"transform.scale.y"];
+    animationScaleY.beginTime = CACurrentMediaTime() + (i+1)*duration;
+    animationScaleY.duration = duration;
+    animationScaleY.removedOnCompletion = YES;
+    animationScaleY.fromValue = @2.f;
+    animationScaleY.toValue = @1.0f;
+    animationScaleY.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    [layer addAnimation:animationScaleY forKey:@"scaleYIn"];
+    
+    CABasicAnimation *animationTranslationY = [CABasicAnimation animationWithKeyPath:@"position.y"];
+    animationTranslationY.beginTime = CACurrentMediaTime() + (i+1)*duration;
+    animationTranslationY.duration = duration;
+    animationTranslationY.removedOnCompletion = YES;
+    animationTranslationY.fromValue = @(layer.position.y - 80);
+    animationTranslationY.toValue = @(layer.position.y);
+    animationTranslationY.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    [layer addAnimation:animationTranslationY forKey:@"translationYIn"];
 }
 
 #pragma mark - Setter

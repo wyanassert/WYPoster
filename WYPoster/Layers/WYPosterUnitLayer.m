@@ -43,7 +43,7 @@
     } else if (self.configUnit.unitType == WYPosterConfigUnitTypeNormal) {
         UIFont *font = [self.configUnit.font uiFont];
         self.textLayer = [CATextLayer layer];
-        [self.textLayer setFrame:CGRectMake(0, font.capHeight - font.ascender, self.configUnit.width, (self.configUnit.height + font.ascender - font.capHeight) * 1.1)];
+        [self.textLayer setFrame:CGRectMake(0, font.capHeight - font.ascender, self.configUnit.width , (self.configUnit.height + font.ascender - font.capHeight) * 1.1)];
         [self addSublayer:self.textLayer];
         self.textLayer.foregroundColor = self.configUnit.color.CGColor;
         self.textLayer.alignmentMode = kCAAlignmentCenter;
@@ -74,7 +74,20 @@
         self.textLayer.foregroundColor = color.CGColor;
     } else if(self.configUnit.unitType == WYPosterConfigUnitTypeMultiLine) {
         [self.partLayer setColor:colors];
+    } else if(self.configUnit.unitType == WYPosterConfigUnitTypeImage) {
+        UIColor *color = [UIColor blackColor];
+        if(colors.count) {
+            color = colors.firstObject;
+        }
+        self.contents = (__bridge id)[UIImage wy_customeColorImage:self.configUnit.image color:color].CGImage;
     }
+}
+
+- (void)setShadowOpacity:(CGFloat)opacity blurRadius:(CGFloat)blurRadius color:(UIColor *)color offset:(CGSize)offset {
+    self.shadowOpacity = opacity;
+    self.shadowRadius = blurRadius;
+    self.shadowColor = color.CGColor;
+    self.shadowOffset = offset;
 }
 
 @end

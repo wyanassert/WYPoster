@@ -38,13 +38,14 @@
     if(self = [super init]) {
         _fontName = fontName;
         _size = font.pointSize;
-        CGRect rect = [@"A" boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)
+        NSString *testStr = @"WAY";
+        CGRect rect = [testStr boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)
                                          options:NSStringDrawingUsesLineFragmentOrigin
                                       attributes:@{NSFontAttributeName:font}
                                          context:nil];
         rect.size.height -= (font.ascender - font.capHeight);
         _heightPerPoint = rect.size.height / _size;
-        _widthPerPoint = rect.size.width / _size;
+        _widthPerPoint = rect.size.width / (_size * testStr.length);
     }
     return self;
 }

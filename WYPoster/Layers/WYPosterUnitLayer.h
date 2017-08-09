@@ -19,4 +19,6 @@
 
 - (void)setColors:(NSArray<UIColor *> *)colors;
 
+- (void)setShadowOpacity:(CGFloat)opacity blurRadius:(CGFloat)blurRadius color:(UIColor *)color offset:(CGSize)offset;
+
 @end

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "WYPosterLayer.h"
+#import "WYPosterConfigModel.h"
 
 @class WYPosterConfigModel;
 

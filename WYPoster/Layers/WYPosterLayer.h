@@ -23,6 +23,8 @@
 - (void)setGradientColor:(NSArray<UIColor *> *)colors percentage:(CGFloat)percentage rotate:(CGFloat)rotate;
 - (void)closeGradient;
 
+- (void)setShadowOpacity:(CGFloat)opacity blurRadius:(CGFloat)blurRadius color:(UIColor *)color offset:(CGSize)offset;
+
 - (void)loadLayerConfig:(WYPosterLayerConfig *)layerConfig;
 
 @end
